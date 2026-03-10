@@ -1,15 +1,14 @@
-import shlex
 import subprocess
 
 import ollama
 
-# Based on https://docs.ollama.com/capabilities/tool-calling#python
+# Streaming and tool-calling code based on https://docs.ollama.com/capabilities/tool-calling#python
 
-SYSTEM = "Analyze this project to identify vulnerabilities in any software dependencies. List each vulnerability found (if any), along with an SSVC decision (Track, Track*, Attend, or Act)."
 MANUAL_APPROVE_COMMANDS = True
 MODEL = "qwen3.5:9b"
 HOST = "http://localhost:11434"
 
+SYSTEM = "Analyze this project to identify vulnerabilities in any software dependencies. List each vulnerability found (if any), along with an SSVC decision (Track, Track*, Attend, or Act)."
 
 
 def run_command(command: str) -> str:
@@ -29,18 +28,42 @@ def run_command(command: str) -> str:
             print("Skipping command")
             return "Command disallowed by user"
 
-    args = shlex.split(command)
-
-    result = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, encoding="utf-8")
+    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, encoding="utf-8")
     return result.stdout
 
 
-def do_chat(client, messages):
-    response = client.chat(model=MODEL, messages=messages, tools=[run_command], think=True)
-    messages.append(response.message)
+def stream_message(stream) -> tuple[str, str, list]:
+    thinking = ''
+    content = ''
+    tool_calls = []
 
-    if response.message.tool_calls:
-        for call in response.message.tool_calls:
+    done_thinking = False
+    for chunk in stream:
+        if chunk.message.thinking:
+            thinking += chunk.message.thinking
+            print(chunk.message.thinking, end='', flush=True)
+        if chunk.message.content:
+            if not done_thinking:
+                done_thinking = True
+                print('\n...Done thinking.\n')
+            content += chunk.message.content
+            print(chunk.message.content, end='', flush=True)
+        if chunk.message.tool_calls:
+            tool_calls.extend(chunk.message.tool_calls)
+            print(chunk.message.tool_calls)
+
+    return thinking, content, tool_calls
+
+
+def do_chat(client: ollama.Client, messages: list) -> bool:
+    stream = client.chat(model=MODEL, messages=messages, tools=[run_command], stream=True, think=True)
+    thinking, content, tool_calls = stream_message(stream)
+
+    if thinking or content or tool_calls:
+        messages.append({'role': 'assistant', 'thinking': thinking, 'content': content, 'tool_calls': tool_calls})
+
+    if tool_calls:
+        for call in tool_calls:
             print(call.function.name, call.function.arguments)
             if call.function.name == "run_command":
                 result = run_command(**call.function.arguments)
@@ -49,15 +72,18 @@ def do_chat(client, messages):
 
             print(result)
             messages.append({"role": "tool", "tool_name": call.function.name, "content": result})
+        return True
     else:
-        print(response.message.content)
+        # If message contains no tool calls, assume model is done analyzing project
+        return False
 
 
 def main():
     client = ollama.Client(host=HOST)
     messages = [{"role": "system", "content": SYSTEM}]
     while True:
-        do_chat(client, messages)
+        if not do_chat(client, messages):
+            break
 
 
 if __name__ == "__main__":

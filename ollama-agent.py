@@ -1,3 +1,4 @@
+import shlex
 import subprocess
 
 import ollama
@@ -39,7 +40,7 @@ def do_chat(messages):
     messages.append(response.message)
 
     if response.message.tool_calls:
-        for call in response.message.tools_calls:
+        for call in response.message.tool_calls:
             print(call.function.name, call.function.arguments)
             if call.function.name == "run_command":
                 result = run_command(**call.function.arguments)
@@ -53,6 +54,10 @@ def do_chat(messages):
 
 
 def main():
-    messages = [{role: "system", "content": SYSTEM}]
+    messages = [{"role": "system", "content": SYSTEM}]
     while True:
         do_chat(messages)
+
+
+if __name__ == "__main__":
+    main()

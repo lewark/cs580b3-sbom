@@ -8,7 +8,7 @@ import ollama
 SYSTEM = "Analyze this project to identify vulnerabilities in any software dependencies. List each vulnerability found (if any), along with an SSVC decision (Track, Track*, Attend, or Act)."
 MANUAL_APPROVE_COMMANDS = True
 MODEL = "qwen3.5:9b"
-
+HOST = "http://localhost:11434"
 
 
 
@@ -31,12 +31,12 @@ def run_command(command: str) -> str:
 
     args = shlex.split(command)
 
-    result = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding="utf-8")
+    result = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, encoding="utf-8")
     return result.stdout
 
 
-def do_chat(messages):
-    response = ollama.chat(model=MODEL, messages=messages, tools=[run_command], think=True)
+def do_chat(client, messages):
+    response = client.chat(model=MODEL, messages=messages, tools=[run_command], think=True)
     messages.append(response.message)
 
     if response.message.tool_calls:
@@ -54,9 +54,10 @@ def do_chat(messages):
 
 
 def main():
+    client = ollama.Client(host=HOST)
     messages = [{"role": "system", "content": SYSTEM}]
     while True:
-        do_chat(messages)
+        do_chat(client, messages)
 
 
 if __name__ == "__main__":

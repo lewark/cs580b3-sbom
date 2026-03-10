@@ -45,7 +45,7 @@ def stream_message(stream) -> tuple[str, str, list]:
         if chunk.message.content:
             if not done_thinking:
                 done_thinking = True
-                print('\n...Done thinking.\n')
+                print('\n[Done thinking.]\n')
             content.append(chunk.message.content)
             print(chunk.message.content, end='', flush=True)
         if chunk.message.tool_calls:

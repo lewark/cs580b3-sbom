@@ -33,26 +33,26 @@ def run_command(command: str) -> str:
 
 
 def stream_message(stream) -> tuple[str, str, list]:
-    thinking = ''
-    content = ''
+    thinking = []
+    content = []
     tool_calls = []
 
     done_thinking = False
     for chunk in stream:
         if chunk.message.thinking:
-            thinking += chunk.message.thinking
+            thinking.append(chunk.message.thinking)
             print(chunk.message.thinking, end='', flush=True)
         if chunk.message.content:
             if not done_thinking:
                 done_thinking = True
                 print('\n...Done thinking.\n')
-            content += chunk.message.content
+            content.append(chunk.message.content)
             print(chunk.message.content, end='', flush=True)
         if chunk.message.tool_calls:
             tool_calls.extend(chunk.message.tool_calls)
             print(chunk.message.tool_calls)
 
-    return thinking, content, tool_calls
+    return "".join(thinking), "".join(content), tool_calls
 
 
 def do_chat(client: ollama.Client, messages: list) -> bool:

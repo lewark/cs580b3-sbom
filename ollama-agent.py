@@ -1,12 +1,14 @@
+import os
+import shlex
 import subprocess
 
 import ollama
 
 # Streaming and tool-calling code based on https://docs.ollama.com/capabilities/tool-calling#python
 
-MANUAL_APPROVE_COMMANDS = True
+MANUAL_APPROVE_COMMANDS = False
 MODEL = "qwen3.5:9b"
-HOST = "http://localhost:11434"
+HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 
 SYSTEM = "Analyze this project to identify vulnerabilities in any software dependencies. List each vulnerability found (if any), along with an SSVC decision (Track, Track*, Attend, or Act)."
 
@@ -27,6 +29,24 @@ def run_command(command: str) -> str:
         if input("OK? (Y/N)").lower() != "y":
             print("Skipping command")
             return "Command disallowed by user"
+
+    split = shlex.split(command)
+    if split[0] == "cd":
+        n_params = len(split)
+        if n_params == 1:
+            target_dir = os.environ["HOME"]
+        elif n_params == 2:
+            target_dir = split[1]
+        else:
+            return "cd: too many arguments"
+
+        if os.path.isdir(target_dir):
+            os.chdir(target_dir)
+            return ""
+        elif os.path.exists(target_dir):
+            return f"cd: {target_dir}: Not a directory"
+        else:
+            return f"cd: {target_dir}: No such file or directory"
 
     result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, encoding="utf-8")
     return result.stdout

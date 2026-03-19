@@ -1,14 +1,16 @@
+import json
 import os
 import shlex
 import subprocess
+import sys
+import time
 
 import ollama
+from pydantic import BaseModel
 
 # Streaming and tool-calling code based on https://docs.ollama.com/capabilities/tool-calling#python
 
 MANUAL_APPROVE_COMMANDS = False
-MODEL = "qwen3.5:9b"
-HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 
 SYSTEM = "Analyze this project to identify vulnerabilities in any software dependencies. List each vulnerability found (if any), along with an SSVC decision (Track, Track*, Attend, or Act)."
 
@@ -75,8 +77,8 @@ def stream_message(stream) -> tuple[str, str, list]:
     return "".join(thinking), "".join(content), tool_calls
 
 
-def do_chat(client: ollama.Client, messages: list) -> bool:
-    stream = client.chat(model=MODEL, messages=messages, tools=[run_command], stream=True, think=True)
+def do_chat(model: str, client: ollama.Client, messages: list) -> bool:
+    stream = client.chat(model=model, messages=messages, tools=[run_command], stream=True, think=True)
     thinking, content, tool_calls = stream_message(stream)
 
     if thinking or content or tool_calls:
@@ -98,12 +100,42 @@ def do_chat(client: ollama.Client, messages: list) -> bool:
         return False
 
 
+def write_log_file(model: str, messages: list, out_dir: str):
+    timestamp = time.strftime("%Y-%m-%d_%H%M%S")
+    model_label = model.replace(":", "_")
+
+    filename =  f"{model_label}_{timestamp}.json"
+    filename = os.path.join(out_dir, filename)
+
+    entries = []
+    for msg in messages:
+        if isinstance(msg, dict):
+            if "tool_calls" in msg:
+                msg["tool_calls"] = [call.model_dump() for call in msg["tool_calls"]]
+            entries.append(msg)
+        else:
+            entries.append(msg.model_dump())
+
+    with open(filename, "w") as out_file:
+        json.dump(entries, out_file, indent=2)
+
+
 def main():
-    client = ollama.Client(host=HOST)
+    if len(sys.argv) < 2:
+        print("Usage: ollama-agent MODEL")
+        sys.exit(1)
+
+    model = sys.argv[1]
+    host = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+    out_dir = os.getenv("OUTPUT_DIRECTORY", "/data/logs")
+
+    client = ollama.Client(host=host)
     messages = [{"role": "system", "content": SYSTEM}]
     while True:
-        if not do_chat(client, messages):
+        if not do_chat(model, client, messages):
             break
+
+    write_log_file(model, messages, out_dir)
 
 
 if __name__ == "__main__":

@@ -28,3 +28,14 @@ the container.
 ## Running the agent
 
 Run `./run-agent.sh MODEL` to start the agent, replacing `MODEL` with the name of the model to run (e.g. `qwen3.5:9b`).
+
+You can optionally specify the container engine to use (either `--podman` or `--docker`) before the model name. By default, Podman is used.
+
+```bash
+# Run with Podman (default)
+./run-agent.sh qwen3.5:9b
+./run-agent.sh --podman qwen3.5:9b
+
+# Run with Docker
+./run-agent.sh --docker qwen3.5:9b
+```

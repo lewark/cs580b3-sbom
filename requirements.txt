@@ -1,1 +1,8 @@
 ollama==0.6.1
+langchain
+langchain-ollama
+langchain-community
+langchain-text-splitters
+langchain-chroma
+duckduckgo-search
+jq

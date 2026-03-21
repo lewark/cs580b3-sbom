@@ -10,9 +10,12 @@ fi
 # "host.containers.internal" address. Later on we can troubleshoot this or try using Skua instead.
 
 EXTRA_OPTS=""
+if [ -n "$CONTAINER_NAME" ]; then
+    EXTRA_OPTS="--name $CONTAINER_NAME"
+fi
 if [ -f ".env" ]; then
-    EXTRA_OPTS="--env-file=.env"
+    EXTRA_OPTS="$EXTRA_OPTS --env-file=.env"
 fi
 	
 
-$ENGINE run -i --volume $PWD:/data --network=host $EXTRA_OPTS python "$@"
+$ENGINE run --rm -i --init --volume $PWD:/data --network=host $EXTRA_OPTS python "$@"

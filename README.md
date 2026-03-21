@@ -10,6 +10,15 @@ To install Ollama on a machine, you can either run the setup command provided [h
 
 The containerization scripts are intended to be run on Linux. Clone this repository on the machine that will host the containers. Then, run `./setup-container.sh` to set up the Python virtual environment and install the software dependencies.
 
+For a more robust testing environment, we have provided a Dockerfile. To build a custom image that includes necessary system utilities and pre-downloads the Apache Tomcat testing target, run:
+
+```bash
+# Build the specialized container image
+docker build -t llm-agent-testbed .
+```
+
+After building the image, ensure that `run-container.sh` is updated to utilize the new image (`llm-agent-testbed` instead of `python`). Similarly, `run-agent.sh` no longer needs to use the `/venv/bin/python3` execution path since dependencies are built globally into the Docker image.
+
 ## Connecting to Ollama from another machine
 
 The machine that runs Ollama does not have to be the same one that runs the container the agent will interact with. To set up the two on different machines, use the following process.
@@ -27,7 +36,7 @@ the container.
 
 ## Running the agent
 
-Run `./run-agent.sh MODEL` to start the agent, replacing `MODEL` with the name of the model to run (e.g. `qwen3.5:9b`).
+Run `./run-agent.sh MODEL [SOURCE_URL]` to start the agent, replacing `MODEL` with the name of the model to run (e.g. `qwen3.5:9b`). You can optionally provide a `SOURCE_URL` to a `.tar.gz` codebase distribution which will be downloaded and analyzed.
 
 You can optionally specify the container engine to use (either `--podman` or `--docker`) before the model name. By default, Podman is used.
 
@@ -36,8 +45,8 @@ You can optionally specify the container engine to use (either `--podman` or `--
 ./run-agent.sh qwen3.5:9b
 ./run-agent.sh --podman qwen3.5:9b
 
-# Run with Docker
-./run-agent.sh --docker qwen3.5:9b
+# Run with Docker and analyze a specific source distribution
+./run-agent.sh --docker qwen3.5:9b https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.57/bin/apache-tomcat-8.5.57.tar.gz
 ```
 
 ## TL;DR: Execution Order
@@ -45,5 +54,5 @@ You can optionally specify the container engine to use (either `--podman` or `--
 If you want to get up and running quickly, follow this execution order:
 
 1. **Start Ollama**: Make sure your Ollama instance is running (locally or remotely via `.env` configured host).
-2. **Setup Environment**: Run `./setup-container.sh` once to build the necessary environment and install dependencies.
-3. **Run Agent**: Run `./run-agent.sh <MODEL>` (e.g., `./run-agent.sh qwen3.5:9b`) to start the analysis. Remember to include `--docker` before the model name if you aren't using Podman.
+2. **Setup Environment**: Run `./setup-container.sh` once to build the necessary environment and install dependencies. To use a more robust environment, build the Dockerfile: `docker build -t llm-agent-testbed .`
+3. **Run Agent**: Run `./run-agent.sh <MODEL> [SOURCE_URL]` (e.g., `./run-agent.sh qwen3.5:9b https://example.com/source.tar.gz`) to start the analysis. Remember to include `--docker` before the model name if you aren't using Podman.

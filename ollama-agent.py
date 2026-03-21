@@ -130,7 +130,11 @@ def main():
     out_dir = os.getenv("OUTPUT_DIRECTORY", "/data/logs")
 
     client = ollama.Client(host=host)
-    messages = [{"role": "system", "content": SYSTEM}]
+    messages = [
+        {"role": "system", "content": SYSTEM},
+        {"role": "user", "content": "Please analyze the codebase in the current directory to identify vulnerabilities in any software dependencies. Use the run_command tool to explore the files."}
+    ]
+    
     while True:
         if not do_chat(model, client, messages):
             break

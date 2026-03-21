@@ -39,3 +39,11 @@ You can optionally specify the container engine to use (either `--podman` or `--
 # Run with Docker
 ./run-agent.sh --docker qwen3.5:9b
 ```
+
+## TL;DR: Execution Order
+
+If you want to get up and running quickly, follow this execution order:
+
+1. **Start Ollama**: Make sure your Ollama instance is running (locally or remotely via `.env` configured host).
+2. **Setup Environment**: Run `./setup-container.sh` once to build the necessary environment and install dependencies.
+3. **Run Agent**: Run `./run-agent.sh <MODEL>` (e.g., `./run-agent.sh qwen3.5:9b`) to start the analysis. Remember to include `--docker` before the model name if you aren't using Podman.

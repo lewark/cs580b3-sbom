@@ -10,10 +10,19 @@ OUTPUT_FILE = 'llmj_analysis_results.json'
 OLLAMA_API_URL = 'http://localhost:11434/api/chat'
 OLLAMA_MODEL = 'qwen3.5:397b-cloud'
 
-def extract_cves(text):
-    """Extract CVE IDs from a given text using regex."""
-    if not isinstance(text, str):
-        text = json.dumps(text)
+def extract_cves(data):
+    """Extract CVE IDs from the parsed JSON data, falling back to regex if needed."""
+    cves = set()
+    
+    if isinstance(data, dict) and "vulnerabilities" in data:
+        for vuln in data["vulnerabilities"]:
+            if isinstance(vuln, dict) and "vulnerability_id" in vuln:
+                cves.add(vuln["vulnerability_id"])
+                
+    if cves:
+        return list(cves)
+        
+    text = data if isinstance(data, str) else json.dumps(data)
     pattern = r'CVE-\d{4}-\d{4,7}'
     return list(set(re.findall(pattern, text)))
 
@@ -146,8 +155,13 @@ def main():
             print(f"Fetching Vulnrichment data for {cve}...")
             vuln_data = fetch_vulnrichment_data(cve)
             
+            # Narrow down log_context if it's structured
+            cve_context = log_data
+            if isinstance(log_data, dict) and "vulnerabilities" in log_data:
+                cve_context = [v for v in log_data["vulnerabilities"] if v.get("vulnerability_id") == cve]
+            
             print(f"Performing LLM-J analysis for {cve} with {OLLAMA_MODEL}...")
-            analysis = analyze_with_llmj(cve, log_data, vuln_data)
+            analysis = analyze_with_llmj(cve, cve_context, vuln_data)
             
             result_entry = {
                 "source_log": os.path.basename(file_path),

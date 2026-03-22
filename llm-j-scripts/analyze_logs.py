@@ -5,10 +5,10 @@ import requests
 import glob
 from requests.exceptions import RequestException
 
-LOG_DIR = 'logs'
-OUTPUT_FILE = 'llmj_analysis_results.json'
+LOG_DIR = '../logs/parsed-logs'
+OUTPUT_DIR = '../logs/llm-j-analysis-logs'
 OLLAMA_API_URL = 'http://localhost:11434/api/chat'
-OLLAMA_MODEL = 'qwen3.5:397b-cloud'
+OLLAMA_MODEL = 'gpt-oss:120b-cloud'
 
 def extract_cves(data):
     """Extract CVE IDs from the parsed JSON data, falling back to regex if needed."""
@@ -44,7 +44,7 @@ def fetch_vulnrichment_data(cve_id):
         
     group = number[:-3] + 'xxx'
     
-    url = f"https://raw.githubusercontent.com/cisagov/vulnrichment/develop/{year}/{group}/{cve_id}.json"
+    url = "https://raw.githubusercontent.com/cisagov/vulnrichment/develop/{}/{}/{}.json".format(year, group, cve_id)
     
     try:
         response = requests.get(url, timeout=10)
@@ -53,7 +53,7 @@ def fetch_vulnrichment_data(cve_id):
         elif response.status_code == 404:
             return {"error": "Not found in Vulnrichment database"}
         else:
-            return {"error": f"HTTP {response.status_code}"}
+            return {"error": "HTTP {}".format(response.status_code)}
     except RequestException as e:
         return {"error": str(e)}
 
@@ -61,16 +61,16 @@ def analyze_with_llmj(cve_id, log_context, vuln_data):
     """
     Perform LLM-J (LLM-as-a-Judge) analysis using local Ollama model.
     """
-    prompt = f"""
+    prompt = """
     You are an expert cybersecurity AI judge (LLM-J). You are evaluating the accuracy and quality of another LLM's vulnerability analysis against the ground truth database.
     
-    CVE ID: {cve_id}
+    CVE ID: {0}
     
     Candidate LLM Analysis (to be evaluated):
-    {json.dumps(log_context, indent=2)}
+    {1}
     
     Ground Truth (CISA Vulnrichment Data):
-    {json.dumps(vuln_data, indent=2)}
+    {2}
     
     Evaluate how well the candidate LLM's analysis matches the ground truth. 
     Consider accuracy of the description, severity/impact, and any SSVC or action decisions provided.
@@ -82,7 +82,7 @@ def analyze_with_llmj(cve_id, log_context, vuln_data):
     
     Provide the output in valid JSON format ONLY, with the keys: 
     "score", "reasoning", "accuracy".
-    """
+    """.format(cve_id, json.dumps(log_context, indent=2), json.dumps(vuln_data, indent=2))
     
     payload = {
         "model": OLLAMA_MODEL,
@@ -105,14 +105,17 @@ def analyze_with_llmj(cve_id, log_context, vuln_data):
         response.raise_for_status()
         
         result_text = ""
-        print("Model generated output: ", end="", flush=True)
+        import sys
+        sys.stdout.write("Model generated output: ")
+        sys.stdout.flush()
         for line in response.iter_lines():
             if line:
                 chunk = json.loads(line)
                 content = chunk.get("message", {}).get("content", "")
                 result_text += content
-                print(content, end="", flush=True)
-        print("\n")
+                sys.stdout.write(content)
+                sys.stdout.flush()
+        sys.stdout.write("\n")
         
         # Try to parse the JSON returned by the model
         try:
@@ -122,37 +125,39 @@ def analyze_with_llmj(cve_id, log_context, vuln_data):
             return {"raw_output": result_text}
             
     except RequestException as e:
-        print(f"Error communicating with Ollama for {cve_id}: {e}")
+        print("Error communicating with Ollama for {}: {}".format(cve_id, e))
         return {"error": str(e)}
 
 def main():
     if not os.path.exists(LOG_DIR):
-        print(f"Directory {LOG_DIR} not found.")
+        print("Directory {} not found.".format(LOG_DIR))
         return
+        
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
 
     log_files = glob.glob(os.path.join(LOG_DIR, '*.json'))
-    print(f"Found {len(log_files)} log files. Beginning processing...")
-    
-    results = []
+    print("Found {} log files. Beginning processing...".format(len(log_files)))
 
     for file_path in log_files:
-        print(f"\nProcessing {file_path}...")
+        print("\nProcessing {}...".format(file_path))
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 log_data = json.load(f)
         except Exception as e:
-            print(f"Could not read {file_path}: {e}")
+            print("Could not read {}: {}".format(file_path, e))
             continue
 
         cves = extract_cves(log_data)
         if not cves:
-            print(f"No CVEs found in {file_path}.")
+            print("No CVEs found in {}.".format(file_path))
             continue
             
-        print(f"Found CVEs: {', '.join(cves)}")
+        print("Found CVEs: {}".format(', '.join(cves)))
         
+        results = []
         for cve in cves:
-            print(f"Fetching Vulnrichment data for {cve}...")
+            print("Fetching Vulnrichment data for {}...".format(cve))
             vuln_data = fetch_vulnrichment_data(cve)
             
             # Narrow down log_context if it's structured
@@ -160,7 +165,7 @@ def main():
             if isinstance(log_data, dict) and "vulnerabilities" in log_data:
                 cve_context = [v for v in log_data["vulnerabilities"] if v.get("vulnerability_id") == cve]
             
-            print(f"Performing LLM-J analysis for {cve} with {OLLAMA_MODEL}...")
+            print("Performing LLM-J analysis for {} with {}...".format(cve, OLLAMA_MODEL))
             analysis = analyze_with_llmj(cve, cve_context, vuln_data)
             
             result_entry = {
@@ -171,12 +176,14 @@ def main():
             }
             results.append(result_entry)
 
-    # Save outputs
-    print(f"\nSaving results to {OUTPUT_FILE}...")
-    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        json.dump(results, f, indent=4)
+        # Save outputs per file
+        output_filename = "llm-j-{}".format(os.path.basename(file_path))
+        output_filepath = os.path.join(OUTPUT_DIR, output_filename)
+        print("\nSaving results to {}...".format(output_filepath))
+        with open(output_filepath, 'w', encoding='utf-8') as f:
+            json.dump(results, f, indent=4)
         
-    print("Analysis complete!")
+    print("\nAnalysis complete!")
 
 if __name__ == '__main__':
     main()

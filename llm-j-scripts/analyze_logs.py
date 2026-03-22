@@ -62,26 +62,26 @@ def analyze_with_llmj(cve_id, log_context, vuln_data):
     Perform LLM-J (LLM-as-a-Judge) analysis using local Ollama model.
     """
     prompt = f"""
-    You are an expert cybersecurity analyst. Perform an LLM-J (LLM-based Judgment/Analysis) on the following CVE.
+    You are an expert cybersecurity AI judge (LLM-J). You are evaluating the accuracy and quality of another LLM's vulnerability analysis against the ground truth database.
     
     CVE ID: {cve_id}
     
-    Context from recent logs:
+    Candidate LLM Analysis (to be evaluated):
     {json.dumps(log_context, indent=2)}
     
-    CISA Vulnrichment Data:
+    Ground Truth (CISA Vulnrichment Data):
     {json.dumps(vuln_data, indent=2)}
     
-    Please provide a structured analysis including:
-    1. Summary of the vulnerability.
-    2. Severity & EPSS evaluation (if provided in Vulnrichment).
-    3. Potential impact based on log context.
-    4. Recommended mitigations.
+    Evaluate how well the candidate LLM's analysis matches the ground truth. 
+    Consider accuracy of the description, severity/impact, and any SSVC or action decisions provided.
     
-    CRITICAL: Keep the text for each section very brief, strictly 1 sentence maximum per field.
+    Please provide the following:
+    1. Score: An integer score from 1 to 10, where 10 is a perfect match and 1 is completely inaccurate or hallucinated.
+    2. Reasoning: A brief 1-2 sentence explanation of why this score was given, noting any missing or hallucinated information.
+    3. Accuracy: A single word rating ("High", "Medium", or "Low").
     
     Provide the output in valid JSON format ONLY, with the keys: 
-    "summary", "severity_evaluation", "impact", "mitigations".
+    "score", "reasoning", "accuracy".
     """
     
     payload = {
@@ -89,7 +89,7 @@ def analyze_with_llmj(cve_id, log_context, vuln_data):
         "messages": [
             {
                 "role": "system",
-                "content": "You are an expert security analyst. output strictly valid JSON without markdown code blocks."
+                "content": "You are an expert security analyst and LLM judge. Output strictly valid JSON without markdown code blocks."
             },
             {
                 "role": "user",

@@ -91,6 +91,10 @@ def query_sbom_rag(query: str, sbom_file_path: str) -> str:
 
 @tool
 def list_sbom_vulnerabilities(sbom_file_path: str) -> str:
+    """
+    Query an SBOM file to produce a list of vulnerabilities affecting a project.
+    """
+
     try:
         with open(sbom_file_path, "r") as f:
             data = json.load(f)

@@ -1,0 +1,142 @@
+[
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2024-34750",
+        "vulnrichment_status": "Found",
+        "llmj_analysis": {
+            "score": 2,
+            "reasoning": "The analysis incorrectly labels the CVE as an information disclosure flaw, only mentions the 8.5.x versions, omits the primary 9.x, 10.x, and 11.x affected ranges, and provides no severity data or correct SSVC decision, deviating significantly from the ground truth.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2021-42342",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 2,
+            "reasoning": "The ground truth indicates the CVE is not present in the database, so the candidate's specific description and SSVC decision are unverified and likely fabricated, resulting in low accuracy.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2021-33037",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 1,
+            "reasoning": "The ground truth indicates the CVE is not present in the database, yet the candidate provides detailed (and likely fabricated) information and an SSVC decision, which does not match the ground truth.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2021-28165",
+        "vulnrichment_status": "Found",
+        "llmj_analysis": {
+            "score": 1,
+            "reasoning": "The candidate analysis incorrectly identifies the vulnerable component as Eclipse JDT Compiler and describes an information disclosure issue, whereas the ground truth pertains to Eclipse Jetty with a DoS (CPU exhaustion) vulnerability and provides CVSS details; the SSVC decision is also unrelated.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2024-50379",
+        "vulnrichment_status": "Found",
+        "llmj_analysis": {
+            "score": 2,
+            "reasoning": "The candidate mischaracterizes the vulnerability as an information disclosure instead of a critical TOCTOU RCE issue, omits the majority of affected versions, and adds an unsupported SSVC decision, resulting in major inaccuracies.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2021-42340",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 1,
+            "reasoning": "The ground truth indicates no information is available for CVE-2021-42340, yet the candidate provides specific details that are unsupported, making the analysis hallucinated.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2023-36479",
+        "vulnrichment_status": "Found",
+        "llmj_analysis": {
+            "score": 1,
+            "reasoning": "The candidate incorrectly identifies the vulnerable component as Apache Tomcat and describes a DoS issue, while the ground truth concerns Eclipse Jetty and a command-quoting vulnerability; the SSVC decision is also absent or inaccurate.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2024-21733",
+        "vulnrichment_status": "Found",
+        "llmj_analysis": {
+            "score": 3,
+            "reasoning": "The candidate correctly identifies the product and CVE ID, but the description is inaccurate (wrong version range and vague wording) and the SSVC decision does not match the ground\u2011truth options, with no severity details provided.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2022-23183",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 2,
+            "reasoning": "The ground truth contains no data for CVE-2022-23183, yet the candidate supplied a specific description and SSVC decision, which are unverified and likely fabricated.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2021-33038",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 2,
+            "reasoning": "The ground truth indicates the CVE is not found in the database, so no description or SSVC decision is available; the candidate fabricates a specific Tomcat vulnerability description and action, which is not verified.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2022-29885",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 2,
+            "reasoning": "The ground truth indicates no entry for CVE-2022-29885, while the candidate provides specific details and an SSVC decision, which cannot be verified and appear hallucinated.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2022-23181",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 2,
+            "reasoning": "The ground truth indicates the CVE is not present in the database, so the detailed description and SSVC decision are unsupported and likely fabricated.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2023-46589",
+        "vulnrichment_status": "Found",
+        "llmj_analysis": {
+            "score": 2,
+            "reasoning": "Only the CVE ID and product name are correct; the description misstates the vulnerability type and version range, omits severity, and provides an incorrect SSVC decision.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+        "cve_id": "CVE-2022-34305",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 1,
+            "reasoning": "The ground truth indicates the CVE is not present in the database, while the candidate provides a specific description and SSVC decision, which are therefore unsupported and likely hallucinated.",
+            "accuracy": "Low"
+        }
+    }
+]

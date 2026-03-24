@@ -54,7 +54,8 @@ def get_mean_sd(model_scores: dict[str, list[float]]) -> pd.DataFrame:
 def plot_model_scores(model_scores: dict[str, list[float]]) -> None:
     names = sorted(model_scores.keys())
     scores = [model_scores[name] for name in names]
-    plt.boxplot(scores, tick_labels=names)
+    fig = plt.figure(layout="constrained")
+    plt.boxplot(scores, orientation="horizontal", tick_labels=names)
     plt.savefig("model_scores.svg")
     plt.savefig("model_scores.png")
 

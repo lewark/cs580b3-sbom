@@ -1,0 +1,3706 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:8c740b13-6473-4915-85d0-16acdf9ce0f1",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-03-02T21:57:55-07:00",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "author": "anchore",
+          "name": "grype",
+          "version": "0.109.0"
+        }
+      ]
+    },
+    "component": {
+      "bom-ref": "ba258f20013dbece",
+      "type": "file",
+      "name": "proton-bridge-1.6.3.tar.gz",
+      "version": "sha256:a9834134452068bb7ffdfc5972510ead33ae04c2464a990d8ead51b98ddeee8a"
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "pkg:golang/github.com/0xax/notificator@v0.0.0-20191016112426-3962a5ea8da1?package-id=f51f53bbafb209db",
+      "type": "library",
+      "name": "github.com/0xAX/notificator",
+      "version": "v0.0.0-20191016112426-3962a5ea8da1",
+      "cpe": "cpe:2.3:a:0xAX:notificator:v0.0.0-20191016112426-3962a5ea8da1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/0xAX/notificator@v0.0.0-20191016112426-3962a5ea8da1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:j9HaafapDbPbGRDku6e/HRs6KBMcKHiWcm1/9Sbxnl4="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/masterminds/semver/v3@v3.1.0?package-id=7b22c1a669e11aca",
+      "type": "library",
+      "name": "github.com/Masterminds/semver/v3",
+      "version": "v3.1.0",
+      "cpe": "cpe:2.3:a:Masterminds:semver\\/v3:v3.1.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/Masterminds/semver/v3@v3.1.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Y2lUDsFKVRSYGojLJ1yLxSXdMmMYTYls0rCvoqmMUQk="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/protonmail/bcrypt@v0.0.0-20170924085257-7509ea014998?package-id=cab37db401b54e9c",
+      "type": "library",
+      "name": "github.com/ProtonMail/bcrypt",
+      "version": "v0.0.0-20170924085257-7509ea014998",
+      "cpe": "cpe:2.3:a:ProtonMail:bcrypt:v0.0.0-20170924085257-7509ea014998:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ProtonMail/bcrypt@v0.0.0-20170924085257-7509ea014998",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:YT2uVwQiRQZxCaaahwfcgTq2j3j66w00n/27gb/zubs="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/protonmail/crypto@v0.0.0-20201112115411-41db4ea0dd1c?package-id=7f5d56625bf15cb5",
+      "type": "library",
+      "name": "github.com/ProtonMail/crypto",
+      "version": "v0.0.0-20201112115411-41db4ea0dd1c",
+      "cpe": "cpe:2.3:a:ProtonMail:crypto:v0.0.0-20201112115411-41db4ea0dd1c:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ProtonMail/crypto@v0.0.0-20201112115411-41db4ea0dd1c",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:iaVbEOnskSGgcH7XQWHG6VPirHDRoYe+Idd0/dl4m8A="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/protonmail/docker-credential-helpers@v1.1.0?package-id=ca4a7621c52a5fa1",
+      "type": "library",
+      "name": "github.com/ProtonMail/docker-credential-helpers",
+      "version": "v1.1.0",
+      "cpe": "cpe:2.3:a:ProtonMail:docker-credential-helpers:v1.1.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ProtonMail/docker-credential-helpers@v1.1.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ProtonMail:docker_credential_helpers:v1.1.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:+kvUIpwWcbtP3WFv5sSvkFn/XLzSqPOB5AAthuk9xPk="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/protonmail/go-autostart@v0.0.0-20181114175602-c5272053443a?package-id=dd79fa59830d8171",
+      "type": "library",
+      "name": "github.com/ProtonMail/go-autostart",
+      "version": "v0.0.0-20181114175602-c5272053443a",
+      "cpe": "cpe:2.3:a:ProtonMail:go-autostart:v0.0.0-20181114175602-c5272053443a:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ProtonMail/go-autostart@v0.0.0-20181114175602-c5272053443a",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ProtonMail:go_autostart:v0.0.0-20181114175602-c5272053443a:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:fXK2KsfnkBV9Nh+9SKzHchYjuE9s0vI20JG1mbtEAcc="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/protonmail/go-imap@v0.0.0-20201228133358-4db68cea0cac?package-id=f9ba543f09af6fd1",
+      "type": "library",
+      "name": "github.com/ProtonMail/go-imap",
+      "version": "v0.0.0-20201228133358-4db68cea0cac",
+      "cpe": "cpe:2.3:a:ProtonMail:go-imap:v0.0.0-20201228133358-4db68cea0cac:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ProtonMail/go-imap@v0.0.0-20201228133358-4db68cea0cac",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ProtonMail:go_imap:v0.0.0-20201228133358-4db68cea0cac:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:2xU3QncAiS/W3UlWZTkbNKW5WkLzk6Egl1T0xX+sbjs="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/protonmail/go-imap-id@v0.0.0-20190926060100-f94a56b9ecde?package-id=5a728f1d1b4bc550",
+      "type": "library",
+      "name": "github.com/ProtonMail/go-imap-id",
+      "version": "v0.0.0-20190926060100-f94a56b9ecde",
+      "cpe": "cpe:2.3:a:ProtonMail:go-imap-id:v0.0.0-20190926060100-f94a56b9ecde:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ProtonMail/go-imap-id@v0.0.0-20190926060100-f94a56b9ecde",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ProtonMail:go_imap_id:v0.0.0-20190926060100-f94a56b9ecde:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:5koQozTDELymYOyFbQ/VSubexAEXzDR8qGM5mO8GRdw="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/protonmail/go-rfc5322@v0.5.0?package-id=75b473d0c7c30c83",
+      "type": "library",
+      "name": "github.com/ProtonMail/go-rfc5322",
+      "version": "v0.5.0",
+      "cpe": "cpe:2.3:a:ProtonMail:go-rfc5322:v0.5.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ProtonMail/go-rfc5322@v0.5.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ProtonMail:go_rfc5322:v0.5.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:LbKWjgfvumYZCr8BgGyTUk3ETGkFLAjQdkuSUpZ5CcE="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/protonmail/go-vcard@v0.0.0-20180326232728-33aaa0a0c8a5?package-id=fe2e6dde17947b78",
+      "type": "library",
+      "name": "github.com/ProtonMail/go-vcard",
+      "version": "v0.0.0-20180326232728-33aaa0a0c8a5",
+      "cpe": "cpe:2.3:a:ProtonMail:go-vcard:v0.0.0-20180326232728-33aaa0a0c8a5:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ProtonMail/go-vcard@v0.0.0-20180326232728-33aaa0a0c8a5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ProtonMail:go_vcard:v0.0.0-20180326232728-33aaa0a0c8a5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Uga1DHFN4GUxuDQr0F71tpi8I9HqPIlZodZAI1lR6VQ="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/protonmail/gopenpgp/v2@v2.1.3?package-id=67c75926d37b8870",
+      "type": "library",
+      "name": "github.com/ProtonMail/gopenpgp/v2",
+      "version": "v2.1.3",
+      "cpe": "cpe:2.3:a:ProtonMail:gopenpgp\\/v2:v2.1.3:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ProtonMail/gopenpgp/v2@v2.1.3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:4+nFDJ9WtcUQTip/je2Ll3P21XhAUl4asWsafLrw97c="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/puerkitobio/goquery@v1.5.1?package-id=54bdff487d2a55b8",
+      "type": "library",
+      "name": "github.com/PuerkitoBio/goquery",
+      "version": "v1.5.1",
+      "cpe": "cpe:2.3:a:PuerkitoBio:goquery:v1.5.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/PuerkitoBio/goquery@v1.5.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:PSPBGne8NIUWw+/7vFBV+kG2J/5MOjbzc7154OaKCSE="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/abiosoft/ishell@v2.0.0%2Bincompatible?package-id=8c2b4f8b210351ea",
+      "type": "library",
+      "name": "github.com/abiosoft/ishell",
+      "version": "v2.0.0+incompatible",
+      "cpe": "cpe:2.3:a:abiosoft:ishell:v2.0.0\\+incompatible:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/abiosoft/ishell@v2.0.0%2Bincompatible",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:zpwIuEHc37EzrsIYah3cpevrIc8Oma7oZPxr03tlmmw="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/abiosoft/readline@v0.0.0-20180607040430-155bce2042db?package-id=8a9a0d6a7fcd6fe4",
+      "type": "library",
+      "name": "github.com/abiosoft/readline",
+      "version": "v0.0.0-20180607040430-155bce2042db",
+      "cpe": "cpe:2.3:a:abiosoft:readline:v0.0.0-20180607040430-155bce2042db:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/abiosoft/readline@v0.0.0-20180607040430-155bce2042db",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:CjPUSXOiYptLbTdr1RceuZgSFDQ7U15ITERUGrUORx8="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/allan-simon/go-singleinstance@v0.0.0-20160830203053-79edcfdc2dfc?package-id=ecbb271408c69049",
+      "type": "library",
+      "name": "github.com/allan-simon/go-singleinstance",
+      "version": "v0.0.0-20160830203053-79edcfdc2dfc",
+      "cpe": "cpe:2.3:a:allan-simon:go-singleinstance:v0.0.0-20160830203053-79edcfdc2dfc:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/allan-simon/go-singleinstance@v0.0.0-20160830203053-79edcfdc2dfc",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:allan-simon:go_singleinstance:v0.0.0-20160830203053-79edcfdc2dfc:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:allan_simon:go-singleinstance:v0.0.0-20160830203053-79edcfdc2dfc:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:allan_simon:go_singleinstance:v0.0.0-20160830203053-79edcfdc2dfc:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:allan:go-singleinstance:v0.0.0-20160830203053-79edcfdc2dfc:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:allan:go_singleinstance:v0.0.0-20160830203053-79edcfdc2dfc:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:mZca0/HZ/XWXP9txkfdl2GH6mUzBqAlyJz3u5Lg8fuA="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/chzyer/logex@v1.1.10?package-id=7015f8754272548f",
+      "type": "library",
+      "name": "github.com/chzyer/logex",
+      "version": "v1.1.10",
+      "cpe": "cpe:2.3:a:chzyer:logex:v1.1.10:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/chzyer/logex@v1.1.10",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Swpa1K6QvQznwJRcfTfQJmTE72DqScAa40E+fbHEXEE="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/chzyer/test@v0.0.0-20180213035817-a1ea475d72b1?package-id=a6a9da839d4843ae",
+      "type": "library",
+      "name": "github.com/chzyer/test",
+      "version": "v0.0.0-20180213035817-a1ea475d72b1",
+      "cpe": "cpe:2.3:a:chzyer:test:v0.0.0-20180213035817-a1ea475d72b1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/chzyer/test@v0.0.0-20180213035817-a1ea475d72b1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:q763qf9huN11kDQavWsoZXJNW3xEE4JJyHa5Q25/sd8="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/cucumber/godog@v0.8.1?package-id=038685c3d6accc09",
+      "type": "library",
+      "name": "github.com/cucumber/godog",
+      "version": "v0.8.1",
+      "cpe": "cpe:2.3:a:cucumber:godog:v0.8.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/cucumber/godog@v0.8.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:lVb+X41I4YDreE+ibZ50bdXmySxgRviYFgKY6Aw4XE8="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-imap-appendlimit@v0.0.0-20190308131241-25671c986a6a?package-id=d2186942aba26a57",
+      "type": "library",
+      "name": "github.com/emersion/go-imap-appendlimit",
+      "version": "v0.0.0-20190308131241-25671c986a6a",
+      "cpe": "cpe:2.3:a:emersion:go-imap-appendlimit:v0.0.0-20190308131241-25671c986a6a:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-imap-appendlimit@v0.0.0-20190308131241-25671c986a6a",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_imap_appendlimit:v0.0.0-20190308131241-25671c986a6a:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:bMdSPm6sssuOFpIaveu3XGAijMS3Tq2S3EqFZmZxidc="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-imap-idle@v0.0.0-20200601154248-f05f54664cc4?package-id=89968db37d6250c5",
+      "type": "library",
+      "name": "github.com/emersion/go-imap-idle",
+      "version": "v0.0.0-20200601154248-f05f54664cc4",
+      "cpe": "cpe:2.3:a:emersion:go-imap-idle:v0.0.0-20200601154248-f05f54664cc4:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-imap-idle@v0.0.0-20200601154248-f05f54664cc4",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_imap_idle:v0.0.0-20200601154248-f05f54664cc4:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:/JIALzmCduf5o8TWJSiOBzTb9+R0SChwElUrJLlp2po="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-imap-move@v0.0.0-20190710073258-6e5a51a5b342?package-id=1845a531c51b00e5",
+      "type": "library",
+      "name": "github.com/emersion/go-imap-move",
+      "version": "v0.0.0-20190710073258-6e5a51a5b342",
+      "cpe": "cpe:2.3:a:emersion:go-imap-move:v0.0.0-20190710073258-6e5a51a5b342:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-imap-move@v0.0.0-20190710073258-6e5a51a5b342",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_imap_move:v0.0.0-20190710073258-6e5a51a5b342:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:5p1t3e1PomYgLWwEwhwEU5kVBwcyAcVrOpexv8AeZx0="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-imap-quota@v0.0.0-20200423100218-dcfd1b7d2b41?package-id=c3447ae6fca1ab64",
+      "type": "library",
+      "name": "github.com/emersion/go-imap-quota",
+      "version": "v0.0.0-20200423100218-dcfd1b7d2b41",
+      "cpe": "cpe:2.3:a:emersion:go-imap-quota:v0.0.0-20200423100218-dcfd1b7d2b41:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-imap-quota@v0.0.0-20200423100218-dcfd1b7d2b41",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_imap_quota:v0.0.0-20200423100218-dcfd1b7d2b41:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:z5lDGnSURauBEDdNLj3o0+HogVYKQCGeY3Anl/xyRfU="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-imap-unselect@v0.0.0-20171113212723-b985794e5f26?package-id=285e9b2f9074ae99",
+      "type": "library",
+      "name": "github.com/emersion/go-imap-unselect",
+      "version": "v0.0.0-20171113212723-b985794e5f26",
+      "cpe": "cpe:2.3:a:emersion:go-imap-unselect:v0.0.0-20171113212723-b985794e5f26:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-imap-unselect@v0.0.0-20171113212723-b985794e5f26",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_imap_unselect:v0.0.0-20171113212723-b985794e5f26:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:FiSb8+XBQQSkcX3ubr+1tAtlRJBYaFmRZqOAweZ9Wy8="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-mbox@v1.0.2?package-id=798c730d7858b5fc",
+      "type": "library",
+      "name": "github.com/emersion/go-mbox",
+      "version": "v1.0.2",
+      "cpe": "cpe:2.3:a:emersion:go-mbox:v1.0.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-mbox@v1.0.2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_mbox:v1.0.2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:tE/rT+lEugK9y0myEymCCHnwlZN04hlXPrbKkxRBA5I="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-message@v0.12.1-0.20201221184100-40c3f864532b?package-id=1ec1ee40ea242f70",
+      "type": "library",
+      "name": "github.com/emersion/go-message",
+      "version": "v0.12.1-0.20201221184100-40c3f864532b",
+      "cpe": "cpe:2.3:a:emersion:go-message:v0.12.1-0.20201221184100-40c3f864532b:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-message@v0.12.1-0.20201221184100-40c3f864532b",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_message:v0.12.1-0.20201221184100-40c3f864532b:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:xYuhW6egTaCP+zjbUcfoy/Dr3ASdVPR9W7fmkHvZHPE="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-sasl@v0.0.0-20200509203442-7bfe0ed36a21?package-id=2aed4a9ae478ed55",
+      "type": "library",
+      "name": "github.com/emersion/go-sasl",
+      "version": "v0.0.0-20200509203442-7bfe0ed36a21",
+      "cpe": "cpe:2.3:a:emersion:go-sasl:v0.0.0-20200509203442-7bfe0ed36a21:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-sasl@v0.0.0-20200509203442-7bfe0ed36a21",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_sasl:v0.0.0-20200509203442-7bfe0ed36a21:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:OJyUGMJTzHTd1XQp98QTaHernxMYzRaOasRir9hUlFQ="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-smtp@v0.14.0?package-id=4bd9abc123293789",
+      "type": "library",
+      "name": "github.com/emersion/go-smtp",
+      "version": "v0.14.0",
+      "cpe": "cpe:2.3:a:emersion:go-smtp:v0.14.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-smtp@v0.14.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_smtp:v0.14.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:RYW203p+EcPjL8Z/ZpT9lZ6iOc8MG1MQzEx1UKEkXlA="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-textwrapper@v0.0.0-20200911093747-65d896831594?package-id=88f66a2eaba1c548",
+      "type": "library",
+      "name": "github.com/emersion/go-textwrapper",
+      "version": "v0.0.0-20200911093747-65d896831594",
+      "cpe": "cpe:2.3:a:emersion:go-textwrapper:v0.0.0-20200911093747-65d896831594:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-textwrapper@v0.0.0-20200911093747-65d896831594",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_textwrapper:v0.0.0-20200911093747-65d896831594:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:IbFBtwoTQyw0fIM5xv1HF+Y+3ZijDR839WMulgxCcUY="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emersion/go-vcard@v0.0.0-20190105225839-8856043f13c5?package-id=d71433bf6b70e61e",
+      "type": "library",
+      "name": "github.com/emersion/go-vcard",
+      "version": "v0.0.0-20190105225839-8856043f13c5",
+      "cpe": "cpe:2.3:a:emersion:go-vcard:v0.0.0-20190105225839-8856043f13c5:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emersion/go-vcard@v0.0.0-20190105225839-8856043f13c5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emersion:go_vcard:v0.0.0-20190105225839-8856043f13c5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:n9qx98xiS5V4x2WIpPC2rr9mUM5ri9r/YhCEKbhCHro="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/fatih/color@v1.9.0?package-id=2324ffdf857b5930",
+      "type": "library",
+      "name": "github.com/fatih/color",
+      "version": "v1.9.0",
+      "cpe": "cpe:2.3:a:fatih:color:v1.9.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/fatih/color@v1.9.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:8xPHl4/q1VyqGIPif1F+1V3Y3lSmrq01EabUW3CoW5s="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/flynn-archive/go-shlex@v0.0.0-20150515145356-3f9db97f8568?package-id=7eefaa4960ac3aa7",
+      "type": "library",
+      "name": "github.com/flynn-archive/go-shlex",
+      "version": "v0.0.0-20150515145356-3f9db97f8568",
+      "cpe": "cpe:2.3:a:flynn-archive:go-shlex:v0.0.0-20150515145356-3f9db97f8568:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/flynn-archive/go-shlex@v0.0.0-20150515145356-3f9db97f8568",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:flynn-archive:go_shlex:v0.0.0-20150515145356-3f9db97f8568:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:flynn_archive:go-shlex:v0.0.0-20150515145356-3f9db97f8568:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:flynn_archive:go_shlex:v0.0.0-20150515145356-3f9db97f8568:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:flynn:go-shlex:v0.0.0-20150515145356-3f9db97f8568:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:flynn:go_shlex:v0.0.0-20150515145356-3f9db97f8568:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:BMXYYRWTLOJKlh+lOBt6nUQgXAfB7oVIQt5cNreqSLI="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/getsentry/sentry-go@v0.8.0?package-id=73b6752d7f6b4bc9",
+      "type": "library",
+      "name": "github.com/getsentry/sentry-go",
+      "version": "v0.8.0",
+      "cpe": "cpe:2.3:a:getsentry:sentry-go:v0.8.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/getsentry/sentry-go@v0.8.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:getsentry:sentry_go:v0.8.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:F52cjBVLuiTfdW6p4JFuxlt3pOjKfWYT/aka7cdJ7v0="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/go-resty/resty/v2@v2.3.0?package-id=7a61590ac1838385",
+      "type": "library",
+      "name": "github.com/go-resty/resty/v2",
+      "version": "v2.3.0",
+      "cpe": "cpe:2.3:a:resty_project:resty:v2.3.0:*:*:*:*:go:*:*",
+      "purl": "pkg:golang/github.com/go-resty/resty/v2@v2.3.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:JOOeAvjSlapTT92p8xiS19Zxev1neGikoHsXJeOq8So="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/golang/mock@v1.4.4?package-id=98613c2b39d0d92b",
+      "type": "library",
+      "name": "github.com/golang/mock",
+      "version": "v1.4.4",
+      "cpe": "cpe:2.3:a:golang:mock:v1.4.4:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/golang/mock@v1.4.4",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:l75CXGRSwbaYNpl/Z2X1XIIAMSCquvXgpVZDhwEIJsc="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/google/go-cmp@v0.5.1?package-id=2949d153863fcdf8",
+      "type": "library",
+      "name": "github.com/google/go-cmp",
+      "version": "v0.5.1",
+      "cpe": "cpe:2.3:a:google:go-cmp:v0.5.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/google/go-cmp@v0.5.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:google:go_cmp:v0.5.1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:JFrFEBb2xKufg6XkJsJr+WbKb4FQlURi5RUcBveYu9k="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/google/uuid@v1.1.1?package-id=1c092ff17f0f4942",
+      "type": "library",
+      "name": "github.com/google/uuid",
+      "version": "v1.1.1",
+      "cpe": "cpe:2.3:a:google:uuid:v1.1.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/google/uuid@v1.1.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Gkbcsh/GbpXz7lPftLA3P6TYMwjCLYm83jiFQZF/3gY="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/gopherjs/gopherjs@v0.0.0-20190430165422-3e4dfb77656c?package-id=523ee4fcda148da8",
+      "type": "library",
+      "name": "github.com/gopherjs/gopherjs",
+      "version": "v0.0.0-20190430165422-3e4dfb77656c",
+      "cpe": "cpe:2.3:a:gopherjs:gopherjs:v0.0.0-20190430165422-3e4dfb77656c:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/gopherjs/gopherjs@v0.0.0-20190430165422-3e4dfb77656c",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:7lF+Vz0LqiRidnzC1Oq86fpX1q/iEv2KJdrCtttYjT4="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/hashicorp/go-multierror@v1.1.0?package-id=f28720c65b8896d1",
+      "type": "library",
+      "name": "github.com/hashicorp/go-multierror",
+      "version": "v1.1.0",
+      "cpe": "cpe:2.3:a:hashicorp:go-multierror:v1.1.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/hashicorp/go-multierror@v1.1.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:hashicorp:go_multierror:v1.1.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:B9UzwGQJehnUY1yNrnwREHc3fGbC2xefo8g4TbElacI="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/jaytaylor/html2text@v0.0.0-20200412013138-3577fbdbcff7?package-id=da0e910ab8ba1f89",
+      "type": "library",
+      "name": "github.com/jaytaylor/html2text",
+      "version": "v0.0.0-20200412013138-3577fbdbcff7",
+      "cpe": "cpe:2.3:a:jaytaylor:html2text:v0.0.0-20200412013138-3577fbdbcff7:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/jaytaylor/html2text@v0.0.0-20200412013138-3577fbdbcff7",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:g0fAGBisHaEQ0TRq1iBvemFRf+8AEWEmBESSiWB3Vsc="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/keybase/go-keychain@v0.0.0-20200502122510-cda31fe0c86d?package-id=4603d56ff683daf5",
+      "type": "library",
+      "name": "github.com/keybase/go-keychain",
+      "version": "v0.0.0-20200502122510-cda31fe0c86d",
+      "cpe": "cpe:2.3:a:keybase:go-keychain:v0.0.0-20200502122510-cda31fe0c86d:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/keybase/go-keychain@v0.0.0-20200502122510-cda31fe0c86d",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:keybase:go_keychain:v0.0.0-20200502122510-cda31fe0c86d:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:gVjhBCfVGl32RIBooOANzfw+0UqX8HU+yPlMv8vypcg="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/logrusorgru/aurora@v2.0.3%2Bincompatible?package-id=57fd9f4f43390155",
+      "type": "library",
+      "name": "github.com/logrusorgru/aurora",
+      "version": "v2.0.3+incompatible",
+      "cpe": "cpe:2.3:a:logrusorgru:aurora:v2.0.3\\+incompatible:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/logrusorgru/aurora@v2.0.3%2Bincompatible",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:tOpm7WcpBTn4fjmVfgpQq0EfczGlG91VSDkswnjF5A8="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.9?package-id=3207ec6918ae61d4",
+      "type": "library",
+      "name": "github.com/mattn/go-runewidth",
+      "version": "v0.0.9",
+      "cpe": "cpe:2.3:a:mattn:go-runewidth:v0.0.9:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/mattn/go-runewidth@v0.0.9",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:mattn:go_runewidth:v0.0.9:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Lm995f3rfxdpd6TSmuVCHVb/QhupuXlYr8sCI/QdE+0="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/miekg/dns@v1.1.30?package-id=b2fc422aa0c18664",
+      "type": "library",
+      "name": "github.com/miekg/dns",
+      "version": "v1.1.30",
+      "cpe": "cpe:2.3:a:miekg:dns:v1.1.30:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/miekg/dns@v1.1.30",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Qww6FseFn8PRfw07jueqIXqodm0JKiiKuK0DeXSqfyo="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/nsf/jsondiff@v0.0.0-20200515183724-f29ed568f4ce?package-id=53345a4fe74ef642",
+      "type": "library",
+      "name": "github.com/nsf/jsondiff",
+      "version": "v0.0.0-20200515183724-f29ed568f4ce",
+      "cpe": "cpe:2.3:a:nsf:jsondiff:v0.0.0-20200515183724-f29ed568f4ce:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/nsf/jsondiff@v0.0.0-20200515183724-f29ed568f4ce",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:RPclfga2SEJmgMmz2k+Mg7cowZ8yv4Trqw9UsJby758="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/olekukonko/tablewriter@v0.0.4?package-id=e668aee3dd18fe80",
+      "type": "library",
+      "name": "github.com/olekukonko/tablewriter",
+      "version": "v0.0.4",
+      "cpe": "cpe:2.3:a:olekukonko:tablewriter:v0.0.4:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/olekukonko/tablewriter@v0.0.4",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:vHD/YYe1Wolo78koG299f7V/VAS08c6IpCLn+Ejf/w8="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/pkg/errors@v0.9.1?package-id=2f2018179fb9968e",
+      "type": "library",
+      "name": "github.com/pkg/errors",
+      "version": "v0.9.1",
+      "cpe": "cpe:2.3:a:pkg:errors:v0.9.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/pkg/errors@v0.9.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/sirupsen/logrus@v1.7.0?package-id=8fb99d01af5f954b",
+      "type": "library",
+      "name": "github.com/sirupsen/logrus",
+      "version": "v1.7.0",
+      "cpe": "cpe:2.3:a:turbopuffer:logrus:v1.7.0:*:*:*:*:go:*:*",
+      "purl": "pkg:golang/github.com/sirupsen/logrus@v1.7.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:ShrD1U9pZB12TX0cVy0DtePoCH97K8EtX+mg7ZARUtM="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/skratchdot/open-golang@v0.0.0-20200116055534-eef842397966?package-id=ef972e4ebe4a9d2e",
+      "type": "library",
+      "name": "github.com/skratchdot/open-golang",
+      "version": "v0.0.0-20200116055534-eef842397966",
+      "cpe": "cpe:2.3:a:skratchdot:open-golang:v0.0.0-20200116055534-eef842397966:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/skratchdot/open-golang@v0.0.0-20200116055534-eef842397966",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:skratchdot:open_golang:v0.0.0-20200116055534-eef842397966:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:JIAuq3EEf9cgbU6AtGPK4CTG3Zf6CKMNqf0MHTggAUA="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/ssor/bom@v0.0.0-20170718123548-6386211fdfcf?package-id=6d73a0674be4e6c5",
+      "type": "library",
+      "name": "github.com/ssor/bom",
+      "version": "v0.0.0-20170718123548-6386211fdfcf",
+      "cpe": "cpe:2.3:a:ssor:bom:v0.0.0-20170718123548-6386211fdfcf:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ssor/bom@v0.0.0-20170718123548-6386211fdfcf",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:pvbZ0lM0XWPBqUKqFU8cmavspvIl9nulOYwdy6IFRRo="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.6.1?package-id=d7f12814d695d6bd",
+      "type": "library",
+      "name": "github.com/stretchr/testify",
+      "version": "v1.6.1",
+      "cpe": "cpe:2.3:a:stretchr:testify:v1.6.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/stretchr/testify@v1.6.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd0="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/therecipe/qt@v0.0.0-20200701200531-7f61353ee73e?package-id=ecbf3b17254b8d29",
+      "type": "library",
+      "name": "github.com/therecipe/qt",
+      "version": "v0.0.0-20200701200531-7f61353ee73e",
+      "cpe": "cpe:2.3:a:therecipe:qt:v0.0.0-20200701200531-7f61353ee73e:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/therecipe/qt@v0.0.0-20200701200531-7f61353ee73e",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:G0DQ/TRQyrEZjtLlLwevFjaRiG8eeCMlq9WXQ2OO2bk="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/urfave/cli/v2@v2.2.0?package-id=f444d1c8fb40a78e",
+      "type": "library",
+      "name": "github.com/urfave/cli/v2",
+      "version": "v2.2.0",
+      "cpe": "cpe:2.3:a:urfave:cli\\/v2:v2.2.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/urfave/cli/v2@v2.2.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:JTTnM6wKzdA0Jqodd966MVj4vWbbquZykeX1sKbe2C4="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/vmihailenco/msgpack/v5@v5.1.3?package-id=c915849699d55950",
+      "type": "library",
+      "name": "github.com/vmihailenco/msgpack/v5",
+      "version": "v5.1.3",
+      "cpe": "cpe:2.3:a:vmihailenco:msgpack\\/v5:v5.1.3:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/vmihailenco/msgpack/v5@v5.1.3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:FwC9KPjyW8OqTUqMt6rQw9y50vA2cTLXPKCcBCRbQgg="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.etcd.io/bbolt@v1.3.5?package-id=e3cddb346e7293e1",
+      "type": "library",
+      "name": "go.etcd.io/bbolt",
+      "version": "v1.3.5",
+      "purl": "pkg:golang/go.etcd.io/bbolt@v1.3.5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:XAzx9gjCb0Rxj7EoqcClPD1d5ZBxZJk0jbuoPHenBt0="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03",
+      "type": "library",
+      "name": "golang.org/x/net",
+      "version": "v0.0.0-20200707034311-ab3426394381",
+      "cpe": "cpe:2.3:a:golang:networking:v0.0.0-20200707034311-ab3426394381:*:*:*:*:go:*:*",
+      "purl": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:VXak5I6aEWmAXeQjA+QSZzlgNrpq9mjcfDemuexIKsU="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/text@v0.3.5-0.20201125200606-c27b9fd57aec?package-id=970fd91f4c3c35d6",
+      "type": "library",
+      "name": "golang.org/x/text",
+      "version": "v0.3.5-0.20201125200606-c27b9fd57aec",
+      "cpe": "cpe:2.3:a:golang:text:v0.3.5-0.20201125200606-c27b9fd57aec:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/text@v0.3.5-0.20201125200606-c27b9fd57aec",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-entry"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "proton-bridge-1.6.3/go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:A1qYjneJuzBZZ2gIB8rd6zrfq6l7SoEMJ8EsSilNK/U="
+        }
+      ]
+    },
+    {
+      "bom-ref": "d243f367300b2513",
+      "type": "file",
+      "name": "/private/var/folders/2v/wxl158416_57nh2pn7pcng5w0000gn/T/syft-archive-contents-3173741802/proton-bridge-1.6.3/go.mod",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c3629bd2e17c43cea4d4620964674686ab6944b38e30307a9d6f00864c5f7789"
+        }
+      ]
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "bom-ref": "urn:uuid:fe49797f-d850-4546-b787-404245e5cd03",
+      "id": "GHSA-qppj-fm5r-hxr3",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-qppj-fm5r-hxr3"
+      },
+      "references": [
+        {
+          "id": "GHSA-qppj-fm5r-hxr3",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-qppj-fm5r-hxr3"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:H"
+        },
+        {
+          "score": 6.9,
+          "severity": "medium",
+          "method": "other",
+          "vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N/E:A"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.94364,
+          "method": "other"
+        },
+        {
+          "source": {
+            "name": "CISA KEV Catalog",
+            "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+          },
+          "score": 1,
+          "method": "other",
+          "justification": "Listed in CISA KEV"
+        }
+      ],
+      "description": "HTTP/2 Stream Cancellation Attack",
+      "advisories": [
+        {
+          "url": "https://github.com/apple/swift-nio-http2/security/advisories/GHSA-qppj-fm5r-hxr3"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-44487"
+        },
+        {
+          "url": "https://github.com/alibaba/tengine/issues/1872"
+        },
+        {
+          "url": "https://github.com/caddyserver/caddy/issues/5877"
+        },
+        {
+          "url": "https://github.com/eclipse/jetty.project/issues/10679"
+        },
+        {
+          "url": "https://github.com/haproxy/haproxy/issues/2312"
+        },
+        {
+          "url": "https://github.com/hyperium/hyper/issues/3337"
+        },
+        {
+          "url": "https://github.com/envoyproxy/envoy/pull/30055"
+        },
+        {
+          "url": "https://github.com/grpc/grpc-go/pull/6703"
+        },
+        {
+          "url": "https://github.com/nghttp2/nghttp2/pull/1961"
+        },
+        {
+          "url": "https://github.com/netty/netty/commit/58f75f665aa81a8cbcf6ffa74820042a285c5e61"
+        },
+        {
+          "url": "https://bugzilla.proxmox.com/show_bug.cgi?id=4988"
+        },
+        {
+          "url": "https://cgit.freebsd.org/ports/commit/?id=c64c329c2c1752f46b73e3e6ce9f4329be6629f9"
+        },
+        {
+          "url": "https://chaos.social/@icing/111210915918780532"
+        },
+        {
+          "url": "https://cloud.google.com/blog/products/identity-security/how-it-works-the-novel-http2-rapid-reset-ddos-attack"
+        },
+        {
+          "url": "https://forums.swift.org/t/swift-nio-http2-security-update-cve-2023-44487-http-2-dos/67764"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/tree/main/java/org/apache/coyote/http2"
+        },
+        {
+          "url": "https://github.com/bcdannyboy/CVE-2023-44487"
+        },
+        {
+          "url": "https://github.com/icing/mod_h2/blob/0a864782af0a942aa2ad4ed960a6b32cd35bcf0a/mod_http2/README.md?plain=1#L239-L244"
+        },
+        {
+          "url": "https://github.com/nghttp2/nghttp2/releases/tag/v1.57.0"
+        },
+        {
+          "url": "https://mailman.nginx.org/pipermail/nginx-devel/2023-October/S36Q5HBXR7CAIMPLLPRSSSYR4PCMWILK.html"
+        },
+        {
+          "url": "https://my.f5.com/manage/s/article/K000137106"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=37830987"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=37830998"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=37831062"
+        },
+        {
+          "url": "https://www.phoronix.com/news/HTTP2-Rapid-Reset-Attack"
+        },
+        {
+          "url": "https://github.com/h2o/h2o/security/advisories/GHSA-2m7v-gc89-fjqf"
+        },
+        {
+          "url": "https://github.com/dotnet/announcements/issues/277"
+        },
+        {
+          "url": "https://github.com/golang/go/issues/63417"
+        },
+        {
+          "url": "https://github.com/apache/trafficserver/pull/10564"
+        },
+        {
+          "url": "https://github.com/facebook/proxygen/pull/466"
+        },
+        {
+          "url": "https://github.com/h2o/h2o/pull/3291"
+        },
+        {
+          "url": "https://github.com/microsoft/CBL-Mariner/pull/6381"
+        },
+        {
+          "url": "https://github.com/nodejs/node/pull/50121"
+        },
+        {
+          "url": "https://edg.io/lp/blog/resets-leaks-ddos-and-the-tale-of-a-hidden-cve"
+        },
+        {
+          "url": "https://gist.github.com/adulau/7c2bfb8e9cdbe4b35a5e131c66a0c088"
+        },
+        {
+          "url": "https://github.com/advisories/GHSA-vx74-f528-fxqg"
+        },
+        {
+          "url": "https://github.com/micrictor/http2-rst-stream"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/iNNxDTCjZvo"
+        },
+        {
+          "url": "https://lists.apache.org/thread/5py8h42mxfsn8l1wy6o41xwhsjlsd87q"
+        },
+        {
+          "url": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-44487"
+        },
+        {
+          "url": "https://seanmonstar.com/post/730794151136935936/hyper-http2-rapid-reset-unaffected"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html#Fixed_in_Apache_Tomcat_10.1.14"
+        },
+        {
+          "url": "https://www.openwall.com/lists/oss-security/2023/10/10/6"
+        },
+        {
+          "url": "https://github.com/opensearch-project/data-prepper/issues/3474"
+        },
+        {
+          "url": "https://github.com/kubernetes/kubernetes/pull/121120"
+        },
+        {
+          "url": "https://github.com/advisories/GHSA-xpw8-rcwv-8f8p"
+        },
+        {
+          "url": "https://github.com/dotnet/core/blob/e4613450ea0da7fd2fc6b61dfb2c1c1dec1ce9ec/release-notes/6.0/6.0.23/6.0.23.md?plain=1#L73"
+        },
+        {
+          "url": "https://github.com/oqtane/oqtane.framework/discussions/3367"
+        },
+        {
+          "url": "https://netty.io/news/2023/10/10/4-1-100-Final.html"
+        },
+        {
+          "url": "https://www.haproxy.com/blog/haproxy-is-not-affected-by-the-http-2-rapid-reset-attack-cve-2023-44487"
+        },
+        {
+          "url": "https://github.com/Azure/AKS/issues/3947"
+        },
+        {
+          "url": "https://github.com/akka/akka-http/issues/4323"
+        },
+        {
+          "url": "https://github.com/apache/apisix/issues/10320"
+        },
+        {
+          "url": "https://github.com/etcd-io/etcd/issues/16740"
+        },
+        {
+          "url": "https://github.com/junkurihara/rust-rpxy/issues/97"
+        },
+        {
+          "url": "https://github.com/kazu-yamamoto/http2/issues/93"
+        },
+        {
+          "url": "https://github.com/ninenines/cowboy/issues/1615"
+        },
+        {
+          "url": "https://github.com/openresty/openresty/issues/930"
+        },
+        {
+          "url": "https://github.com/tempesta-tech/tempesta/issues/1986"
+        },
+        {
+          "url": "https://github.com/varnishcache/varnish-cache/issues/3996"
+        },
+        {
+          "url": "https://github.com/apache/httpd-site/pull/10"
+        },
+        {
+          "url": "https://github.com/line/armeria/pull/5232"
+        },
+        {
+          "url": "https://github.com/linkerd/website/pull/1695/commits/4b9c6836471bc8270ab48aae6fd2181bc73fd632"
+        },
+        {
+          "url": "https://github.com/projectcontour/contour/pull/5826"
+        },
+        {
+          "url": "https://github.com/kazu-yamamoto/http2/commit/f61d41a502bd0f60eb24e1ce14edc7b6df6722a1"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/cve-2023-44487"
+        },
+        {
+          "url": "https://blog.qualys.com/vulnerabilities-threat-research/2023/10/10/cve-2023-44487-http-2-rapid-reset-attack"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2242803"
+        },
+        {
+          "url": "https://bugzilla.suse.com/show_bug.cgi?id=1216123"
+        },
+        {
+          "url": "https://community.traefik.io/t/is-traefik-vulnerable-to-cve-2023-44487/20125"
+        },
+        {
+          "url": "https://github.com/Kong/kong/discussions/11741"
+        },
+        {
+          "url": "https://github.com/apache/httpd/blob/afcdbeebbff4b0c50ea26cdd16e178c0d1f24152/modules/http2/h2_mplx.c#L1101-L1113"
+        },
+        {
+          "url": "https://github.com/arkrwn/PoC/tree/main/CVE-2023-44487"
+        },
+        {
+          "url": "https://github.com/caddyserver/caddy/releases/tag/v2.7.5"
+        },
+        {
+          "url": "https://go.dev/cl/534215"
+        },
+        {
+          "url": "https://go.dev/cl/534235"
+        },
+        {
+          "url": "https://go.dev/issue/63417"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/iNNxDTCjZvo/m/UDd7VKQuAAAJ"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/10/msg00020.html"
+        },
+        {
+          "url": "https://martinthomson.github.io/h2-stream-limits/draft-thomson-httpbis-h2-stream-limits.html"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=37837043"
+        },
+        {
+          "url": "https://security.paloaltonetworks.com/CVE-2023-44487"
+        },
+        {
+          "url": "https://ubuntu.com/security/CVE-2023-44487"
+        },
+        {
+          "url": "https://www.cisa.gov/news-events/alerts/2023/10/10/http2-rapid-reset-vulnerability-cve-2023-44487"
+        },
+        {
+          "url": "https://www.darkreading.com/cloud/internet-wide-zero-day-bug-fuels-largest-ever-ddos-event"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5521"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5522"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/13/4"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/13/9"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/10/msg00023.html"
+        },
+        {
+          "url": "https://lists.w3.org/Archives/Public/ietf-http-wg/2023OctDec/0025.html"
+        },
+        {
+          "url": "https://github.com/grpc/grpc-go/releases"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/10/msg00024.html"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/10/msg00045.html"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/10/msg00047.html"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5540"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/18/4"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/18/8"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/19/6"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/20/8"
+        },
+        {
+          "url": "https://discuss.hashicorp.com/t/hcsec-2023-32-vault-consul-and-boundary-affected-by-http-2-rapid-reset-denial-of-service-vulnerability-cve-2023-44487/59715"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/11/msg00001.html"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5549"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/11/msg00012.html"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5558"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5570"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-11.html#Fixed_in_Apache_Tomcat_11.0.0-M12"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-8.html#Fixed_in_Apache_Tomcat_8.5.94"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-9.html#Fixed_in_Apache_Tomcat_9.0.81"
+        },
+        {
+          "url": "https://arstechnica.com/security/2023/10/how-ddosers-used-the-http-2-protocol-to-deliver-attacks-of-unprecedented-size"
+        },
+        {
+          "url": "https://aws.amazon.com/security/security-bulletins/AWS-2023-011"
+        },
+        {
+          "url": "https://blog.cloudflare.com/technical-breakdown-http2-rapid-reset-ddos-attack"
+        },
+        {
+          "url": "https://blog.cloudflare.com/zero-day-rapid-reset-http2-record-breaking-ddos-attack"
+        },
+        {
+          "url": "https://blog.litespeedtech.com/2023/10/11/rapid-reset-http-2-vulnerablilty"
+        },
+        {
+          "url": "https://blog.vespa.ai/cve-2023-44487"
+        },
+        {
+          "url": "https://cloud.google.com/blog/products/identity-security/google-cloud-mitigated-largest-ddos-attack-peaking-above-398-million-rps"
+        },
+        {
+          "url": "https://istio.io/latest/news/security/istio-security-2023-004"
+        },
+        {
+          "url": "https://linkerd.io/2023/10/12/linkerd-cve-2023-44487"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/2MBEPPC36UBVOZZNAXFHKLFGSLCMN5LI"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/3N4NJ7FR4X4FPZUGNTQAPSTVB2HB2Y4A"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/BFQD3KUEMFBHPAPBGLWQC34L4OWL5HAZ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/CLB4TW7KALB3EEQWNWCN7OUIWWVWWCG2"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/E72T67UPDRXHIDLO3OROR25YAMN4GGW5"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/FNA62Q767CFAFHBCDKYNPBMZWB7TWYVU"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/HT7T2R4MQKLIF4ODV4BDLPARWFPCJ5CZ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/JIZSEFC3YKCGABA2BZW6ZJRMDZJMB7PJ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/JMEXY22BFG5Q64HQCM5CK2Q7KDKVV4TY"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/KSEGD2IWKNUO3DWY4KQGUQM5BISRWHQE"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/LKYHSZQFDNR7RSA7LHVLLIAQMVYCUGBG"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/LNMZJCDHGLJJLXO4OXWJMTVQRNWOC7UL"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/VHUHTSXLXGXS7JYKBXTA3VINUPHTNGVU"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/VSRDIV77HNKUSM7SJC5BKE5JSHLHU2NK"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/WE2I52RHNNU42PX6NZ2RBUHSFFJ2LVZX"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/WLPRQ5TWUQQXYWBJM7ECYDAIL2YVKIUH"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/X6QXN4ORIVF6XBW4WWFE7VNPVC74S45Y"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/XFOIBB4YFICHDM7IBOP7PWXW3FX4HLL2"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/ZB43REMKRQR62NJEI7I5NQ4FSXNLBKRT"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/ZKQSIKIAT5TJ3WSLU3RDBQ35YX4GY4V3"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/ZLU6U2R2IC2K64NDPNMV55AUAO65MAF4"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/3N4NJ7FR4X4FPZUGNTQAPSTVB2HB2Y4A"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/BFQD3KUEMFBHPAPBGLWQC34L4OWL5HAZ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CLB4TW7KALB3EEQWNWCN7OUIWWVWWCG2"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/E72T67UPDRXHIDLO3OROR25YAMN4GGW5"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/FNA62Q767CFAFHBCDKYNPBMZWB7TWYVU"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/HT7T2R4MQKLIF4ODV4BDLPARWFPCJ5CZ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/JIZSEFC3YKCGABA2BZW6ZJRMDZJMB7PJ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/JMEXY22BFG5Q64HQCM5CK2Q7KDKVV4TY"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KSEGD2IWKNUO3DWY4KQGUQM5BISRWHQE"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/LKYHSZQFDNR7RSA7LHVLLIAQMVYCUGBG"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/LNMZJCDHGLJJLXO4OXWJMTVQRNWOC7UL"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VHUHTSXLXGXS7JYKBXTA3VINUPHTNGVU"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VSRDIV77HNKUSM7SJC5BKE5JSHLHU2NK"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/WLPRQ5TWUQQXYWBJM7ECYDAIL2YVKIUH"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/X6QXN4ORIVF6XBW4WWFE7VNPVC74S45Y"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XFOIBB4YFICHDM7IBOP7PWXW3FX4HLL2"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ZB43REMKRQR62NJEI7I5NQ4FSXNLBKRT"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ZKQSIKIAT5TJ3WSLU3RDBQ35YX4GY4V3"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ZLU6U2R2IC2K64NDPNMV55AUAO65MAF4"
+        },
+        {
+          "url": "https://msrc.microsoft.com/blog/2023/10/microsoft-response-to-distributed-denial-of-service-ddos-attacks-against-http/2"
+        },
+        {
+          "url": "https://openssf.org/blog/2023/10/10/http-2-rapid-reset-vulnerability-highlights-need-for-rapid-response"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20231016-0001"
+        },
+        {
+          "url": "https://www.bleepingcomputer.com/news/security/new-http-2-rapid-reset-zero-day-attack-breaks-ddos-records"
+        },
+        {
+          "url": "https://www.eclipse.org/lists/jetty-announce/msg00181.html"
+        },
+        {
+          "url": "https://www.netlify.com/blog/netlify-successfully-mitigates-cve-2023-44487"
+        },
+        {
+          "url": "https://www.nginx.com/blog/http-2-rapid-reset-attack-impacting-f5-nginx-products"
+        },
+        {
+          "url": "https://www.theregister.com/2023/10/10/http2_rapid_reset_zeroday"
+        },
+        {
+          "url": "https://github.com/akka/akka-http/pull/4325"
+        },
+        {
+          "url": "https://github.com/akka/akka-http/pull/4324"
+        },
+        {
+          "url": "https://akka.io/security/akka-http-cve-2023-44487.html"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240426-0007"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240621-0006"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240621-0007"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/commit/944332bb15bd2f3bf76ec2caeb1ff0a58a3bc628"
+        },
+        {
+          "url": "https://www.vicarius.io/vsociety/posts/rapid-reset-cve-2023-44487-dos-in-http2-understanding-the-root-cause"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/2MBEPPC36UBVOZZNAXFHKLFGSLCMN5LI"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/WE2I52RHNNU42PX6NZ2RBUHSFFJ2LVZX"
+        },
+        {
+          "url": "https://github.com/grpc/grpc/releases/tag/v1.59.2"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/10/6"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/10/7"
+        },
+        {
+          "url": "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-http2-reset-d8Kf32vZ"
+        },
+        {
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2023-44487"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:7d77def3-2aac-439c-914e-94b5f7877318",
+      "id": "GHSA-4v7x-pqxf-cx7m",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-4v7x-pqxf-cx7m"
+      },
+      "references": [
+        {
+          "id": "GHSA-4v7x-pqxf-cx7m",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-4v7x-pqxf-cx7m"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.71463,
+          "method": "other"
+        }
+      ],
+      "description": "net/http, x/net/http2: close connections when receiving too many headers",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45288"
+        },
+        {
+          "url": "https://go.dev/cl/576155"
+        },
+        {
+          "url": "https://go.dev/issue/65051"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/YgW0sx8mN3M"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2687"
+        },
+        {
+          "url": "https://nowotarski.info/http2-continuation-flood-technical-details"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240419-0009"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/QRYFHIQ6XRKRYBI2F5UESH67BJBQXUPT"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/04/03/16"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/04/05/4"
+        },
+        {
+          "url": "https://www.kb.cert.org/vuls/id/421644"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:21080211-8554-4b68-a327-312d62add3ab",
+      "id": "GHSA-xrjj-mj9h-534m",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-xrjj-mj9h-534m"
+      },
+      "references": [
+        {
+          "id": "GHSA-xrjj-mj9h-534m",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-xrjj-mj9h-534m"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00276,
+          "method": "other"
+        }
+      ],
+      "description": "golang.org/x/net/http2 vulnerable to possible excessive memory growth",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41717"
+        },
+        {
+          "url": "https://go.dev/cl/455635"
+        },
+        {
+          "url": "https://go.dev/cl/455717"
+        },
+        {
+          "url": "https://go.dev/issue/56350"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/L_3rmdT0BMU/m/yZDrXjIiBQAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-1144"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ZSVEMQV5ROY5YW5QE3I57HT3ITWG5GCV"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/WPEIZ7AMEJCZXU3FEJZMVRNHQZXX5P3I"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/T7N5GV4CHH6WAGX3GFMDD3COEOVCZ4RI"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/REMHVVIBDNKSRKNOTV7EQSB7CYQWOUOU"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/QBKBAZBIOXZV5QCFHZNSVXULR32XJCYD"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/Q52IQI754YAE4XPR4QBRWPIVZWYGZ4FS"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PW3XC47AUW5J5M2ULJX7WCCL3B2ETLMT"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PUM4DIVOLJCBK5ZDP4LJOL24GXT3YSIR"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NQGNAXK3YBPMUP3J4TECIRDHFGW37522"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KEOTKBUPZXHE3F352JBYNTSNRXYLWD6P"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CSVIS6MTMFVBA7JPMRAUNKUOYEVSJYSB"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHITS4PUOZAKFIUBQAQZC7JWXMOYE4B"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ANIOPUXWIHVRA6CEWXCGOMX3YYS6KFHG"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/5RSKA2II6QTD4YUKUNDVJQSRYSFC4VFR"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/56B2FFESRYYP6IY2AZ3UWXLWKZ5IYZN4"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4SBIUECMLNC572P23DDOKJNKPJVX26SP"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4BUK2ZIAGCULOOYDNH25JPU6JBES5NF2"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:b558f91e-1371-4195-854a-3ff42b076a8f",
+      "id": "GHSA-vvpx-j8f3-3w6h",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-vvpx-j8f3-3w6h"
+      },
+      "references": [
+        {
+          "id": "GHSA-vvpx-j8f3-3w6h",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-vvpx-j8f3-3w6h"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00171,
+          "method": "other"
+        }
+      ],
+      "description": "golang.org/x/net vulnerable to Uncontrolled Resource Consumption",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41723"
+        },
+        {
+          "url": "https://go.dev/cl/468135"
+        },
+        {
+          "url": "https://go.dev/issue/57855"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/V0aBFqaFs_E"
+        },
+        {
+          "url": "https://vuln.go.dev/ID/GO-2023-1571.json"
+        },
+        {
+          "url": "https://go.dev/cl/468295"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1571"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4BUK2ZIAGCULOOYDNH25JPU6JBES5NF2"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4MA5XS5DAOJ5PKKNG5TUXKPQOFHT5VBC"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/REMHVVIBDNKSRKNOTV7EQSB7CYQWOUOU"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RGW7GE2Z32ZT47UFAQFDRQE33B7Q7LMT"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RLBQ3A7ROLEQXQLXFDLNJ7MYPKG5GULE"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/T7N5GV4CHH6WAGX3GFMDD3COEOVCZ4RI"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XX3IMUTZKRQ73PBZM4E2JP4BKYH4C6XE"
+        },
+        {
+          "url": "https://www.couchbase.com/alerts"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:57ab6af5-8687-4b69-bfb3-9c53b698506b",
+      "id": "GHSA-4374-p667-p6c8",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-4374-p667-p6c8"
+      },
+      "references": [
+        {
+          "id": "GHSA-4374-p667-p6c8",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-4374-p667-p6c8"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00089,
+          "method": "other"
+        }
+      ],
+      "description": "HTTP/2 rapid reset can cause excessive work in net/http",
+      "advisories": [
+        {
+          "url": "https://github.com/golang/go/issues/63417"
+        },
+        {
+          "url": "https://go.dev/cl/534215"
+        },
+        {
+          "url": "https://go.dev/cl/534235"
+        },
+        {
+          "url": "https://go.dev/issue/63417"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/iNNxDTCjZvo/m/UDd7VKQuAAAJ"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39325"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-2102"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/3OVW5V2DM5K5IC3H7O42YDUGNJ74J35O"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/3SZN67IL7HMGMNAVLOTIXLIHUDXZK4LH"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4BUK2ZIAGCULOOYDNH25JPU6JBES5NF2"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/5RSKA2II6QTD4YUKUNDVJQSRYSFC4VFR"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/AVZDNSMVDAQJ64LJC5I5U5LDM5753647"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHITS4PUOZAKFIUBQAQZC7JWXMOYE4B"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CLB4TW7KALB3EEQWNWCN7OUIWWVWWCG2"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/D2BBIDR2ZMB3X5BC7SR4SLQMHRMVPY6L"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ECRC75BQJP6FJN2L7KCKYZW4DSBD7QSD"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/FTMJ3NJIDAZFWJQQSP3L22MUFJ3UP2PT"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/GSY7SXFFTPZFWDM6XELSDSHZLVW3AHK7"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/HZQIELEIRSZUYTFFH5KTH2YJ4IIQG2KE"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/IPWCNYB5PQ5PCVZ4NJT6G56ZYFZ5QBU6"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KEOTKBUPZXHE3F352JBYNTSNRXYLWD6P"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KSEGD2IWKNUO3DWY4KQGUQM5BISRWHQE"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/MZQYOOKHQDQ57LV2IAG6NRFOVXKHJJ3Z"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NG7IMPL55MVWU3LCI4JQJT3K2U5CHDV7"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/OXGWPQOJ3JNDW2XIYKIVJ7N7QUIFNM2Q"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PJCUNGIQDUMZ4Z6HWVYIMR66A35F5S74"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/QF5QSYAOPDOWLY6DUHID56Q4HQFYB45I"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/R3UETKPUB3V5JS5TLZOF3SMTGT5K5APS"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/REMHVVIBDNKSRKNOTV7EQSB7CYQWOUOU"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/T7N5GV4CHH6WAGX3GFMDD3COEOVCZ4RI"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ULQQONMSCQSH5Z5OWFFQHCGEZ3NL4DRJ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/UTT7DG3QOF5ZNJLUGHDNLRUIN6OWZARP"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/W2LZSWTV4NV4SNQARNXG5T6LRHP26EW2"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/WCNCBYKZXLDFGAJUB7ZP5VLC3YTHJNVH"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XFOIBB4YFICHDM7IBOP7PWXW3FX4HLL2"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XTNLSL44Y5FB6JWADSZH6DCV4JJAAEQY"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/YRKEXKANQ7BKJW2YTAMP625LJUJZLJ4P"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ZSVEMQV5ROY5YW5QE3I57HT3ITWG5GCV"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20231110-0008"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/L5E5JSJBZLYXOTZWXHJKRVCIXIHVWKJ6"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/YJWHBLVZDM5KQSDFRBFRKU5KSSOLIRQ4"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ODBY7RVMGZCBSTWF2OZGIZS57FNFUL67"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/QXOU2JZUBEBP7GBKAYIJRPRBZSJCD7ST"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/3WJ4QVX2AMUJ2F2S27POOAHRC4K3CHU4"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:daf7af40-c438-40a6-a962-515ea7b90f25",
+      "id": "GHSA-2wrh-6pvc-2jm9",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-2wrh-6pvc-2jm9"
+      },
+      "references": [
+        {
+          "id": "GHSA-2wrh-6pvc-2jm9",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-2wrh-6pvc-2jm9"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 6.1,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00118,
+          "method": "other"
+        }
+      ],
+      "description": "Improper rendering of text nodes in golang.org/x/net/html",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-3978"
+        },
+        {
+          "url": "https://go.dev/cl/514896"
+        },
+        {
+          "url": "https://go.dev/issue/61615"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1988"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:3b94e6af-71bd-4fe0-a488-77970cc6c05b",
+      "id": "GHSA-vvgc-356p-c3xw",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-vvgc-356p-c3xw"
+      },
+      "references": [
+        {
+          "id": "GHSA-vvgc-356p-c3xw",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-vvgc-356p-c3xw"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.3,
+          "severity": "medium",
+          "method": "other",
+          "vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:N/VI:N/VA:N/SC:L/SI:L/SA:N"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00119,
+          "method": "other"
+        }
+      ],
+      "description": "golang.org/x/net vulnerable to Cross-site Scripting",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-22872"
+        },
+        {
+          "url": "https://go.dev/cl/662715"
+        },
+        {
+          "url": "https://go.dev/issue/73070"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/ezSKR9vqbqA"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2025-3595"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20250516-0007"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:ef7f244a-5a20-4bae-a70f-f7e48a34a9a1",
+      "id": "GHSA-69cg-p879-7622",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-69cg-p879-7622"
+      },
+      "references": [
+        {
+          "id": "GHSA-69cg-p879-7622",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-69cg-p879-7622"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00057,
+          "method": "other"
+        }
+      ],
+      "description": "golang.org/x/net/http2 Denial of Service vulnerability",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-27664"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/x49AQzIVX-s"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202209-26"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0969"
+        },
+        {
+          "url": "https://go.dev/cl/428735"
+        },
+        {
+          "url": "https://go.dev/issue/54658"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/JXKTHIGE5F576MAPFYCIJXNRGBSPISUF"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/TXS2OQ57KZC5XZKK5UW4SYKPVQAHIOJX"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20220923-0004"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:e787ccea-bc8c-41d4-9abb-d0ee60fa40fb",
+      "id": "GHSA-69ch-w2m2-3vjp",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-69ch-w2m2-3vjp"
+      },
+      "references": [
+        {
+          "id": "GHSA-69ch-w2m2-3vjp",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-69ch-w2m2-3vjp"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00054,
+          "method": "other"
+        }
+      ],
+      "description": "golang.org/x/text/language Denial of service via crafted Accept-Language header",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-32149"
+        },
+        {
+          "url": "https://go.dev/cl/442235"
+        },
+        {
+          "url": "https://go.dev/issue/56152"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/-hjNw559_tE/m/KlGTfid5CAAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-1059"
+        },
+        {
+          "url": "https://github.com/golang/go/issues/56152"
+        },
+        {
+          "url": "https://github.com/golang/text/commit/434eadcdbc3b0256971992e8c70027278364c72c"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20230203-0006"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/text@v0.3.5-0.20201125200606-c27b9fd57aec?package-id=970fd91f4c3c35d6"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:588e3b22-3f3e-4a72-a66e-63b849df062d",
+      "id": "GHSA-ppp9-7jff-5vj2",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-ppp9-7jff-5vj2"
+      },
+      "references": [
+        {
+          "id": "GHSA-ppp9-7jff-5vj2",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-ppp9-7jff-5vj2"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00053,
+          "method": "other"
+        }
+      ],
+      "description": "golang.org/x/text/language Out-of-bounds Read vulnerability",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-38561"
+        },
+        {
+          "url": "https://deps.dev/advisory/OSV/GO-2021-0113"
+        },
+        {
+          "url": "https://go.googlesource.com/text/+/383b2e75a7a4198c42f8f87833eefb772868a56f"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/text/language"
+        },
+        {
+          "url": "https://go.dev/cl/340830"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2021-0113"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/text@v0.3.5-0.20201125200606-c27b9fd57aec?package-id=970fd91f4c3c35d6"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:8302c8ff-f872-4852-9d01-154fa19dcca2",
+      "id": "GHSA-4f99-4q7p-p3gh",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-4f99-4q7p-p3gh"
+      },
+      "references": [
+        {
+          "id": "GHSA-4f99-4q7p-p3gh",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-4f99-4q7p-p3gh"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 8.7,
+          "severity": "high",
+          "method": "other",
+          "vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00035,
+          "method": "other"
+        }
+      ],
+      "description": "Logrus is vulnerable to DoS when using Entry.Writer()",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-65637"
+        },
+        {
+          "url": "https://github.com/sirupsen/logrus/issues/1370"
+        },
+        {
+          "url": "https://github.com/sirupsen/logrus/pull/1376"
+        },
+        {
+          "url": "https://github.com/mjuanxd/logrus-dos-poc"
+        },
+        {
+          "url": "https://github.com/mjuanxd/logrus-dos-poc/blob/main/README.md"
+        },
+        {
+          "url": "https://github.com/sirupsen/logrus/releases/tag/v1.8.3"
+        },
+        {
+          "url": "https://github.com/sirupsen/logrus/releases/tag/v1.9.1"
+        },
+        {
+          "url": "https://github.com/sirupsen/logrus/releases/tag/v1.9.3"
+        },
+        {
+          "url": "https://security.snyk.io/vuln/SNYK-GOLANG-GITHUBCOMSIRUPSENLOGRUS-5564391"
+        },
+        {
+          "url": "https://github.com/sirupsen/logrus/commit/6acd903758687c4a3db3c11701e6c414fcf1c1f7"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/github.com/sirupsen/logrus@v1.7.0?package-id=8fb99d01af5f954b"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:2209291d-fbbe-416b-b2aa-5d25e0ca5f06",
+      "id": "GHSA-83g2-8m93-v3w7",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-83g2-8m93-v3w7"
+      },
+      "references": [
+        {
+          "id": "GHSA-83g2-8m93-v3w7",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-83g2-8m93-v3w7"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00016,
+          "method": "other"
+        }
+      ],
+      "description": "golang.org/x/net/html Infinite Loop vulnerability",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-33194"
+        },
+        {
+          "url": "https://github.com/golang/net/commit/37e1c6afe02340126705deced573a85ab75209d7"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/wPunbCPkWUg"
+        },
+        {
+          "url": "https://go.dev/cl/311090"
+        },
+        {
+          "url": "https://go.dev/issue/46288"
+        },
+        {
+          "url": "https://go.googlesource.com/net/+/37e1c6afe02340126705deced573a85ab75209d7"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2021-0238"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4CHKSFMHZVOBCZSSVRE3UEYNKARTBMTM"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:86fd630a-9e7e-49f5-91e4-296543e4bbb0",
+      "id": "GHSA-qxp5-gwg8-xv66",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-qxp5-gwg8-xv66"
+      },
+      "references": [
+        {
+          "id": "GHSA-qxp5-gwg8-xv66",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-qxp5-gwg8-xv66"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 4.4,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:L"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00024,
+          "method": "other"
+        }
+      ],
+      "description": "HTTP Proxy bypass using IPv6 Zone IDs in golang.org/x/net",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-22870"
+        },
+        {
+          "url": "https://go.dev/cl/654697"
+        },
+        {
+          "url": "https://go.dev/issue/71984"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2025-3503"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/03/07/2"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20250509-0007"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:e016e8e5-f939-476c-a0d0-410852ebf6e2",
+      "id": "GHSA-h86h-8ppg-mxmh",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-h86h-8ppg-mxmh"
+      },
+      "references": [
+        {
+          "id": "GHSA-h86h-8ppg-mxmh",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-h86h-8ppg-mxmh"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.9,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00013,
+          "method": "other"
+        }
+      ],
+      "description": "golang.org/x/net/http/httpguts vulnerable to Uncontrolled Recursion",
+      "advisories": [
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-31525"
+        },
+        {
+          "url": "https://github.com/golang/go/issues/45710"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/cu9SP4eSXMc"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202208-02"
+        },
+        {
+          "url": "https://go.dev/cl/313069"
+        },
+        {
+          "url": "https://go.dev/issue/45710"
+        },
+        {
+          "url": "https://go.googlesource.com/net/+/89ef3d95e781148a0951956029c92a211477f7f9"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0236"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ISRZZ6NY5R2TBYE72KZFOCO25TEUQTBF"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/golang.org/x/net@v0.0.0-20200707034311-ab3426394381?package-id=f7f8c326c76d3c03"
+        }
+      ]
+    }
+  ]
+}

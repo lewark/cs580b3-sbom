@@ -1,0 +1,3444 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:df0ea235-2560-43bd-b1ca-65ca46dda734",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2025-12-01T23:37:03-07:00",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "author": "anchore",
+          "name": "grype",
+          "version": "0.104.1"
+        }
+      ]
+    },
+    "component": {
+      "bom-ref": "89cdd99b31f3e1fe",
+      "type": "file",
+      "name": "apache-tomcat-8.5.57.tar.gz",
+      "version": "sha256:2615839daf1899cd705f9b82f2df6bd21adb29a93a05afdea0a6192ce54025c4"
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "pkg:maven/annotations-api/annotations-api@1.2.FR?package-id=c1434bb916844e8b",
+      "type": "library",
+      "name": "annotations-api",
+      "version": "1.2.FR",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:annotations-api:1.2.FR:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/annotations-api/annotations-api@1.2.FR",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "116f525da61babf8c3af9b76344b99eac0a6b7db"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:annotations_api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:annotations-api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:annotations_api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:oracle-corporation:annotations-api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:oracle-corporation:annotations_api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:oracle_corporation:annotations-api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:oracle_corporation:annotations_api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:annotations-api:annotations-api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:annotations-api:annotations_api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:annotations_api:annotations-api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:annotations_api:annotations_api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:annotations:annotations-api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:annotations:annotations_api:1.2.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/annotations-api.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/annotations-api.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.catalina.startup.Bootstrap/bootstrap@8.5.57?package-id=d060ec0e165ee2a3",
+      "type": "library",
+      "name": "bootstrap",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:Bootstrap:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.catalina.startup.Bootstrap/bootstrap@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "d6bdc3ec6a103a3c76a87720e2e9bd2d1842d6bf"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:bootstrap:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:catalina:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:startup:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/bin/bootstrap.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/bin/bootstrap.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/catalina/catalina@8.5.57?package-id=de94b1f0bab6e2d7",
+      "type": "library",
+      "name": "catalina",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:catalina:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/catalina/catalina@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "cd51c042b9794d54452c7798cd60202c2de77830"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:catalina:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina:catalina:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/catalina.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/catalina.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/catalina-ant/catalina-ant@8.5.57?package-id=2e542a691834d08b",
+      "type": "library",
+      "name": "catalina-ant",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:catalina-ant:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/catalina-ant/catalina-ant@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "169f62a49beba3d31a7997d1e76bea64061c5d80"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:catalina_ant:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:catalina-ant:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:catalina_ant:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina-ant:catalina-ant:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina-ant:catalina_ant:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina_ant:catalina-ant:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina_ant:catalina_ant:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina:catalina-ant:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina:catalina_ant:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/catalina-ant.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/catalina-ant.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/catalina-ha/catalina-ha@8.5.57?package-id=e070e316469c5a75",
+      "type": "library",
+      "name": "catalina-ha",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:catalina-ha:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/catalina-ha/catalina-ha@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "55b05b971a0e4a5a31068492bacd1ae1c9a9062f"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:catalina_ha:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:catalina-ha:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:catalina_ha:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina-ha:catalina-ha:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina-ha:catalina_ha:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina_ha:catalina-ha:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina_ha:catalina_ha:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina:catalina-ha:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina:catalina_ha:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/catalina-ha.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/catalina-ha.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/catalina-storeconfig/catalina-storeconfig@8.5.57?package-id=1af42976d7f79f5a",
+      "type": "library",
+      "name": "catalina-storeconfig",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:catalina-storeconfig:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/catalina-storeconfig/catalina-storeconfig@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "7eaf2214eaec5f74b602fb01a5de4f72059debf1"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:catalina_storeconfig:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:catalina-storeconfig:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:catalina_storeconfig:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina-storeconfig:catalina-storeconfig:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina-storeconfig:catalina_storeconfig:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina_storeconfig:catalina-storeconfig:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina_storeconfig:catalina_storeconfig:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina:catalina-storeconfig:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina:catalina_storeconfig:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/catalina-storeconfig.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/catalina-storeconfig.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/catalina-tribes/catalina-tribes@8.5.57?package-id=5ff31eb817e2e357",
+      "type": "library",
+      "name": "catalina-tribes",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:catalina-tribes:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/catalina-tribes/catalina-tribes@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "a54b6606d9864e1fbf021a97c907413b592cc9df"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:catalina_tribes:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:catalina-tribes:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:catalina_tribes:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina-tribes:catalina-tribes:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina-tribes:catalina_tribes:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina_tribes:catalina-tribes:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina_tribes:catalina_tribes:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina:catalina-tribes:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:catalina:catalina_tribes:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/catalina-tribes.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/catalina-tribes.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/commons-daemon/commons-daemon@1.2.2?package-id=029c9c31a4daaf6a",
+      "type": "library",
+      "group": "commons-daemon",
+      "name": "commons-daemon",
+      "version": "1.2.2",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:commons-daemon:1.2.2:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/commons-daemon/commons-daemon@1.2.2",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "a3af8109d05090664542b1eba2549108cb56479f"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:commons_daemon:1.2.2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:commons:1.2.2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/bin/commons-daemon.jar"
+        },
+        {
+          "name": "syft:metadata:-:artifactID",
+          "value": "commons-daemon"
+        },
+        {
+          "name": "syft:metadata:-:groupID",
+          "value": "commons-daemon"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/bin/commons-daemon.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.eclipse.jdt.core.compiler.batch/ecj@4.6.3?package-id=863dfbf0f556fc32",
+      "type": "library",
+      "name": "ecj",
+      "version": "4.6.3",
+      "cpe": "cpe:2.3:a:org.eclipse.jdt.core.compiler.batch:compiler:4.6.3:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.eclipse.jdt.core.compiler.batch/ecj@4.6.3",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "ade950992eb3caf6ab4f1a88706c755f0bf213d9"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:org.eclipse.jdt.core.compiler.batch:batch:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:org.eclipse.jdt.core.compiler.batch:core:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:org.eclipse.jdt.core.compiler.batch:ecj:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:org.eclipse.jdt.core.compiler.batch:jdt:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:compiler:compiler:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:eclipse:compiler:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:batch:compiler:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:compiler:batch:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:compiler:core:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:core:compiler:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:eclipse:batch:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:compiler:ecj:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:compiler:jdt:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ecj:compiler:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:eclipse:core:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jdt:compiler:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:batch:batch:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:eclipse:ecj:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:eclipse:jdt:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:batch:core:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:core:batch:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:batch:ecj:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:batch:jdt:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:core:core:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ecj:batch:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jdt:batch:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:core:ecj:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:core:jdt:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ecj:core:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jdt:core:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ecj:ecj:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ecj:jdt:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jdt:ecj:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jdt:jdt:4.6.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/ecj-4.6.3.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/ecj-4.6.3.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/el-api/el-api@3.0.FR?package-id=d56f976403ac3653",
+      "type": "library",
+      "name": "el-api",
+      "version": "3.0.FR",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:el-api:3.0.FR:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/el-api/el-api@3.0.FR",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "ecd50bf53c4abc674e4ddd00307e3613c14b7f40"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:el_api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:el-api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:el_api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun-microsystems\\,-inc-:el-api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun-microsystems\\,-inc-:el_api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun_microsystems\\,_inc_:el-api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun_microsystems\\,_inc_:el_api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:el-api:el-api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:el-api:el_api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:el_api:el-api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:el_api:el_api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:el:el-api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:el:el_api:3.0.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/el-api.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/el-api.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/jasper/jasper@8.5.57?package-id=4228fce69bf46eec",
+      "type": "library",
+      "name": "jasper",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:jasper:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/jasper/jasper@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "5e69d4f9cf2b961a08557327528b6a526a1554cd"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:jasper:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jasper:jasper:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/jasper.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/jasper.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/jasper-el/jasper-el@8.5.57?package-id=9896df86ff16397e",
+      "type": "library",
+      "name": "jasper-el",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:jasper-el:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/jasper-el/jasper-el@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "c21558bd1e2cc90e37bf6465a98369b22a385749"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:jasper_el:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:jasper-el:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:jasper_el:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jasper-el:jasper-el:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jasper-el:jasper_el:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jasper_el:jasper-el:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jasper_el:jasper_el:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jasper:jasper-el:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jasper:jasper_el:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/jasper-el.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/jasper-el.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/jaspic-api/jaspic-api@1.1.FR?package-id=2850f217b59f7921",
+      "type": "library",
+      "name": "jaspic-api",
+      "version": "1.1.FR",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:jaspic-api:1.1.FR:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/jaspic-api/jaspic-api@1.1.FR",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "08788073e6d3c7482e4707f656b8c38426210981"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:jaspic_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:jaspic-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:jaspic_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun-microsystems\\,-inc-:jaspic-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun-microsystems\\,-inc-:jaspic_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun_microsystems\\,_inc_:jaspic-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun_microsystems\\,_inc_:jaspic_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jaspic-api:jaspic-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jaspic-api:jaspic_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jaspic_api:jaspic-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jaspic_api:jaspic_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jaspic:jaspic-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jaspic:jaspic_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/jaspic-api.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/jaspic-api.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/jsp-api/jsp-api@2.3.FR?package-id=8d52211df84433bd",
+      "type": "library",
+      "name": "jsp-api",
+      "version": "2.3.FR",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:jsp-api:2.3.FR:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/jsp-api/jsp-api@2.3.FR",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "f722d205a63aaa79e7b357196cbf7f9deb2ca626"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:jsp_api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:jsp-api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:jsp_api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun-microsystems\\,-inc-:jsp-api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun-microsystems\\,-inc-:jsp_api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun_microsystems\\,_inc_:jsp-api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun_microsystems\\,_inc_:jsp_api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jsp-api:jsp-api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jsp-api:jsp_api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jsp_api:jsp-api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jsp_api:jsp_api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jsp:jsp-api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:jsp:jsp_api:2.3.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/jsp-api.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/jsp-api.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/servlet-api/servlet-api@3.1.FR?package-id=ac125e8903508016",
+      "type": "library",
+      "name": "servlet-api",
+      "version": "3.1.FR",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        },
+        {
+          "license": {
+            "id": "CDDL-1.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:servlet-api:3.1.FR:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/servlet-api/servlet-api@3.1.FR",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "f6f5868fdb6b07bef9bfdc4a9e84511731ddd983"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:servlet_api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:servlet-api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:servlet_api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun-microsystems\\,-inc-:servlet-api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun-microsystems\\,-inc-:servlet_api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun_microsystems\\,_inc_:servlet-api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:sun_microsystems\\,_inc_:servlet_api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:servlet-api:servlet-api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:servlet-api:servlet_api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:servlet_api:servlet-api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:servlet_api:servlet_api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:servlet:servlet-api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:servlet:servlet_api:3.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/servlet-api.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/servlet-api.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.taglibs/taglibs-standard-impl@1.2.5?package-id=2d206aa6622f3680",
+      "type": "library",
+      "group": "org.apache.taglibs",
+      "name": "taglibs-standard-impl",
+      "version": "1.2.5",
+      "licenses": [
+        {
+          "license": {
+            "name": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:taglibs-standard-impl:1.2.5:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.taglibs/taglibs-standard-impl@1.2.5",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "9b9783ccb2a323383e6e20e36d368f8997b71967"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:taglibs_standard_impl:1.2.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:standard-impl:1.2.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:standard_impl:1.2.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:taglibs:1.2.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar"
+        },
+        {
+          "name": "syft:metadata:-:artifactID",
+          "value": "taglibs-standard-impl"
+        },
+        {
+          "name": "syft:metadata:-:groupID",
+          "value": "org.apache.taglibs"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.taglibs/taglibs-standard-spec@1.2.5?package-id=99b6e784b383e09d",
+      "type": "library",
+      "group": "org.apache.taglibs",
+      "name": "taglibs-standard-spec",
+      "version": "1.2.5",
+      "licenses": [
+        {
+          "license": {
+            "name": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:taglibs-standard-spec:1.2.5:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.taglibs/taglibs-standard-spec@1.2.5",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "c3bb98c30f75fef1e229d1d03cf8457de22f1ba0"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:taglibs_standard_spec:1.2.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:taglibs:1.2.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar"
+        },
+        {
+          "name": "syft:metadata:-:artifactID",
+          "value": "taglibs-standard-spec"
+        },
+        {
+          "name": "syft:metadata:-:groupID",
+          "value": "org.apache.taglibs"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-api@8.5.57?package-id=440d79facb4a0d5f",
+      "type": "library",
+      "name": "tomcat-api",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-api:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-api@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "46e2aefee3855af20cac5f3282bc59beb3f570a9"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_api:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-api.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-api.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-coyote@8.5.57?package-id=212694ace3963d9e",
+      "type": "library",
+      "name": "tomcat-coyote",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-coyote:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-coyote@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "feafe38cf8c8d5a7ab3297cce5f4a7ecb56b6f7c"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_coyote:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-coyote.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-coyote.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-dbcp@8.5.57?package-id=00080f3a757835ab",
+      "type": "library",
+      "name": "tomcat-dbcp",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-dbcp:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-dbcp@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "5e19a0a8e8e7ff8f7a7bfae3ba708f5df0d24b52"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_dbcp:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-dbcp.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-dbcp.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-i18n-de@8.5.57?package-id=aa066bda95be394c",
+      "type": "library",
+      "name": "tomcat-i18n-de",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-i18n-de:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-i18n-de@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "6198f400e76564bd2fdb24e996d1847bcea13339"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_i18n_de:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-de.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-de.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-i18n-es@8.5.57?package-id=fe5c6956b2ca16a6",
+      "type": "library",
+      "name": "tomcat-i18n-es",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-i18n-es:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-i18n-es@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "1c0596aca6f756bbadef6c8ac59df1d82c8fb796"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_i18n_es:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-es.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-es.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-i18n-fr@8.5.57?package-id=a2a15ca9f3b32542",
+      "type": "library",
+      "name": "tomcat-i18n-fr",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-i18n-fr:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-i18n-fr@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "86a3cb73a2233eae37fee7d56e996183512f3fa0"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_i18n_fr:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-fr.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-fr.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-i18n-ja@8.5.57?package-id=46b5533f9a7d94b0",
+      "type": "library",
+      "name": "tomcat-i18n-ja",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-i18n-ja:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-i18n-ja@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "2831873e96b73efe15221bcaa3e9b82730fcf161"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_i18n_ja:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-ja.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-ja.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-i18n-ko@8.5.57?package-id=2d60fd1a0a15bfa9",
+      "type": "library",
+      "name": "tomcat-i18n-ko",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-i18n-ko:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-i18n-ko@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "4740dd92ab233834423aa6024a62c1cccae33d07"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_i18n_ko:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-ko.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-ko.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-i18n-ru@8.5.57?package-id=5b90ac6f1db7b0f7",
+      "type": "library",
+      "name": "tomcat-i18n-ru",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-i18n-ru:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-i18n-ru@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "9bbe5c12200733bde026ee0063668cc6390f2c16"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_i18n_ru:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-ru.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-ru.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-i18n-zh-CN@8.5.57?package-id=27a1b59291c22bbe",
+      "type": "library",
+      "name": "tomcat-i18n-zh-CN",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-i18n-zh-CN:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-i18n-zh-CN@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "568b9c039add1e614e02cab6b555899d8497f3fe"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_i18n_zh_CN:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-zh-CN.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-i18n-zh-CN.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-jdbc@8.5.57?package-id=e2d2d8370fb1a2f8",
+      "type": "library",
+      "name": "tomcat-jdbc",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-jdbc:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-jdbc@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "5a3dc2cc7c7952dcb32cb8d06f9bdc393c6e1938"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_jdbc:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-jdbc.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-jdbc.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-jni@8.5.57?package-id=f91174085633982e",
+      "type": "library",
+      "name": "tomcat-jni",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-jni:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-jni@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "de712e209f45bb10af114148c82b340d8eaff02e"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_jni:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-jni.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-jni.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-juli@8.5.57?package-id=be8696353dbc2efb",
+      "type": "library",
+      "name": "tomcat-juli",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-juli:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-juli@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "2aaef13e9705e19a69e0a90c562979c1d7c28692"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_juli:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/bin/tomcat-juli.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/bin/tomcat-juli.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-util@8.5.57?package-id=fd786279bbff79f5",
+      "type": "library",
+      "name": "tomcat-util",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-util:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-util@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "9f5e10a407bdc71f48f1a7dfa678a1ad9a82c6b3"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_util:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-util.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-util.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-util-scan@8.5.57?package-id=3110a40a3879f781",
+      "type": "library",
+      "name": "tomcat-util-scan",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-util-scan:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-util-scan@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "31af8e9995570adfc327fbab248fe71cef5e344e"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_util_scan:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-util-scan.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-util-scan.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/org.apache.tomcat/tomcat-websocket@8.5.57?package-id=e7b43a6ac854b94c",
+      "type": "library",
+      "name": "tomcat-websocket",
+      "version": "8.5.57",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache:tomcat-websocket:8.5.57:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/org.apache.tomcat/tomcat-websocket@8.5.57",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "cc7676e6aef540600af6325fc0298b59dd8a8f8f"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat_websocket:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache:tomcat:8.5.57:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-websocket.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/tomcat-websocket.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:maven/websocket-api/websocket-api@1.1.FR?package-id=2528d30db12b5645",
+      "type": "library",
+      "name": "websocket-api",
+      "version": "1.1.FR",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apache-software-foundation:websocket-api:1.1.FR:*:*:*:*:*:*:*",
+      "purl": "pkg:maven/websocket-api/websocket-api@1.1.FR",
+      "externalReferences": [
+        {
+          "url": "",
+          "hashes": [
+            {
+              "alg": "SHA-1",
+              "content": "065f81d1c14cd0184f6c4e3b6e264780ef71617a"
+            }
+          ],
+          "type": "build-meta"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "java-archive-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "java"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "java-archive"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache-software-foundation:websocket_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:websocket-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apache_software_foundation:websocket_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:websocket-api:websocket-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:websocket-api:websocket_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:websocket_api:websocket-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:websocket_api:websocket_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:oracle\\,-inc-:websocket-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:oracle\\,-inc-:websocket_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:oracle\\,_inc_:websocket-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:oracle\\,_inc_:websocket_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:websocket:websocket-api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:websocket:websocket_api:1.1.FR:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "apache-tomcat-8.5.57/lib/websocket-api.jar"
+        },
+        {
+          "name": "syft:metadata:virtualPath",
+          "value": "apache-tomcat-8.5.57/lib/websocket-api.jar"
+        }
+      ]
+    },
+    {
+      "bom-ref": "4b3948c7d1536e7c",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/bin/bootstrap.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "220599c10897f1b6f6e621a12068922c8f3d68b07bfeccf826b0971c884399b6"
+        }
+      ]
+    },
+    {
+      "bom-ref": "aad3b2c13b889575",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/bin/commons-daemon.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e9469231d2f1e2e5a5c676ca9acb0012b6a4be3f8d7ca1884aae5dfe23beca65"
+        }
+      ]
+    },
+    {
+      "bom-ref": "fed2b1a037d6a2ed",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/bin/tomcat-juli.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7d1d7ec6a08bc0b5adccd6fa8b9343a6cc51191ad527e781d719076c6bcd20e1"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7be2309b7dceb5cd",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/annotations-api.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9df483d9d7ab2b97836038702f91765c1b624306bbb898c19ef26ee46613de67"
+        }
+      ]
+    },
+    {
+      "bom-ref": "750b9c8fa0bcdc6f",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/catalina-ant.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "bee2934ff6d7d1d68d0caafa87ade53d66684fef82b74d899cd08e997642157b"
+        }
+      ]
+    },
+    {
+      "bom-ref": "5e54605c5a9df6bb",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/catalina-ha.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "96d6976d2fb3f6dee616209f455a5497091c74b45320fcaae1fd59e38d0c6dda"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b0f05b3de1bbade7",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/catalina-storeconfig.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "639341d4a5ef2d246cbcaed7b86acfcfd73df177e78d4cda1c1f9d9fcae9293b"
+        }
+      ]
+    },
+    {
+      "bom-ref": "92d0b2beefee91eb",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/catalina-tribes.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b7b07069a30916b8fe7c180acf6ad91681095d0ce522ae0a40e4aafd2dbe0f4f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "28ddb36a7625edf7",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/catalina.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "8db351f7015a9bc238651cf59c76c31fb42b96b9254b3ceeff07a3a4fbe34739"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d97dfca2b98a45ff",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/ecj-4.6.3.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4374ee22ad38e04ee6bcaf781611f2be9d5ee01d7ba84ac55794baa732cce371"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2fa6703eca81c0d2",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/el-api.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "dcb31c19fd71122b23b6749fc65f5f63c2f396f364a125f15fdc432136aaca78"
+        }
+      ]
+    },
+    {
+      "bom-ref": "780196422f319543",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/jasper-el.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "ff0beb5f44bb791700dbaae4f1cefe472e04e66ef19b430653e29a0fa7e9dbdd"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7f2ec3a52fa827db",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/jasper.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "33b26c67d974f7749b49d9e85132d37f684d8c68852a574c70b00a8059fa40d8"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d0e295082c7e19de",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/jaspic-api.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "59981c9731abe3f9fb35a0ed87541a9cd1b8955771b651f81893fd8ab953b897"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9ba4518f25757808",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/jsp-api.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0ec54e1807c524799e25631e3a24d941beab3806648cda0265b2d1697407f91c"
+        }
+      ]
+    },
+    {
+      "bom-ref": "db1ad67993974e75",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/servlet-api.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c33c3ed49b65f0c45255fb80aaccaeb5f026ec2f259f17c015686c09befe7325"
+        }
+      ]
+    },
+    {
+      "bom-ref": "372d9968514ce9a2",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-api.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f75891ed4057938e9a8a959f1b696db0b84b321c4ad684c0f92c7a37575102d5"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d6a23430334aba27",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-coyote.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b74c47b74577dd137e8e1edc204ffd88f5ab5c986ac4c30bcf8fa8e7cd6b56b0"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f79e144fa69a8a1c",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-dbcp.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "232b9a82343990c0dd2f930a5300f8b59fbfdaee61241b819016370e9c31acc6"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e702495191fc17d9",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-i18n-de.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e7f56ef05bb219e2f2816d339e5a8b1ba9a996e60e553ef44f8de005063a555c"
+        }
+      ]
+    },
+    {
+      "bom-ref": "ac455f60915c1a38",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-i18n-es.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "5a1afe492f9ab57b35b37cf5d3c68863e177ef8afc63e1805a1316b62720f66c"
+        }
+      ]
+    },
+    {
+      "bom-ref": "954b98df294b24c9",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-i18n-fr.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7e0e49df01d64f575bb0c98371cdaf24fe5064c2098ce51d361456c3f60e4172"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9970a8ee63da9626",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-i18n-ja.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e8109961a85e7506db1b77c9ec864eaea3c3d7060fa33f7ed2a7c639c6a88211"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7f5962c45073f055",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-i18n-ko.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e764afa89e25e44e8523fad9d8281632bf209d8d1fd1381748ddbd549c693c9d"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9f6e51544b705eff",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-i18n-ru.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e8dc8f293c2b61789a09b9f69a7dd39e910015ad83871e0f009fd5f24296f234"
+        }
+      ]
+    },
+    {
+      "bom-ref": "bed81afb2c872948",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-i18n-zh-CN.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "a31ee620da66425aeeb6e3ecca938792b40c2800aa1f691d835474b37c1daddb"
+        }
+      ]
+    },
+    {
+      "bom-ref": "0612464dce547d15",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-jdbc.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "ce5429484604a3656e33f78f5d5ce4a8a4622425a7532a094509e0285807b090"
+        }
+      ]
+    },
+    {
+      "bom-ref": "dbf1954d1d10aeb5",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-jni.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "05e3713eedb90c1bb6cefc800986931a6640e2408dcc0c5762b54eacd5e355ae"
+        }
+      ]
+    },
+    {
+      "bom-ref": "38f9163e2f8733b4",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-util-scan.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "6952238fa72b15b00599ded6228af73cc7d7a68205e0e29aa6177ea4bc9c06a0"
+        }
+      ]
+    },
+    {
+      "bom-ref": "1567211930d64bcd",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-util.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f429088f83256d5e8acdd72d9a60b47f409e83f80d5644cc897719ba969b4145"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d82c2b448832be87",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/tomcat-websocket.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9e21cf8f84aa06ca5a45b137e06d07e544dc64671ce988572a9234c25c2a802e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "dc6f529e1ef6a239",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/lib/websocket-api.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b711a52ad04547d75e62e1a8519fe3496fd20474224aa9bc1a897fce977de8ba"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b05a6048803eb5c2",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d075cb77d94e2d115b4d90a897b57d65cc31ed8e1b95d65361da324642705728"
+        }
+      ]
+    },
+    {
+      "bom-ref": "85afa71e24ffa719",
+      "type": "file",
+      "name": "/tmp/syft-archive-contents-258624255/apache-tomcat-8.5.57/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "81a195f8acab3f072fe4d6c279b7c29575bcac49081076e3d08bbda829275189"
+        }
+      ]
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "bom-ref": "urn:uuid:8e2f2747-42ae-47e0-9aaa-c9fb4d89f870",
+      "id": "GHSA-qppj-fm5r-hxr3",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-qppj-fm5r-hxr3"
+      },
+      "references": [
+        {
+          "id": "GHSA-qppj-fm5r-hxr3",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-qppj-fm5r-hxr3"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.94474,
+          "method": "other"
+        },
+        {
+          "source": {
+            "name": "CISA KEV Catalog",
+            "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+          },
+          "score": 1,
+          "method": "other",
+          "justification": "Listed in CISA KEV"
+        }
+      ],
+      "description": "HTTP/2 Stream Cancellation Attack",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat/tomcat-coyote@8.5.57?package-id=212694ace3963d9e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:370e66be-68a6-4279-8589-92ac89a2b1c4",
+      "id": "GHSA-7w75-32cg-r6g2",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-7w75-32cg-r6g2"
+      },
+      "references": [
+        {
+          "id": "GHSA-7w75-32cg-r6g2",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-7w75-32cg-r6g2"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.52453,
+          "method": "other"
+        }
+      ],
+      "description": "Apache Tomcat Denial of Service due to improper input validation vulnerability for HTTP/2 requests",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat/tomcat-coyote@8.5.57?package-id=212694ace3963d9e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:57f40f58-94a5-4486-9da8-419247031639",
+      "id": "GHSA-wm9w-rjj3-j356",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-wm9w-rjj3-j356"
+      },
+      "references": [
+        {
+          "id": "GHSA-wm9w-rjj3-j356",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-wm9w-rjj3-j356"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.17245,
+          "method": "other"
+        }
+      ],
+      "description": "Apache Tomcat - Denial of Service",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat/tomcat-coyote@8.5.57?package-id=212694ace3963d9e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:8254fb8c-9984-483f-a492-7b8eaf501a0f",
+      "id": "GHSA-vvw4-rfwf-p6hx",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-vvw4-rfwf-p6hx"
+      },
+      "references": [
+        {
+          "id": "GHSA-vvw4-rfwf-p6hx",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-vvw4-rfwf-p6hx"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.11066,
+          "method": "other"
+        }
+      ],
+      "description": "Exposure of Sensitive Information to an Unauthorized Actor in Apache Tomcat",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat/tomcat-coyote@8.5.57?package-id=212694ace3963d9e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:1848ad91-b455-4873-be08-c7e19e889697",
+      "id": "GHSA-f268-65qc-98vg",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-f268-65qc-98vg"
+      },
+      "references": [
+        {
+          "id": "GHSA-f268-65qc-98vg",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-f268-65qc-98vg"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 4.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.09572,
+          "method": "other"
+        }
+      ],
+      "description": "Exposure of Sensitive Information to an Unauthorized Actor in Apache Tomcat",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat/tomcat-coyote@8.5.57?package-id=212694ace3963d9e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:563d2d70-acc4-4f4c-a890-819a302868e9",
+      "id": "GHSA-3p2h-wqq4-wf4h",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-3p2h-wqq4-wf4h"
+      },
+      "references": [
+        {
+          "id": "GHSA-3p2h-wqq4-wf4h",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-3p2h-wqq4-wf4h"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "medium",
+          "method": "other"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.07476,
+          "method": "other"
+        }
+      ],
+      "description": "Apache Tomcat Denial of Service via invalid HTTP priority header",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat/tomcat-coyote@8.5.57?package-id=212694ace3963d9e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:a2c6e2a6-c46f-4761-91a3-e48cd1f3cc9d",
+      "id": "GHSA-7jqf-v358-p8g7",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-7jqf-v358-p8g7"
+      },
+      "references": [
+        {
+          "id": "GHSA-7jqf-v358-p8g7",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-7jqf-v358-p8g7"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 8.6,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00545,
+          "method": "other"
+        }
+      ],
+      "description": "Apache Tomcat Allocation of Resources Without Limits or Throttling vulnerability",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat/tomcat-util@8.5.57?package-id=fd786279bbff79f5"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:7a2fde50-f6a9-45d4-afdd-035c7e0f456f",
+      "id": "GHSA-v682-8vv8-vpwr",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-v682-8vv8-vpwr"
+      },
+      "references": [
+        {
+          "id": "GHSA-v682-8vv8-vpwr",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-v682-8vv8-vpwr"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 6.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00577,
+          "method": "other"
+        }
+      ],
+      "description": "Denial of Service via incomplete cleanup vulnerability in Apache Tomcat",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat/tomcat-websocket@8.5.57?package-id=e7b43a6ac854b94c"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:a5aa5c2d-1cc1-4ca6-b60e-881445d6744e",
+      "id": "GHSA-25xr-qj8w-c4vf",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-25xr-qj8w-c4vf"
+      },
+      "references": [
+        {
+          "id": "GHSA-25xr-qj8w-c4vf",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-25xr-qj8w-c4vf"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00204,
+          "method": "other"
+        }
+      ],
+      "description": "Apache Tomcat Coyote vulnerable to Denial of Service via excessive HTTP/2 streams",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat/tomcat-coyote@8.5.57?package-id=212694ace3963d9e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:92de6f59-ac31-4b62-9efc-46c352347965",
+      "id": "GHSA-4j3c-42xv-3f84",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-4j3c-42xv-3f84"
+      },
+      "references": [
+        {
+          "id": "GHSA-4j3c-42xv-3f84",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-4j3c-42xv-3f84"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "source": {
+            "name": "FIRST",
+            "url": "https://www.first.org/epss/"
+          },
+          "score": 0.00199,
+          "method": "other"
+        }
+      ],
+      "description": "Apache Tomcat Utilities is vulnerable to resource exhaustion when using the APR/Native connector",
+      "affects": [
+        {
+          "ref": "pkg:maven/org.apache.tomcat/tomcat-util@8.5.57?package-id=fd786279bbff79f5"
+        }
+      ]
+    }
+  ]
+}

@@ -41,7 +41,6 @@ cleanup() {
         ENGINE="docker"
     fi
     $ENGINE rm -f "$CONTAINER_NAME" >/dev/null 2>&1
-<<<<<<< HEAD
     exit 1
 }
 

@@ -20,12 +20,12 @@ WORKDIR /data
 
 # Copy the requirements file and install dependencies natively in the container
 # This removes the need for the local 'venv' folder when running inside Docker
-COPY requirements.txt /data/
-RUN pip install --no-cache-dir -r requirements.txt && \
+COPY requirements.txt /scripts/
+RUN pip install --no-cache-dir -r /scripts/requirements.txt && \
     pip install --no-cache-dir ollama pydantic
 
 # Copy all the agent scripts and process tools to the container
-COPY ollama-agent.py process_nvd.py process_vulnrichment.py /data/
+COPY ollama-agent.py ollama-tool-agent.py process_nvd.py process_vulnrichment.py /scripts/
 
 # Default entry
 CMD ["/bin/bash"]

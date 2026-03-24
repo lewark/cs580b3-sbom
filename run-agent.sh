@@ -49,4 +49,4 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 echo "Starting container execution for model: $MODEL (Container: $CONTAINER_NAME)"
-./run-container.sh $ENGINE_ARG bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -u /data/ollama-agent.py $MODEL"
+./run-container.sh $ENGINE_ARG bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -u /scripts/ollama-tool-agent.py $MODEL"

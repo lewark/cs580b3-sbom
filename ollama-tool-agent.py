@@ -88,6 +88,44 @@ def query_sbom_rag(query: str, sbom_file_path: str) -> str:
     except Exception as e:
         return f"Error reading or embedding SBOM: {str(e)}"
 
+
+@tool
+def list_sbom_vulnerabilities(sbom_file_path: str) -> str:
+    try:
+        with open(sbom_file_path, "r") as f:
+            data = json.load(f)
+
+        vulns = []
+        for entry in data["vulnerabilities"]:
+            vuln = {
+                "id": entry["id"]
+            }
+
+            if "description" in entry:
+                vuln["description"] = entry["description"]
+
+            if "affects" in entry:
+                vuln["affects"] = [item["ref"] for item in entry["affects"]]
+
+            if "ratings" in entry:
+                severity = None
+                in_kev = None
+                for rating in entry["ratings"]:
+                    if rating["method"] == "CVSSv31":
+                        severity = rating["score"]
+                    elif "justification" in rating and rating["justification"] == "Listed in CISA KEV" and rating["score"] > 0:
+                        in_kev = True
+
+                if severity is not None:
+                    vuln["cvss_v3.1"] = severity
+                if in_kev is not None:
+                    vuln["known_exploited"] = True
+
+        return json.dumps(vulns, indent=2)
+
+    except Exception as e:
+        return "Error loading SBOM: " + str(e)
+
 # Setup Web Search
 web_search = DuckDuckGoSearchRun(
     name="web_search", 
@@ -118,7 +156,8 @@ def main():
     prompt = ChatPromptTemplate.from_messages([
         ("system", "You are an expert security analysis assistant determining SSVC priority. You have tools available: "
                    "1. run_command: Run linux shell commands. Useful to list files, cat dependency files (e.g. package.json/pom.xml), or execute cli tools like syft. "
-                   "2. query_sbom_rag: RAG on a given SBOM file. "
+                   #"2. query_sbom_rag: RAG on a given SBOM file. "
+                   "2. list_sbom_vulnerabilities: List vulnerabilities contained in an SBOM file. "
                    "3. web_search: Find latest CVE info on DuckDuckGo. "
                    "IMPORTANT EFFICIENCY CONSTRAINTS: Identify the exact version of the codebase you are in. Do not waste time evaluating or listing vulnerabilities for other versions. Focus strictly on vulnerabilities that affect the specific version you found. "
                    "Perform a CURSORY scan only—do not try to be overly thorough or read every single file. A quick glance at the top-level dependencies is perfectly sufficient. "

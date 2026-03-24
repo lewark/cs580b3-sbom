@@ -1,0 +1,40 @@
+{
+    "vulnerabilities": [
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "In Apache Tomcat 0.0.1 to 8.5.51, 9.0.0.M1 to 9.0.30, and 10.0.0.M1 to 10.0.0.M9, the HTTP/2 implementation did not limit the number of concurrent streams. This could result in a denial of service via resource exhaustion (excessive CPU or memory use).", 
+            "vulnerability_id": "CVE-2020-1938", 
+            "ssvc_decision": "Track*"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "In Apache Tomcat 0.0.1 to 8.5.51, 9.0.0.M1 to 9.0.30, and 10.0.0.M1 to 10.0.0.M9, the HTTP/2 implementation did not limit the number of concurrent streams. This could result in a denial of service via resource exhaustion (excessive CPU or memory use).", 
+            "vulnerability_id": "CVE-2020-11984", 
+            "ssvc_decision": "Track*"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "In Apache Tomcat 8.5.0 to 8.5.51, 9.0.0.M1 to 9.0.30, and 10.0.0.M1 to 10.0.0.M9, the default behavior of the HTTP/2 implementation has changed to be more strict when parsing HTTP headers. This could result in a denial of service if an attacker sends malformed HTTP/2 requests.", 
+            "vulnerability_id": "CVE-2020-13936", 
+            "ssvc_decision": "Track*"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "In Apache Tomcat 8.5.0 to 8.5.51, 9.0.0.M1 to 9.0.30, and 10.0.0.M1 to 10.0.0.M9, the HTTP/2 implementation did not properly validate the length of HTTP/2 headers. This could result in a denial of service via resource exhaustion (excessive CPU or memory use).", 
+            "vulnerability_id": "CVE-2020-13943", 
+            "ssvc_decision": "Track*"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat Jasper", 
+            "description": "Apache Tomcat 9.0.0.M1 to 9.0.0.M23, 8.5.0 to 8.5.23, and 8.0.0.RC1 to 8.0.47 did not properly validate certain inputs, allowing remote attackers to perform Server-Side Request Forgery (SSRF) attacks via a crafted URL.", 
+            "vulnerability_id": "CVE-2017-12617", 
+            "ssvc_decision": "Track*"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat DBCP", 
+            "description": "Apache Tomcat 9.0.0.M1 to 9.0.17, 8.5.0 to 8.5.39, and 7.0.0 to 7.0.93 did not properly handle certain edge cases in the DBCP (Database Connection Pool) implementation, which could result in a denial of service via resource exhaustion.", 
+            "vulnerability_id": "CVE-2019-17563", 
+            "ssvc_decision": "Track*"
+        }
+    ]
+}

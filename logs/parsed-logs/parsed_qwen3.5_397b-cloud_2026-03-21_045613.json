@@ -1,0 +1,88 @@
+{
+    "vulnerabilities": [
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat HTTP Request Smuggling vulnerability affecting versions 8.5.0 to 8.5.83", 
+            "vulnerability_id": "CVE-2021-33037", 
+            "ssvc_decision": "Act"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat HTTP Request Smuggling vulnerability affecting versions 8.5.0 to 8.5.83", 
+            "vulnerability_id": "CVE-2021-33038", 
+            "ssvc_decision": "Act"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat Session Fixation vulnerability affecting versions 8.5.0 to 8.5.69", 
+            "vulnerability_id": "CVE-2021-42340", 
+            "ssvc_decision": "Act"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat Information Disclosure vulnerability affecting versions 8.5.0 to 8.5.69", 
+            "vulnerability_id": "CVE-2021-42342", 
+            "ssvc_decision": "Attend"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat Session Fixation vulnerability affecting versions 8.5.0 to 8.5.74", 
+            "vulnerability_id": "CVE-2022-23181", 
+            "ssvc_decision": "Act"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat Information Disclosure vulnerability affecting versions 8.5.0 to 8.5.74", 
+            "vulnerability_id": "CVE-2022-23183", 
+            "ssvc_decision": "Attend"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat DoS vulnerability affecting versions 8.5.0 to 8.5.77", 
+            "vulnerability_id": "CVE-2022-29885", 
+            "ssvc_decision": "Attend"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat Information Disclosure vulnerability affecting versions 8.5.0 to 8.5.81", 
+            "vulnerability_id": "CVE-2022-34305", 
+            "ssvc_decision": "Attend"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat DoS vulnerability affecting versions 8.5.0 to 8.5.90", 
+            "vulnerability_id": "CVE-2023-36479", 
+            "ssvc_decision": "Act"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat Information Disclosure vulnerability affecting versions 8.5.0 to 8.5.97", 
+            "vulnerability_id": "CVE-2023-46589", 
+            "ssvc_decision": "Attend"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat Information Disclosure vulnerability affecting versions 8.5.0 to 8.5.99", 
+            "vulnerability_id": "CVE-2024-21733", 
+            "ssvc_decision": "Attend"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat Information Disclosure vulnerability affecting versions 8.5.0 to 8.5.100", 
+            "vulnerability_id": "CVE-2024-34750", 
+            "ssvc_decision": "Attend"
+        }, 
+        {
+            "dependency_name": "Apache Tomcat", 
+            "description": "Apache Tomcat Information Disclosure vulnerability affecting versions 8.5.0 to 8.5.100", 
+            "vulnerability_id": "CVE-2024-50379", 
+            "ssvc_decision": "Attend"
+        }, 
+        {
+            "dependency_name": "Eclipse JDT Compiler (ecj)", 
+            "description": "Eclipse JDT Compiler ecj-4.6.3 may contain information disclosure vulnerability", 
+            "vulnerability_id": "CVE-2021-28165", 
+            "ssvc_decision": "Track*"
+        }
+    ]
+}

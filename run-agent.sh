@@ -13,6 +13,14 @@ if [ ! -d logs ]; then
     mkdir logs
 fi
 
+# Ensure the Dockerfile is built using the correct engine before running the agent
+BUILD_ENGINE="podman"
+if [ "$ENGINE_ARG" = "--docker" ]; then
+    BUILD_ENGINE="docker"
+fi
+echo "[Agent] Ensuring 'llm-agent-testbed' image is built..."
+$BUILD_ENGINE build -q -t llm-agent-testbed .
+
 # If a source URL is provided, download and extract it right before running the agent
 SETUP_CMD=""
 TARGET_DIR="/data"
@@ -33,12 +41,13 @@ cleanup() {
         ENGINE="docker"
     fi
     $ENGINE rm -f "$CONTAINER_NAME" >/dev/null 2>&1
+<<<<<<< HEAD
     exit 1
 }
 
-# Trap Ctrl+C (SIGINT) and run the cleanup function
-trap cleanup INT
+
+# Always ensure cleanup runs on regular exit, failure, or Ctrl+C
+trap cleanup EXIT INT TERM
 
 echo "Starting container execution for model: $MODEL (Container: $CONTAINER_NAME)"
-./run-container.sh $ENGINE_ARG bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && /data/venv/bin/python3 -u /data/ollama-agent.py $MODEL"
-
+./run-container.sh $ENGINE_ARG bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -u /data/ollama-agent.py $MODEL"

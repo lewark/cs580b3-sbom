@@ -18,4 +18,4 @@ if [ -f ".env" ]; then
 fi
 	
 
-$ENGINE run --rm -i --init --volume $PWD:/data --network=host $EXTRA_OPTS python "$@"
+$ENGINE run -i --init --rm --volume $PWD:/data --network=host $EXTRA_OPTS llm-agent-testbed "$@"

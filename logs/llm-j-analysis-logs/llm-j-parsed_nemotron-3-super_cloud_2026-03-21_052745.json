@@ -1,0 +1,32 @@
+[
+    {
+        "source_log": "parsed_nemotron-3-super_cloud_2026-03-21_052745.json",
+        "cve_id": "CVE-2020-13934",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 1,
+            "reasoning": "The ground truth indicates the CVE is not present in the database, yet the candidate provides a specific, fabricated description and SSVC decision, which is inaccurate and hallucinated.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_nemotron-3-super_cloud_2026-03-21_052745.json",
+        "cve_id": "CVE-2020-13935",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 2,
+            "reasoning": "The ground truth indicates the CVE is not present in the database, yet the candidate provides a specific Tomcat vulnerability description and an SSVC decision, which are unsupported and likely hallucinated.",
+            "accuracy": "Low"
+        }
+    },
+    {
+        "source_log": "parsed_nemotron-3-super_cloud_2026-03-21_052745.json",
+        "cve_id": "CVE-2020-9484",
+        "vulnrichment_status": "Not found in Vulnrichment database",
+        "llmj_analysis": {
+            "score": 1,
+            "reasoning": "The ground truth indicates the CVE is not found in the vulnerability database, so the candidate's detailed description and SSVC decision are unsupported and effectively hallucinated.",
+            "accuracy": "Low"
+        }
+    }
+]

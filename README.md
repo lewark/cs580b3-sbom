@@ -46,7 +46,7 @@ You can optionally specify the container engine to use (either `--podman` or `--
 ./run-agent.sh --podman qwen3.5:9b
 
 # Run with Docker and analyze a specific source distribution
-./run-agent.sh --docker qwen3.5:9b https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.57/bin/apache-tomcat-8.5.57.tar.gz
+./run-agent.sh --docker qwen3.5:9b https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.57/src/apache-tomcat-8.5.57-src.tar.gz
 ```
 
 ## Running the advanced tool agent

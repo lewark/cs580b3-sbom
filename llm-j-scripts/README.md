@@ -4,11 +4,11 @@ This tool parses local JSON logs, extracts Common Vulnerabilities and Exposures 
 
 ## Rationale
 
-Evaluating individual model responses for accuracy would be overly time consuming. LLM-J allows us to evaluate the quality of individual model responses without doing so manually.
+Evaluating individual model responses for accuracy and quality would be overly time consuming. LLM-J allows us to automate this process.
 
-In our case, a common issue that crops up with outputs from the LLM-based vulnerability assessment model is that incorrect vulnerabilities are hallucinated. Even vulnerabilities that exist may refer to projects that are not relevant to the project in question. Through a second evaluation pass, an LLM can look at the details of a vulnerability and assess how accurate the previous stage really was.
+In our case, a common issue that crops up with outputs from the LLM-based vulnerability assessment model is that incorrect vulnerabilities are hallucinated. Even vulnerabilities that exist may refer to software that is not relevant to the project in question. Through a second evaluation pass, an LLM can look at the details of a vulnerability and assess how accurate the previous stage really was.
 
-As a later extension to this tool, we may add additional LLM-J metrics that capture the quality of reasoning traces, but we chose not to at this time to reduce the risk of the evaluator missing important information about the output.
+As a later extension to this tool, we may add additional LLM-J metrics that capture the quality of reasoning traces, but we chose not to at this time to reduce the risk of the judge getting stuck or missing important information about the output.
 
 ## Prerequisites
 
@@ -20,8 +20,10 @@ As a later extension to this tool, we may add additional LLM-J metrics that capt
     ollama pull gpt-oss:120b-cloud
     ```
     Note you will also need to create an account at [the Ollama website](https://www.ollama.com/) and log in by running `ollama login`.
-4.  **Dependencies**: The `analyze_logs` script primarily uses standard libraries, but requires `requests` for API calls. The `aggregate_results` script uses `numpy`, `pandas`, and `matplotlib`.
+4.  **Dependencies**: The `analyze_logs` script primarily uses standard libraries, but requires `requests` for API calls. The `aggregate_results` script uses `numpy`, `pandas`, and `matplotlib`. You may additionally want to use a virtual environment to separate the installed libraries from the system-provided Python packages.
     ```bash
+    python -m venv venv
+    source venv/bin/activate
     pip install -r requirements.txt 
     ```
 
@@ -37,7 +39,9 @@ Ensure your workspace directory looks like this:
 │   ├── llm-j-analysis-logs/
 │   │   ├── (Analysis output files will be created here)
 ├── llm-j-scripts/
+│   ├── aggregate_results.py
 │   ├── analyze_logs.py
+│   ├── requirements.txt
 │   └── README.md
 ```
 
@@ -72,21 +76,19 @@ This will output mean and standard deviation of the LLM-J scores for each model.
 Running the `analyze_logs` script on the model logs produces output like this for each identified vulnerability:
 
 ```json
-[
-    {
-        "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
-        "cve_id": "CVE-2024-34750",
-        "vulnrichment_status": "Found",
-        "llmj_analysis": {
-            "score": 2,
-            "reasoning": "The analysis incorrectly labels the CVE as an information disclosure flaw, only mentions the 8.5.x versions, omits the primary 9.x, 10.x, and 11.x affected ranges, and provides no severity data or correct SSVC decision, deviating significantly from the ground truth.",
-            "accuracy": "Low"
-        }
+{
+    "source_log": "parsed_qwen3.5_397b-cloud_2026-03-21_045613.json",
+    "cve_id": "CVE-2024-34750",
+    "vulnrichment_status": "Found",
+    "llmj_analysis": {
+        "score": 2,
+        "reasoning": "The analysis incorrectly labels the CVE as an information disclosure flaw, only mentions the 8.5.x versions, omits the primary 9.x, 10.x, and 11.x affected ranges, and provides no severity data or correct SSVC decision, deviating significantly from the ground truth.",
+        "accuracy": "Low"
     }
-]
+}
 ```
 
-Using the `aggregate_results` script on those outputs produced the following table:
+Using the `aggregate_results` script on those output files produced the following table:
 
 | Model                  | Mean     | Standard deviation | # of measurements |
 | :--------------------- | -------: | -----------------: | ----------------: |
@@ -94,8 +96,9 @@ Using the `aggregate_results` script on those outputs produced the following tab
 | nemotron-3-super_cloud | 1.333333 |           0.471405 |                 3 |
 | qwen3.5_397b-cloud     | 1.714286 |           0.589015 |                14 |
 
-Ultimately, the mean score produced for all three models was very low, due to a large number of inaccurate vulnerabilities being output.
+The valid range for score values is from 1 to 10. Ultimately, the mean score produced for all three models was very low, due to a large number of inaccurate vulnerabilities being output.
 This is likely because relying on intrinsic knowledge is not enough: the models need to have more comprehensive tools available to them to be able to properly analyze the codebase.
+The script also produces box plots, but these currently don't provide much useful information with so few samples. As we work on getting additional results, charts will become more useful.
 
 ## AI Disclosure
 

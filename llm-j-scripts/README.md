@@ -91,7 +91,8 @@ Running the `analyze_logs` script on the model logs produces output like this fo
 }
 ```
 
-Using the `aggregate_results` script on those output files produced the following table:
+The 'score' value for each vulnerability ranges from 1 to 10 and describes how accurate the LLM-As-Judge perceived its analysis to be.
+To get a better idea of typical scores per model, running the `aggregate_results` script on those output files will collect mean, standard deviation, and count:
 
 | Model                  | Mean     | Standard deviation | # of measurements |
 | :--------------------- | -------: | -----------------: | ----------------: |
@@ -99,7 +100,7 @@ Using the `aggregate_results` script on those output files produced the followin
 | nemotron-3-super_cloud | 1.333333 |           0.471405 |                 3 |
 | qwen3.5_397b-cloud     | 1.714286 |           0.589015 |                14 |
 
-The valid range for score values is from 1 to 10. Ultimately, the mean score produced for all three models was very low, due to a large number of inaccurate vulnerabilities being output.
+Ultimately, the mean score produced for all three models was very low, due to a large number of inaccurate vulnerabilities being output.
 This is likely because relying on intrinsic knowledge is not enough: the models need to have more comprehensive tools available to them to be able to properly analyze the codebase.
 The script also produces box plots, but these currently don't provide much useful information with so few samples. As we work on getting additional results, charts will become more useful.
 

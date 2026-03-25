@@ -37,12 +37,15 @@ Ensure your workspace directory looks like this:
 │   │   ├── parsed_ministral-3_14b_...json
 │   │   └── ...
 │   ├── llm-j-analysis-logs/
-│   │   ├── (Analysis output files will be created here)
+│   │   ├── llm-j-parsed_ministral-3_14b...json
+│   │   ├── ...
+│   │   └── (Analysis output files will be created here)
 ├── llm-j-scripts/
 │   ├── aggregate_results.py
 │   ├── analyze_logs.py
 │   ├── requirements.txt
 │   └── README.md
+└── llm-j-video.mp4
 ```
 
 ## Usage

@@ -23,11 +23,25 @@ $BUILD_ENGINE build -q -t llm-agent-testbed .
 
 # If a source URL is provided, download and extract it right before running the agent
 SETUP_CMD=""
+EXTRA_MOUNT=""
 TARGET_DIR="/data"
+SOFTWARE_DIR="./source_files"
 if [ -n "$SOURCE_URL" ]; then
     TARGET_DIR="/data/target_code"
+
+    SOFTWARE_FILENAME=$(basename "$SOURCE_URL")
+    SOFTWARE_PATH="$SOFTWARE_DIR/$SOFTWARE_FILENAME"
+
+    mkdir -p $SOFTWARE_DIR
+
     # Download the distribution to a temp file and extract it directly into target_code
-    SETUP_CMD="echo \"[Container] Downloading source from $SOURCE_URL...\" && rm -rf $TARGET_DIR && mkdir -p $TARGET_DIR && wget -qO /tmp/src_dist.tar.gz \"$SOURCE_URL\" && echo \"[Container] Extracting source code to $TARGET_DIR...\" && tar -xzf /tmp/src_dist.tar.gz -C $TARGET_DIR --strip-components=1 && echo \"[Container] Extraction complete.\" && "
+    if [ ! -f $SOFTWARE_PATH ]; then
+        echo "Downloading source from $SOURCE_URL..."
+        wget -qO "$SOFTWARE_PATH" "$SOURCE_URL"
+    fi
+
+    SETUP_CMD="echo \"[Container] Extracting source code to $TARGET_DIR...\" && tar -xzf /$SOFTWARE_FILENAME -C $TARGET_DIR --strip-components=1 && echo \"[Container] Extraction complete.\" && "
+    EXTRA_MOUNT="--volume $SOFTWARE_PATH:/$SOFTWARE_FILENAME:ro"
 fi
 
 CONTAINER_NAME="sbom_agent_$$"
@@ -49,4 +63,4 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 echo "Starting container execution for model: $MODEL (Container: $CONTAINER_NAME)"
-./run-container.sh $ENGINE_ARG bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -u /scripts/ollama-tool-agent.py $MODEL"
+./run-container.sh $ENGINE_ARG $EXTRA_MOUNT llm-agent-testbed bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -u /scripts/ollama-tool-agent.py $MODEL"

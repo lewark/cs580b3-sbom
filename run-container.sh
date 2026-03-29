@@ -22,4 +22,4 @@ if [ ! -d logs ]; then
     mkdir logs
 fi
 
-$ENGINE run -i --init --rm --volume $PWD/logs:/data/logs --network=host $EXTRA_OPTS llm-agent-testbed "$@"
+$ENGINE run -i --init --rm --volume $PWD/logs:/data/logs --network=host $EXTRA_OPTS "$@"

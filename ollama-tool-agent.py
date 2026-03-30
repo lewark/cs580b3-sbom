@@ -154,7 +154,7 @@ def main():
     )
 
     # 2. Define tools
-    tools = [run_command, list_sbom_vulnerabilities]
+    tools = [run_command, list_sbom_vulnerabilities, web_search]
 
     # 3. Create prompt template
     prompt = ChatPromptTemplate.from_messages([
@@ -162,7 +162,7 @@ def main():
                    "1. run_command: Run linux shell commands. Useful to list files, cat dependency files (e.g. package.json/pom.xml), or execute cli tools like syft. "
                    #"2. query_sbom_rag: RAG on a given SBOM file. "
                    "2. list_sbom_vulnerabilities: List vulnerabilities contained in an SBOM file. "
-                   #"3. web_search: Find latest CVE info on DuckDuckGo. "
+                   "3. web_search: Find latest CVE info on DuckDuckGo. "
                    "IMPORTANT EFFICIENCY CONSTRAINTS: Identify the exact version of the codebase you are in. Do not waste time evaluating or listing vulnerabilities for other versions. Focus strictly on vulnerabilities that affect the specific version you found. "
                    "Perform a CURSORY scan only—do not try to be overly thorough or read every single file. A quick glance at the top-level dependencies is perfectly sufficient. "
                    "Gather your information quickly, identify main dependencies, look up vulnerabilities via web_search, and output a final decision."),

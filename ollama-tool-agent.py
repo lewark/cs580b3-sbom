@@ -141,6 +141,7 @@ def web_search(query: str) -> str:
     Args:
       query: The query to search for
     """
+    # TODO: we may need to truncate results for local models
     return json.dumps(ollama.web_search(query, max_results=3).model_dump())
 
 

@@ -95,6 +95,8 @@ declare -A SOFTWARE=(
 ITERATIONS=1
 ```
 
+Some environment variables can be placed within a '.env' file. This includes the `OLLAMA_API_KEY` variable, which is required to use web search.
+
 ### Running the Testbed
 
 You can run the grid testing script with the default configuration:

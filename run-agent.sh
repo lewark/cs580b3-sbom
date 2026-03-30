@@ -40,8 +40,13 @@ if [ -n "$SOURCE_URL" ]; then
         wget -qO "$SOFTWARE_PATH" "$SOURCE_URL"
     fi
 
-    SETUP_CMD="echo \"[Container] Extracting source code to $TARGET_DIR...\" && tar -xzf /$SOFTWARE_FILENAME -C $TARGET_DIR --strip-components=1 && echo \"[Container] Extraction complete.\" && "
+    SETUP_CMD="echo \"[Container] Extracting source code to $TARGET_DIR...\" && mkdir -p $TARGET_DIR && tar -xzf /$SOFTWARE_FILENAME -C $TARGET_DIR --strip-components=1 && echo \"[Container] Extraction complete.\" && "
     EXTRA_MOUNT="--volume $SOFTWARE_PATH:/$SOFTWARE_FILENAME:ro"
+fi
+
+ENV_OPTS=""
+if [ -n "$OUTPUT_DIR" ]; then
+    ENV_OPTS="-e OUTPUT_DIRECTORY=/data/$OUTPUT_DIR"
 fi
 
 CONTAINER_NAME="sbom_agent_$$"
@@ -63,4 +68,4 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 echo "Starting container execution for model: $MODEL (Container: $CONTAINER_NAME)"
-./run-container.sh $ENGINE_ARG $EXTRA_MOUNT llm-agent-testbed bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -u /scripts/ollama-tool-agent.py $MODEL"
+./run-container.sh $ENGINE_ARG $EXTRA_MOUNT $ENV_OPTS llm-agent-testbed bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -u /scripts/ollama-agent.py $MODEL"

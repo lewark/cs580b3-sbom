@@ -154,18 +154,19 @@ def main():
     )
 
     # 2. Define tools
-    tools = [run_command, list_sbom_vulnerabilities, web_search]
+    tools = [run_command] #, list_sbom_vulnerabilities] #, web_search]
 
     # 3. Create prompt template
     prompt = ChatPromptTemplate.from_messages([
         ("system", "You are an expert security analysis assistant determining SSVC priority. You have tools available: "
                    "1. run_command: Run linux shell commands. Useful to list files, cat dependency files (e.g. package.json/pom.xml), or execute cli tools like syft. "
                    #"2. query_sbom_rag: RAG on a given SBOM file. "
-                   "2. list_sbom_vulnerabilities: List vulnerabilities contained in an SBOM file. "
-                   "3. web_search: Find latest CVE info on DuckDuckGo. "
+                   #"2. list_sbom_vulnerabilities: List vulnerabilities contained in an SBOM file. "
+                   #"3. web_search: Find latest CVE info on DuckDuckGo. "
                    "IMPORTANT EFFICIENCY CONSTRAINTS: Identify the exact version of the codebase you are in. Do not waste time evaluating or listing vulnerabilities for other versions. Focus strictly on vulnerabilities that affect the specific version you found. "
                    "Perform a CURSORY scan only—do not try to be overly thorough or read every single file. A quick glance at the top-level dependencies is perfectly sufficient. "
-                   "Gather your information quickly, identify main dependencies, look up vulnerabilities via web_search, and output a final decision."),
+                   #"Gather your information quickly, identify main dependencies, look up vulnerabilities via web_search, and output a final decision."),
+                   "Gather your information quickly, identify main dependencies, and output a final decision."),
         ("placeholder", "{chat_history}"),
         ("human", "{input}"),
         ("placeholder", "{agent_scratchpad}"),
@@ -177,7 +178,8 @@ def main():
 
     print("\nStarting Advanced Triage Analysis...")
     try:
-        response = agent_executor.invoke({"input": "Perform a cursory analysis of the codebase in the current directory. Take a quick glance to find main dependencies using the shell. For any key dependencies found, do a quick web search for known vulnerabilities and provide your final SSVC triage decision."})
+        #response = agent_executor.invoke({"input": "Perform a cursory analysis of the codebase in the current directory. Take a quick glance to find main dependencies using the shell. For any key dependencies found, do a quick web search for known vulnerabilities and provide your final SSVC triage decision."})
+        response = agent_executor.invoke({"input": "Perform a cursory analysis of the codebase in the current directory. Take a quick glance to find main dependencies using the shell. For any key dependencies found, identify known vulnerabilities and provide your final SSVC triage decision."})
         print("\n\nFinal Decision Output:\n=====================\n")
         print(response.get("output"))
     except Exception as e:

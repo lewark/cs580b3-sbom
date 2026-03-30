@@ -31,8 +31,10 @@ On the machine that runs the containerized agent, create a `.env` file under thi
 OLLAMA_HOST=IP_ADDRESS:11434
 ```
 
+Additionally, the `OLLAMA_API_KEY` variable is required to use web search, and can also be placed inside `.env`.
 The scripts will automatically pass environment variables within the `.env` file into
 the container.
+
 
 ## Running the agent
 
@@ -94,8 +96,6 @@ declare -A SOFTWARE=(
 # Number of iterations to run for each model/software combination
 ITERATIONS=1
 ```
-
-Some environment variables can be placed within a '.env' file. This includes the `OLLAMA_API_KEY` variable, which is required to use web search.
 
 ### Running the Testbed
 

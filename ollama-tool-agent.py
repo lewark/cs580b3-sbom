@@ -1,9 +1,10 @@
+import json
 import os
 import sys
 import shlex
 import subprocess
 from langchain_core.tools import tool
-from langchain_community.tools import DuckDuckGoSearchRun
+import ollama
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.agents import AgentExecutor, create_tool_calling_agent
@@ -130,11 +131,18 @@ def list_sbom_vulnerabilities(sbom_file_path: str) -> str:
     except Exception as e:
         return "Error loading SBOM: " + str(e)
 
+
 # Setup Web Search
-web_search = DuckDuckGoSearchRun(
-    name="web_search", 
-    description="Search the web for up-to-date vulnerability databases, CVE details, NVD lookups, or exploit info."
-)
+@tool
+def web_search(query: str) -> str:
+    """
+    Given a query, search for relevant pages on the Internet.
+
+    Args:
+      query: The query to search for
+    """
+    return json.dumps(ollama.web_search(query, max_results=3).model_dump())
+
 
 def main():
     if len(sys.argv) < 2:
@@ -162,7 +170,7 @@ def main():
                    "1. run_command: Run linux shell commands. Useful to list files, cat dependency files (e.g. package.json/pom.xml), or execute cli tools like syft. "
                    #"2. query_sbom_rag: RAG on a given SBOM file. "
                    #"2. list_sbom_vulnerabilities: List vulnerabilities contained in an SBOM file. "
-                   #"3. web_search: Find latest CVE info on DuckDuckGo. "
+                   #"2. web_search: Search for latest CVE info on the internet. "
                    "IMPORTANT EFFICIENCY CONSTRAINTS: Identify the exact version of the codebase you are in. Do not waste time evaluating or listing vulnerabilities for other versions. Focus strictly on vulnerabilities that affect the specific version you found. "
                    "Perform a CURSORY scan only—do not try to be overly thorough or read every single file. A quick glance at the top-level dependencies is perfectly sufficient. "
                    #"Gather your information quickly, identify main dependencies, look up vulnerabilities via web_search, and output a final decision."),

@@ -43,6 +43,7 @@ Ensure your workspace directory looks like this:
 ├── llm-j-scripts/
 │   ├── aggregate_results.py
 │   ├── analyze_logs.py
+│   ├── model_scores.{png,svg}
 │   ├── requirements.txt
 │   └── README.md
 └── llm-j-video.mp4

@@ -17,13 +17,14 @@ def parse_agent_log(input_file, output_dir):
         final_content = None
         for message in reversed(log_data):
             if message.get("role") == "assistant" and "content" in message:
-                if message["content"].strip().startswith("{"):
-                    final_content = message["content"]
+                content = message["content"].strip()
+                if content.startswith("{") or "```json" in content:
+                    final_content = content
                     break
                     
         if not final_content:
             print("Could not find a valid JSON response from the agent in the log file.")
-            sys.exit(1)
+            return
             
         # Parse the stringified JSON content back into a Python dictionary
         try:
@@ -35,7 +36,7 @@ def parse_agent_log(input_file, output_dir):
                 cleaned = final_content.split("```json")[-1].split("```")[0].strip()
                 parsed_json = json.loads(cleaned)
             else:
-                sys.exit(1)
+                return
 
         # Build output filename
         base_name = os.path.basename(input_file)
@@ -51,13 +52,38 @@ def parse_agent_log(input_file, output_dir):
     except Exception as e:
          print("Error processing " + input_file + ": " + str(e))
 
+def process_directory(input_dir, base_output_dir):
+    print("Traversing directory: " + input_dir)
+    input_dir_name = os.path.basename(os.path.abspath(input_dir))
+    
+    for root, dirs, files in os.walk(input_dir):
+        for file in files:
+            if file.endswith('.json'):
+                input_file = os.path.join(root, file)
+                # Calculate relative path to maintain folder structure (like iteration1/)
+                rel_path = os.path.relpath(root, input_dir)
+                
+                # If the rel_path is '.', it means it's the root of input_dir
+                if rel_path == '.':
+                    output_dir = os.path.join(base_output_dir, input_dir_name)
+                else:
+                    output_dir = os.path.join(base_output_dir, input_dir_name, rel_path)
+                    
+                parse_agent_log(input_file, output_dir)
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python parser.py <path_to_log_json>")
+        print("Usage: python parser.py <path_to_log_json_or_directory>")
         sys.exit(1)
         
-    input_file_path = sys.argv[1]
+    input_path = sys.argv[1]
     # Default output directory relative to where the parser script lives
     output_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "parsed-logs")
     
-    parse_agent_log(input_file_path, output_directory)
+    if os.path.isdir(input_path):
+        process_directory(input_path, output_directory)
+    elif os.path.isfile(input_path):
+        parse_agent_log(input_path, output_directory)
+    else:
+        print("Invalid input path: " + input_path)
+        sys.exit(1)

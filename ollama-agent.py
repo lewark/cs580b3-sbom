@@ -53,7 +53,11 @@ def run_command(command: str) -> str:
             print("Skipping command")
             return "Command disallowed by user"
 
-    split = shlex.split(command)
+    try:
+        split = shlex.split(command)
+    except ValueError as e:
+        return "Command parse error: " + str(e)
+
     if split[0] == "cd":
         n_params = len(split)
         if n_params == 1:

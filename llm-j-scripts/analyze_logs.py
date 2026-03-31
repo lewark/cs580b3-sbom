@@ -129,15 +129,28 @@ def analyze_with_llmj(cve_id, log_context, vuln_data):
         return {"error": str(e)}
 
 def main():
-    if not os.path.exists(LOG_DIR):
-        print("Directory {} not found.".format(LOG_DIR))
+    import sys
+    
+    # Default to LOG_DIR if no argument provided
+    base_input_dir = LOG_DIR
+    if len(sys.argv) > 1:
+        base_input_dir = sys.argv[1]
+
+    if not os.path.exists(base_input_dir):
+        print("Directory {} not found.".format(base_input_dir))
         return
         
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
 
-    log_files = glob.glob(os.path.join(LOG_DIR, '*.json'))
-    print("Found {} log files. Beginning processing...".format(len(log_files)))
+    # Use os.walk to find all json files recursively
+    log_files = []
+    for root, dirs, files in os.walk(base_input_dir):
+        for f in files:
+            if f.endswith('.json'):
+                log_files.append(os.path.join(root, f))
+                
+    print("Found {} log files in {}. Beginning processing...".format(len(log_files), base_input_dir))
 
     for file_path in log_files:
         print("\nProcessing {}...".format(file_path))
@@ -177,8 +190,21 @@ def main():
             results.append(result_entry)
 
         # Save outputs per file
+        rel_dir = os.path.relpath(os.path.dirname(file_path), base_input_dir)
+        input_dir_name = os.path.basename(os.path.abspath(base_input_dir))
+        
+        # Determine current output directory while preserving the folder hierarchy
+        if rel_dir == '.':
+            current_output_dir = os.path.join(OUTPUT_DIR, input_dir_name)
+        else:
+            current_output_dir = os.path.join(OUTPUT_DIR, input_dir_name, rel_dir)
+            
+        if not os.path.exists(current_output_dir):
+            os.makedirs(current_output_dir)
+
         output_filename = "llm-j-{}".format(os.path.basename(file_path))
-        output_filepath = os.path.join(OUTPUT_DIR, output_filename)
+        output_filepath = os.path.join(current_output_dir, output_filename)
+        
         print("\nSaving results to {}...".format(output_filepath))
         with open(output_filepath, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=4)

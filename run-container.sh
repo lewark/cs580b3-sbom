@@ -18,4 +18,8 @@ if [ -f ".env" ]; then
 fi
 	
 
-$ENGINE run -i --init --rm --volume $PWD:/data --network=host $EXTRA_OPTS llm-agent-testbed "$@"
+if [ ! -d logs ]; then
+    mkdir logs
+fi
+
+$ENGINE run -i --init --rm --volume $PWD/logs:/data/logs --network=host $EXTRA_OPTS "$@"

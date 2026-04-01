@@ -1,3 +1,4 @@
 venv/
 target_code/
 *.json
+__pycache__/

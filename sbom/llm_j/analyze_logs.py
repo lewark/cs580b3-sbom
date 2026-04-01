@@ -7,6 +7,7 @@ import glob
 from requests.exceptions import RequestException
 
 from .vulnrichment import get_vulnrichment_data
+from .nvd import get_nvd_data
 
 
 LOG_DIR = 'logs/parsed-logs'
@@ -31,7 +32,7 @@ def extract_cves(data):
     return list(set(re.findall(pattern, text)))
 
 
-def analyze_with_llmj(cve_id, log_context, vuln_data):
+def analyze_with_llmj(cve_id, log_context, vuln_data, nvd_data):
     """
     Perform LLM-J (LLM-as-a-Judge) analysis using local Ollama model.
     """
@@ -45,6 +46,9 @@ def analyze_with_llmj(cve_id, log_context, vuln_data):
     
     Ground Truth (CISA Vulnrichment Data):
     {2}
+
+    Ground Truth (NVD):
+    {3}
     
     Evaluate how well the candidate LLM's analysis matches the ground truth. 
     Consider accuracy of the description, severity/impact, and any SSVC or action decisions provided.
@@ -56,7 +60,7 @@ def analyze_with_llmj(cve_id, log_context, vuln_data):
     
     Provide the output in valid JSON format ONLY, with the keys: 
     "score", "reasoning", "accuracy".
-    """.format(cve_id, json.dumps(log_context, indent=2), json.dumps(vuln_data, indent=2))
+    """.format(cve_id, json.dumps(log_context, indent=2), json.dumps(vuln_data, indent=2), json.dumps(nvd_data, indent=2))
     
     payload = {
         "model": OLLAMA_MODEL,
@@ -146,6 +150,7 @@ def main():
         for cve in cves:
             print("Fetching Vulnrichment data for {}...".format(cve))
             vuln_data = get_vulnrichment_data(cve)
+            nvd_data = get_nvd_data(cve)
             
             # Narrow down log_context if it's structured
             cve_context = log_data
@@ -153,7 +158,7 @@ def main():
                 cve_context = [v for v in log_data["vulnerabilities"] if v.get("vulnerability_id") == cve]
             
             print("Performing LLM-J analysis for {} with {}...".format(cve, OLLAMA_MODEL))
-            analysis = analyze_with_llmj(cve, cve_context, vuln_data)
+            analysis = analyze_with_llmj(cve, cve_context, vuln_data, nvd_data)
             
             result_entry = {
                 "source_log": os.path.basename(file_path),

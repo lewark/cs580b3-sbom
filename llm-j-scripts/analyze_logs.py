@@ -3,7 +3,11 @@ import json
 import re
 import requests
 import glob
+
 from requests.exceptions import RequestException
+
+from .vulnrichment import get_vulnrichment_data
+
 
 LOG_DIR = '../logs/parsed-logs'
 OUTPUT_DIR = '../logs/llm-j-analysis-logs'
@@ -26,36 +30,6 @@ def extract_cves(data):
     pattern = r'CVE-\d{4}-\d{4,7}'
     return list(set(re.findall(pattern, text)))
 
-def fetch_vulnrichment_data(cve_id):
-    """
-    Fetch CVE data from CISA's Vulnrichment repository.
-    The repo uses CVE JSON 5.0 directory structure.
-    """
-    parts = cve_id.split('-')
-    if len(parts) != 3:
-        return None
-    
-    year = parts[1]
-    number = parts[2]
-    
-    # Calculate the thousand grouping (e.g., 1234 -> 1xxx, 12345 -> 12xxx)
-    if len(number) < 4:
-        number = number.zfill(4)
-        
-    group = number[:-3] + 'xxx'
-    
-    url = "https://raw.githubusercontent.com/cisagov/vulnrichment/develop/{}/{}/{}.json".format(year, group, cve_id)
-    
-    try:
-        response = requests.get(url, timeout=10)
-        if response.status_code == 200:
-            return response.json()
-        elif response.status_code == 404:
-            return {"error": "Not found in Vulnrichment database"}
-        else:
-            return {"error": "HTTP {}".format(response.status_code)}
-    except RequestException as e:
-        return {"error": str(e)}
 
 def analyze_with_llmj(cve_id, log_context, vuln_data):
     """
@@ -171,7 +145,7 @@ def main():
         results = []
         for cve in cves:
             print("Fetching Vulnrichment data for {}...".format(cve))
-            vuln_data = fetch_vulnrichment_data(cve)
+            vuln_data = get_vulnrichment_data(cve)
             
             # Narrow down log_context if it's structured
             cve_context = log_data

@@ -21,9 +21,9 @@ def get_model_scores(directory: str):
 
             match = pattern.match(filename)
 
-            model_name = "unknown"
-            if match is not None:
-                model_name = match.group(1)
+            if match is None:
+                continue
+            model_name = match.group(1)
 
             if model_name not in scores:
                 scores[model_name] = []

@@ -1,6 +1,9 @@
 import json
 import os
+import re
 import sys
+
+result_regex = re.compile(r"^\{.*\}", re.DOTALL | re.MULTILINE)
 
 def parse_agent_log(input_file, output_dir):
     # Ensure output directory exists
@@ -18,8 +21,12 @@ def parse_agent_log(input_file, output_dir):
         for message in reversed(log_data):
             if message.get("role") == "assistant" and "content" in message:
                 content = message["content"].strip()
-                if content.startswith("{") or "```json" in content:
-                    final_content = content
+
+                for match in result_regex.findall(message["content"]):
+                    if final_content is None or len(match) > len(final_content):
+                        final_content = match
+
+                if final_content is not None:
                     break
                     
         if not final_content:
@@ -51,6 +58,8 @@ def parse_agent_log(input_file, output_dir):
         
     except Exception as e:
          print("Error processing " + input_file + ": " + str(e))
+
+
 
 def process_directory(input_dir, base_output_dir):
     print("Traversing directory: " + input_dir)

@@ -102,7 +102,7 @@ def get_vulnrichment_ssvc(vuln_id: str):
 
 
 def make_figure():
-    plt.figure(figsize=(5, 3), layout="constrained")
+    plt.figure(figsize=(4, 3), layout="constrained")
 
 
 def plot_confusion_matrix(confusion_matrix):

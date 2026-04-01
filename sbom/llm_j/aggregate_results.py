@@ -58,14 +58,15 @@ def get_mean_sd(model_scores: dict[str, list[float]]) -> pd.DataFrame:
 def plot_model_scores(model_scores: dict[str, list[float]]) -> None:
     names = sorted(model_scores.keys())
     scores = [model_scores[name] for name in names]
-    fig = plt.figure(layout="constrained")
+    make_figure()
     plt.boxplot(scores, orientation="horizontal", tick_labels=names)
+    plt.xlabel("LLM-J score")
     plt.savefig("model_scores.pdf")
     plt.savefig("model_scores.png")
 
 
 def plot_model_bar(model_stats: pd.DataFrame) -> None:
-    fig = plt.figure(layout="constrained")
+    make_figure()
 
     y = np.arange(len(model_stats))
 
@@ -74,6 +75,16 @@ def plot_model_bar(model_stats: pd.DataFrame) -> None:
     plt.savefig("model_scores_bar.pdf")
     plt.savefig("model_scores_bar.png")
 
+    make_figure()
+
+    plt.barh(y, model_stats["count"], tick_label=model_stats["model"])
+    plt.xlabel("Total reported vulnerabilities")
+    plt.savefig("model_scores_count.pdf")
+    plt.savefig("model_scores_count.png")
+
+
+def make_figure():
+    plt.figure(figsize=(5, 3), layout="constrained")
 
 
 def main():

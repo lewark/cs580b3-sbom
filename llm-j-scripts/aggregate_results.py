@@ -14,24 +14,28 @@ pattern = re.compile(r"llm-j-parsed_([a-z0-9\._\-]+)_(\d{4}-\d{2}-\d{2}_\d{6})\.
 def get_model_scores(directory: str):
     scores: dict[str, list[float]] = {}
 
-    for filename in os.listdir(directory):
-        match = pattern.match(filename)
+    for dirpath, dirnames, filenames in os.walk(directory):
+        for filename in filenames:
+            if not filename.endswith(".json"):
+                continue
 
-        model_name = "unknown"
-        if match is not None:
-            model_name = match.group(1)
+            match = pattern.match(filename)
 
-        if model_name not in scores:
-            scores[model_name] = []
-        model_scores = scores[model_name]
+            model_name = "unknown"
+            if match is not None:
+                model_name = match.group(1)
 
-        file_path = os.path.join(directory, filename)
-        with open(file_path, 'r') as f:
-            data = json.load(f)
+            if model_name not in scores:
+                scores[model_name] = []
+            model_scores = scores[model_name]
 
-        for item in data:
-            score = item["llmj_analysis"]["score"]
-            model_scores.append(score)
+            file_path = os.path.join(dirpath, filename)
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+
+            for item in data:
+                score = item["llmj_analysis"]["score"]
+                model_scores.append(score)
 
     return scores
 
@@ -56,8 +60,20 @@ def plot_model_scores(model_scores: dict[str, list[float]]) -> None:
     scores = [model_scores[name] for name in names]
     fig = plt.figure(layout="constrained")
     plt.boxplot(scores, orientation="horizontal", tick_labels=names)
-    plt.savefig("model_scores.svg")
+    plt.savefig("model_scores.pdf")
     plt.savefig("model_scores.png")
+
+
+def plot_model_bar(model_stats: pd.DataFrame) -> None:
+    fig = plt.figure(layout="constrained")
+
+    y = np.arange(len(model_stats))
+
+    plt.barh(y, model_stats["mean"], tick_label=model_stats["model"])
+    plt.xlabel("Mean LLM-J score")
+    plt.savefig("model_scores_bar.pdf")
+    plt.savefig("model_scores_bar.png")
+
 
 
 def main():
@@ -66,7 +82,10 @@ def main():
     dir_name = sys.argv[1]
 
     model_scores = get_model_scores(dir_name)
-    print(get_mean_sd(model_scores))
+    model_df = get_mean_sd(model_scores)
+    print(model_df)
+
+    plot_model_bar(model_df)
 
     plot_model_scores(model_scores)
 

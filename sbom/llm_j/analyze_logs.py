@@ -9,8 +9,8 @@ from requests.exceptions import RequestException
 from .vulnrichment import get_vulnrichment_data
 
 
-LOG_DIR = '../logs/parsed-logs'
-OUTPUT_DIR = '../logs/llm-j-analysis-logs'
+LOG_DIR = 'logs/parsed-logs'
+OUTPUT_DIR = 'logs/llm-j-analysis-logs'
 OLLAMA_API_URL = 'http://localhost:11434/api/chat'
 OLLAMA_MODEL = 'gpt-oss:120b-cloud'
 

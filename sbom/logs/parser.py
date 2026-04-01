@@ -87,7 +87,7 @@ if __name__ == "__main__":
         
     input_path = sys.argv[1]
     # Default output directory relative to where the parser script lives
-    output_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "parsed-logs")
+    output_directory = "logs/parsed-logs" #os.path.join(os.path.dirname(os.path.abspath(__file__)), "parsed-logs")
     
     if os.path.isdir(input_path):
         process_directory(input_path, output_directory)

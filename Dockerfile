@@ -25,7 +25,7 @@ RUN pip install --no-cache-dir -r /scripts/requirements.txt && \
     pip install --no-cache-dir ollama pydantic
 
 # Copy all the agent scripts and process tools to the container
-COPY ollama-agent.py ollama-tool-agent.py process_nvd.py process_vulnrichment.py /scripts/
+COPY sbom /scripts/
 
 # Default entry
 CMD ["/bin/bash"]

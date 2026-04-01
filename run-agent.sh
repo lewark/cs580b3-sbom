@@ -44,9 +44,9 @@ if [ -n "$SOURCE_URL" ]; then
     EXTRA_MOUNT="--volume $SOFTWARE_PATH:/$SOFTWARE_FILENAME:ro"
 fi
 
-ENV_OPTS=""
+ENV_OPTS="-e PYTHONPATH=/scripts"
 if [ -n "$OUTPUT_DIR" ]; then
-    ENV_OPTS="-e OUTPUT_DIRECTORY=/data/$OUTPUT_DIR"
+    ENV_OPTS="$ENV_OPTS -e OUTPUT_DIRECTORY=/data/$OUTPUT_DIR"
 fi
 
 CONTAINER_NAME="sbom_agent_$$"
@@ -68,4 +68,4 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 echo "Starting container execution for model: $MODEL (Container: $CONTAINER_NAME)"
-./run-container.sh $ENGINE_ARG $EXTRA_MOUNT $ENV_OPTS llm-agent-testbed bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -u /scripts/ollama-agent.py $MODEL"
+./run-container.sh $ENGINE_ARG $EXTRA_MOUNT $ENV_OPTS llm-agent-testbed bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -m sbom.ollama_agent $MODEL"

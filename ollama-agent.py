@@ -12,7 +12,28 @@ from pydantic import BaseModel
 
 MANUAL_APPROVE_COMMANDS = False
 
-SYSTEM = "Analyze this project to identify vulnerabilities in any software dependencies. List each vulnerability found (if any), along with an SSVC decision (Track, Track*, Attend, or Act)."
+SYSTEM = """Analyze this project to identify vulnerabilities in any software dependencies. 
+
+IMPORTANT EFFICIENCY CONSTRAINTS:
+1. Identify the EXACT version of the product/codebase you are looking at.
+2. Structure your analysis around that specific version only.
+3. DO NOT waste time evaluating, listing, or discussing vulnerabilities for other versions of the product. Only report vulnerabilities that are known to actively affect the specific version you found in the directory.
+4. Perform a CURSORY review only. Do not spend excessive time exhaustively reading every single dependency file. A quick glance at the main project files is sufficient.
+
+Your final response MUST be a structured valid JSON object containing only the list of vulnerabilities found. 
+Each vulnerability must include 'dependency_name', 'vulnerability_id' (e.g. CVE-XXXX-XXXX), 'description', and an 'ssvc_decision' which must be exactly one of: "Track", "Track*", "Attend", or "Act".
+
+Example output format:
+{
+  "vulnerabilities": [
+    {
+      "dependency_name": "log4j",
+      "vulnerability_id": "CVE-2021-44228",
+      "description": "Remote Code Execution vulnerability in Log4j",
+      "ssvc_decision": "Act"
+    }
+  ]
+}"""
 
 
 def run_command(command: str) -> str:
@@ -32,7 +53,11 @@ def run_command(command: str) -> str:
             print("Skipping command")
             return "Command disallowed by user"
 
-    split = shlex.split(command)
+    try:
+        split = shlex.split(command)
+    except ValueError as e:
+        return "Command parse error: " + str(e)
+
     if split[0] == "cd":
         n_params = len(split)
         if n_params == 1:
@@ -132,7 +157,7 @@ def main():
     client = ollama.Client(host=host)
     messages = [
         {"role": "system", "content": SYSTEM},
-        {"role": "user", "content": "Please analyze the codebase in the current directory to identify vulnerabilities in any software dependencies. Use the run_command tool to explore the files."}
+        {"role": "user", "content": "Please perform a cursory, high-level analysis of the codebase in the current directory to identify vulnerabilities in major software dependencies. Take a quick glance using the run_command tool. Do not be overly thorough. Once you have finished your fast analysis, provide your final response strictly in the JSON format requested, without any enclosing text or markdown formatting."}
     ]
     
     while True:

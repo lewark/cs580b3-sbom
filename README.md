@@ -31,8 +31,10 @@ On the machine that runs the containerized agent, create a `.env` file under thi
 OLLAMA_HOST=IP_ADDRESS:11434
 ```
 
+Additionally, the `OLLAMA_API_KEY` variable is required to use web search, and can also be placed inside `.env`.
 The scripts will automatically pass environment variables within the `.env` file into
 the container.
+
 
 ## Running the agent
 
@@ -46,8 +48,20 @@ You can optionally specify the container engine to use (either `--podman` or `--
 ./run-agent.sh --podman qwen3.5:9b
 
 # Run with Docker and analyze a specific source distribution
-./run-agent.sh --docker qwen3.5:9b https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.57/bin/apache-tomcat-8.5.57.tar.gz
+./run-agent.sh --docker qwen3.5:9b https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.57/src/apache-tomcat-8.5.57-src.tar.gz
 ```
+
+## Running the advanced tool agent
+
+A more advanced version of the agent has been implemented using LangChain (`ollama-tool-agent.py`). This version has the ability to not only run raw shell commands, but dynamically parse large JSON SBOM files using local RAG, and query the web using DuckDuckGo to match CVE details during the triage process.
+
+To use the advanced agent:
+1. Ensure your container environment is up to date with the latest `requirements.txt` which will install the necessary LangChain libraries (`./setup-container.sh`).
+2. Inside your Ollama host, pull an embedding model to be used by the RAG system:
+   ```bash
+   ollama pull nomic-embed-text
+   ```
+3. To execute the tool agent, simply edit the `run-agent.sh` script to change `/data/ollama-agent.py` to `/data/ollama-tool-agent.py` at the end of the script before executing it.
 
 ## TL;DR: Execution Order
 
@@ -56,3 +70,43 @@ If you want to get up and running quickly, follow this execution order:
 1. **Start Ollama**: Make sure your Ollama instance is running (locally or remotely via `.env` configured host).
 2. **Setup Environment**: Run `./setup-container.sh` once to build the necessary environment and install dependencies. To use a more robust environment, build the Dockerfile: `docker build -t llm-agent-testbed .`
 3. **Run Agent**: Run `./run-agent.sh <MODEL> [SOURCE_URL]` (e.g., `./run-agent.sh qwen3.5:9b https://example.com/source.tar.gz`) to start the analysis. Remember to include `--docker` before the model name if you aren't using Podman.
+
+## Testbed
+
+To automate the execution of multiple agents across different software packages and models, you can use the `run-grid.sh` testbed script. Logs are automatically categorized in a `logs/<software_name>/iteration<N>/` directory structure.
+
+### Configuration
+
+The testbed utilizes a configuration file (by default `grid_config.sh`). You can define your test matrix as follows:
+
+```bash
+# Configuration for run-grid.sh
+
+# List of models to test
+MODELS=( 
+    "ministral-3:14b-cloud" 
+    "qwen3.5:397b-cloud" 
+)
+
+# Associative array of software to test, format: ["name"]="url"
+declare -A SOFTWARE=(
+    ["tomcat"]="https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.57/src/apache-tomcat-8.5.57-src.tar.gz"
+)
+
+# Number of iterations to run for each model/software combination
+ITERATIONS=1
+```
+
+### Running the Testbed
+
+You can run the grid testing script with the default configuration:
+
+```bash
+./run-grid.sh
+```
+
+Alternatively, you can provide a custom configuration file as an argument to maintain multiple testing profiles:
+
+```bash
+./run-grid.sh custom_config.sh
+```

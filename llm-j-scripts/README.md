@@ -53,14 +53,28 @@ Ensure your workspace directory looks like this:
 
 1. Start up your Ollama daemon locally (usually runs in the background automatically if installed as a service, or run `ollama serve` in a terminal).
 2. Ensure your parsed logs are placed in the `../logs/parsed-logs/` directory.
-3. Change to the `llm-j-scripts` directory and execute the script:
+3. Change to the `llm-j-scripts` directory and execute the script. You can run it in two different modes:
+
+### Default Parsing
+Run the script without arguments to parse the root of the default `../logs/parsed-logs/` directory:
 
 ```bash
 cd llm-j-scripts
 python analyze_logs.py
 ```
 
-To produce a summary of the LLM-J logs per model, run the `aggregate_results` script:
+### Directory Parsing (Recommended)
+You can target a specific directory representing an application (e.g., `../logs/parsed-logs/tomcat`). The script will recursively traverse the folder, find all `.json` files within its subfolders (like `iteration1`, `iteration2`, etc.), and mirror the directory structure when saving outputs to `../logs/llm-j-analysis-logs/`:
+
+```bash
+cd llm-j-scripts
+python analyze_logs.py ../logs/parsed-logs/tomcat
+```
+*Outputs will be saved dynamically to `../logs/llm-j-analysis-logs/tomcat/iterationX/llm-j-...`*
+
+### Charting
+
+To produce a summary of the LLM-J logs per model, run the `aggregate_results` script, passing in the directory to process:
 
 ```bash
 python aggregate_results.py ../logs/llm-j-analysis-logs/

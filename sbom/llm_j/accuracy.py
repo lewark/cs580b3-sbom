@@ -18,7 +18,7 @@ MISSION_WELL_BEING = "medium"
 
 
 def get_confusion_matrix(directory: str):
-    confusion_matrix = np.zeros((4, 4))
+    confusion_matrix = np.zeros((5, 4))
 
     decision_tree = load_decision_tree()
 
@@ -46,6 +46,7 @@ def get_confusion_matrix(directory: str):
 
                 result = get_vulnrichment_ssvc(vuln_id)
                 if result is None:
+                    confusion_matrix[4, INDEXES[predicted_decision]] += 1
                     continue
                 actual_decision = get_decision(decision_tree, result, MISSION_WELL_BEING)
 
@@ -108,19 +109,21 @@ def make_figure():
 def plot_confusion_matrix(confusion_matrix):
     make_figure()
 
+    midrange = (np.min(confusion_matrix) + np.max(confusion_matrix)) / 2
+
     print(confusion_matrix)
     plt.imshow(confusion_matrix)
     for row in range(confusion_matrix.shape[0]):
         for col in range(confusion_matrix.shape[1]):
             item = int(confusion_matrix[row, col])
-            color = "black" if item >= 1 else "white"
+            color = "black" if item >= midrange else "white"
             plt.text(col, row, item, ha="center", va="center", color=color)
 
     plt.colorbar()
     plt.xlabel("Predicted decision")
     plt.ylabel("Correct decision")
     plt.xticks(np.arange(4), LABELS)
-    plt.yticks(np.arange(4), LABELS)
+    plt.yticks(np.arange(5), LABELS + ["Not listed"])
 
     plt.savefig("confusion_matrix.pdf")
     plt.savefig("confusion_matrix.png")

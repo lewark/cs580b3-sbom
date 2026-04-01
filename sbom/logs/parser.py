@@ -3,7 +3,7 @@ import os
 import re
 import sys
 
-result_regex = re.compile(r"^\{.*\}", re.DOTALL | re.MULTILINE)
+result_regex = re.compile(r"\{.*\}", re.DOTALL)
 
 def parse_agent_log(input_file, output_dir):
     # Ensure output directory exists

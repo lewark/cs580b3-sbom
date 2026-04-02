@@ -7,6 +7,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import scipy.stats
 
 pattern = re.compile(r"llm-j-parsed_([a-z0-9\._\-]+)_(\d{4}-\d{2}-\d{2}_\d{6})\.json")
 
@@ -40,19 +41,27 @@ def get_model_scores(directory: str):
     return scores
 
 
-def get_mean_sd(model_scores: dict[str, list[float]]) -> pd.DataFrame:
+def get_statistics(model_scores: dict[str, list[float]]) -> pd.DataFrame:
     model_names = sorted(model_scores.keys())
     rows = []
-    for name in model_names:
+
+    items = [model_scores[name] for name in model_names if len(model_scores[name]) > 1]
+    # run Welch's one-way ANOVA test
+    F = scipy.stats.f_oneway(*items, equal_var=False)
+
+    print(F)
+
+    for i, name in enumerate(model_names):
         scores = model_scores[name]
         rows.append([
             name,
             np.mean(scores),
             np.std(scores),
-            len(scores)
-        ])
+            len(scores),
+    ])
 
     return pd.DataFrame(rows, columns=["model", "mean", "sd", "count"])
+
 
 
 def plot_model_scores(model_scores: dict[str, list[float]]) -> None:
@@ -93,7 +102,7 @@ def main():
     dir_name = sys.argv[1]
 
     model_scores = get_model_scores(dir_name)
-    model_df = get_mean_sd(model_scores)
+    model_df = get_statistics(model_scores)
     print(model_df)
 
     plot_model_bar(model_df)

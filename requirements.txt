@@ -1,4 +1,4 @@
--r requirements_container.txt
+-r requirements_agent.txt
 scipy
 requests
 numpy

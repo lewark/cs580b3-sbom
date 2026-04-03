@@ -24,7 +24,7 @@ COPY requirements_agent.txt /scripts/
 RUN pip install --no-cache-dir -r /scripts/requirements_agent.txt
 
 # Copy all the agent scripts and process tools to the container
-COPY sbom /scripts/
+COPY sbom /scripts/sbom
 
 # Default entry
 CMD ["/bin/bash"]

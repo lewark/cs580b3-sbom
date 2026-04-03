@@ -15,6 +15,9 @@ We have provided a Dockerfile to set up the testing environment. To build a cust
 ```bash
 # Build the specialized container image
 docker build -t llm-agent-testbed .
+
+# Or, if using Podman:
+podman build -t llm-agent-testbed .
 ```
 
 ## Connecting to Ollama from another machine
@@ -100,13 +103,16 @@ ITERATIONS=1
 You can run the grid testing script with the default configuration:
 
 ```bash
-./run-grid.sh
+./run-grid.sh --podman
+
+# Or:
+./run-grid.sh --docker
 ```
 
 Alternatively, you can provide a custom configuration file as an argument to maintain multiple testing profiles:
 
 ```bash
-./run-grid.sh custom_config.sh
+./run-grid.sh --podman custom_config.sh
 ```
 
 ## Analyzing results

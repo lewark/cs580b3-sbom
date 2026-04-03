@@ -110,3 +110,10 @@ Alternatively, you can provide a custom configuration file as an argument to mai
 ```bash
 ./run-grid.sh custom_config.sh
 ```
+
+## Analyzing results
+
+After producing outputs from the model, you can analyze the results using the following steps:
+
+1. Parse the logs using the `sbom.logs.parser` tool, as shown in `README_logs.md`
+2. Run the LLM-J (`sbom.llm_j.analyze_logs`) or confusion matrix (`sbom.llm_j.confusion_matrix`) scripts, as described in `README_llm_j.md`

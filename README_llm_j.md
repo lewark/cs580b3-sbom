@@ -116,6 +116,14 @@ Ultimately, the mean score produced for all three models was very low, due to a 
 This is likely because relying on intrinsic knowledge is not enough: the models need to have more comprehensive tools available to them to be able to properly analyze the codebase.
 The script also produces box plots. As we work on getting additional results, charts will become more useful.
 
+## Confusion Matrix Script
+
+An additional script produces the confusion matrix displaying model SSVC classifications against ground-truth SSVC decisions. This plot can be generated using the following command:
+
+```
+python3 -m sbom.llm_j.confusion_matrix ./logs/parsed-logs
+```
+
 ## AI Disclosure
 
 Google Gemini was used to assist in the development of the `analyze_logs` script and the agent that originally produced the logs.

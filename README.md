@@ -8,20 +8,18 @@ To install Ollama on a machine, you can either run the setup command provided [h
 
 ## Setting up the container
 
-The containerization scripts are intended to be run on Linux. Clone this repository on the machine that will host the containers. Then, run `./setup-container.sh` to set up the Python virtual environment and install the software dependencies.
+The containerization scripts are intended to be run on Linux. Clone this repository on the machine that will host the containers.
 
-For a more robust testing environment, we have provided a Dockerfile. To build a custom image that includes necessary system utilities and pre-downloads the Apache Tomcat testing target, run:
+We have provided a Dockerfile to set up the testing environment. To build a custom image that includes necessary system utilities and pre-downloads the Apache Tomcat testing target, run:
 
 ```bash
 # Build the specialized container image
 docker build -t llm-agent-testbed .
 ```
 
-After building the image, ensure that `run-container.sh` is updated to utilize the new image (`llm-agent-testbed` instead of `python`). Similarly, `run-agent.sh` no longer needs to use the `/venv/bin/python3` execution path since dependencies are built globally into the Docker image.
-
 ## Connecting to Ollama from another machine
 
-The machine that runs Ollama does not have to be the same one that runs the container the agent will interact with. To set up the two on different machines, use the following process.
+The machine that runs Ollama does not have to be the same one that runs the container the agent will interact with. To set up the two on different machines, use the following process. You may skip this section if running Ollama on the same machine.
 
 First, on the machine that will host the Ollama server, run `export OLLAMA_HOST=0.0.0.0:11434` before starting the server. This will allow other machines on the network to connect.
 

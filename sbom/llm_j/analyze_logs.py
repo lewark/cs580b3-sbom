@@ -36,32 +36,42 @@ def analyze_with_llmj(cve_id, log_context, vuln_data, nvd_data):
     """
     Perform LLM-J (LLM-as-a-Judge) analysis using local Ollama model.
     """
-    prompt = """
-    You are an expert cybersecurity AI judge (LLM-J). You are evaluating the accuracy and quality of another LLM's vulnerability analysis against the ground truth database.
-    
-    CVE ID: {0}
-    
+
+    log_text = json.dumps(log_context, indent=2)
+    vuln_text = json.dumps(vuln_data, indent=2)
+
+    prompt_params = """CVE ID: {0}
+
     Candidate LLM Analysis (to be evaluated):
     {1}
-    
+
     Ground Truth (CISA Vulnrichment Data):
-    {2}
+    {2}""".format(cve_id, log_text, vuln_text)
+
+    if nvd_data is not None:
+        nvd_text = json.dumps(nvd_data, indent=2)
+        prompt_params += (f"""
 
     Ground Truth (NVD):
-    {3}
-    
-    Evaluate how well the candidate LLM's analysis matches the ground truth. 
+    {nvd_text}""")
+
+    prompt = f"""
+    You are an expert cybersecurity AI judge (LLM-J). You are evaluating the accuracy and quality of another LLM's vulnerability analysis against the ground truth database.
+
+    {prompt_params}
+
+    Evaluate how well the candidate LLM's analysis matches the ground truth.
     Consider accuracy of the description, severity/impact, and any SSVC or action decisions provided.
-    
+
     Please provide the following:
     1. Score: An integer score from 1 to 10, where 10 is a perfect match and 1 is completely inaccurate or hallucinated.
     2. Reasoning: A brief 1-2 sentence explanation of why this score was given, noting any missing or hallucinated information.
     3. Accuracy: A single word rating ("High", "Medium", or "Low").
-    
-    Provide the output in valid JSON format ONLY, with the keys: 
+
+    Provide the output in valid JSON format ONLY, with the keys:
     "score", "reasoning", "accuracy".
-    """.format(cve_id, json.dumps(log_context, indent=2), json.dumps(vuln_data, indent=2), json.dumps(nvd_data, indent=2))
-    
+    """
+
     payload = {
         "model": OLLAMA_MODEL,
         "messages": [
@@ -150,7 +160,10 @@ def main():
         for cve in cves:
             print("Fetching Vulnrichment data for {}...".format(cve))
             vuln_data = get_vulnrichment_data(cve)
-            nvd_data = get_nvd_data(cve)
+            nvd_data = None
+
+            if os.getenv("NVD_DIR") is not None:
+                nvd_data = get_nvd_data(cve)
             
             # Narrow down log_context if it's structured
             cve_context = log_data

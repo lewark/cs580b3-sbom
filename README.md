@@ -53,7 +53,7 @@ You can optionally specify the container engine to use (either `--podman` or `--
 
 ## Running the advanced tool agent
 
-A more advanced version of the agent has been implemented using LangChain (`ollama-tool-agent.py`). This version has the ability to not only run raw shell commands, but dynamically parse large JSON SBOM files using local RAG, and query the web using DuckDuckGo to match CVE details during the triage process.
+A more advanced version of the agent has been implemented using LangChain (`ollama_tool_agent.py`). This version has the ability to not only run raw shell commands, but dynamically parse large JSON SBOM files using local RAG, and query the web using DuckDuckGo to match CVE details during the triage process.
 
 To use the advanced agent:
 1. Ensure your container environment is up to date with the latest `requirements.txt` which will install the necessary LangChain libraries (`./setup-container.sh`).
@@ -61,7 +61,7 @@ To use the advanced agent:
    ```bash
    ollama pull nomic-embed-text
    ```
-3. To execute the tool agent, simply edit the `run-agent.sh` script to change `/data/ollama-agent.py` to `/data/ollama-tool-agent.py` at the end of the script before executing it.
+3. To execute the tool agent, simply edit the `run-agent.sh` script to change `sbom.ollama_agent` to `sbom.ollama_tool_agent` at the end of the script before executing it.
 
 ## TL;DR: Execution Order
 

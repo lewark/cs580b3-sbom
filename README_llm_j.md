@@ -40,54 +40,51 @@ Ensure your workspace directory looks like this:
 │   │   ├── llm-j-parsed_ministral-3_14b...json
 │   │   ├── ...
 │   │   └── (Analysis output files will be created here)
-├── llm-j-scripts/
-│   ├── aggregate_results.py
-│   ├── analyze_logs.py
-│   ├── model_scores.{png,svg}
-│   ├── requirements.txt
-│   └── README.md
-└── llm-j-video.mp4
+├── sbom/
+│   ├── llm_j/
+│   │   ├── aggregate_results.py
+│   │   └── analyze_logs.py
+│   └── ...
 ```
 
 ## Usage
 
 1. Start up your Ollama daemon locally (usually runs in the background automatically if installed as a service, or run `ollama serve` in a terminal).
-2. Ensure your parsed logs are placed in the `../logs/parsed-logs/` directory.
-3. Change to the `llm-j-scripts` directory and execute the script. You can run it in two different modes:
+2. Ensure your parsed logs are placed in the `./logs/parsed-logs/` directory.
+3. Execute the script. You can run it in two different modes:
 
 ### Default Parsing
-Run the script without arguments to parse the root of the default `../logs/parsed-logs/` directory:
+Run the script without arguments to parse the root of the default `./logs/parsed-logs/` directory:
 
 ```bash
-cd llm-j-scripts
-python analyze_logs.py
+python -m sbom.llm_j.analyze_logs
 ```
 
 ### Directory Parsing (Recommended)
-You can target a specific directory representing an application (e.g., `../logs/parsed-logs/tomcat`). The script will recursively traverse the folder, find all `.json` files within its subfolders (like `iteration1`, `iteration2`, etc.), and mirror the directory structure when saving outputs to `../logs/llm-j-analysis-logs/`:
+You can target a specific directory representing an application (e.g., `./logs/parsed-logs/tomcat`). The script will recursively traverse the folder, find all `.json` files within its subfolders (like `iteration1`, `iteration2`, etc.), and mirror the directory structure when saving outputs to `./logs/llm-j-analysis-logs/`:
 
 ```bash
 cd llm-j-scripts
-python analyze_logs.py ../logs/parsed-logs/tomcat
+python -m sbom.llm_j.analyze_logs ./logs/parsed-logs/tomcat
 ```
-*Outputs will be saved dynamically to `../logs/llm-j-analysis-logs/tomcat/iterationX/llm-j-...`*
+*Outputs will be saved dynamically to `logs/llm-j-analysis-logs/tomcat/iterationX/llm-j-...`*
 
 ### Charting
 
 To produce a summary of the LLM-J logs per model, run the `aggregate_results` script, passing in the directory to process:
 
 ```bash
-python aggregate_results.py ../logs/llm-j-analysis-logs/
+python sbom.llm_j.aggregate_results ../logs/llm-j-analysis-logs/
 ```
 
-This will output mean and standard deviation of the LLM-J scores for each model.
+This will output charts and ANOVA results, along with mean and standard deviation of the LLM-J scores for each model.
 
 ## How It Works
 
-1.  **Extraction**: Reads all `.json` files inside the `../logs/parsed-logs/` directory. It automatically parses lists of vulnerabilities or falls back to applying regex matching (`CVE-\d{4}-\d{4,7}`) to find referenced CVE identifiers.
+1.  **Extraction**: Reads all `.json` files inside the `./logs/parsed-logs/` directory. It automatically parses lists of vulnerabilities or falls back to applying regex matching (`CVE-\d{4}-\d{4,7}`) to find referenced CVE identifiers.
 2.  **Enrichment**: Dynamically fetches the latest CISA Vulnrichment JSON record directly from the `cisagov/vulnrichment` main branch via raw GitHub URLs.
 3.  **LLM-J Analysis**: Acts as an "AI Judge". It transmits the candidate LLM's previously extracted JSON context and the CISA enrichment ground truth data to your configured Ollama model. It prompts the model to score the candidate AI out of 10 regarding accuracy, provide reasoning for hallucinations, and assign an overall accuracy metric.
-4.  **Structured Output**: Outputs individual structured JSON files (prefixed with `llm-j-`) and saves them to the `../logs/llm-j-analysis-logs/` directory.
+4.  **Structured Output**: Outputs individual structured JSON files (prefixed with `llm-j-`) and saves them to the `./logs/llm-j-analysis-logs/` directory.
 
 ## Results
 
@@ -117,7 +114,7 @@ To get a better idea of typical scores per model, running the `aggregate_results
 
 Ultimately, the mean score produced for all three models was very low, due to a large number of inaccurate vulnerabilities being output.
 This is likely because relying on intrinsic knowledge is not enough: the models need to have more comprehensive tools available to them to be able to properly analyze the codebase.
-The script also produces box plots, but these currently don't provide much useful information with so few samples. As we work on getting additional results, charts will become more useful.
+The script also produces box plots. As we work on getting additional results, charts will become more useful.
 
 ## AI Disclosure
 

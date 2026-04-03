@@ -1,8 +1,6 @@
-ollama==0.6.1
-langchain==0.3.28
-langchain-ollama
-langchain-community
-langchain-text-splitters
-langchain-chroma
-jq
+-r requirements_container.txt
 scipy
+requests
+numpy
+pandas
+matplotlib

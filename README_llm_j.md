@@ -1,6 +1,6 @@
 # LLM-J CVE Log Analyzer
 
-This tool parses local JSON logs, extracts Common Vulnerabilities and Exposures (CVE) IDs, enriches them using the [CISA Vulnrichment](https://github.com/cisagov/vulnrichment) database, and leverages a local Large Language Model via Ollama to perform an automated judgment/analysis (LLM-J) of the security context.
+This tool parses local JSON logs, extracts Common Vulnerabilities and Exposures (CVE) IDs, and leverages a local Large Language Model via Ollama to perform an automated judgment/analysis (LLM-J) of the security context. It complements vulnerability information using the [CISA Vulnrichment](https://github.com/cisagov/vulnrichment) project and optionally the [National Vulnerability Database](https://nvd.nist.gov).
 
 ## Rationale
 
@@ -29,7 +29,7 @@ As a later extension to this tool, we may add additional LLM-J metrics that capt
 
 ## Project Structure
 
-Ensure your workspace directory looks like this:
+Ensure your workspace directory looks like this. The `llm-j-analysis-logs` directory will be created automatically if nonexistent.
 
 ```
 ├── logs/
@@ -37,7 +37,6 @@ Ensure your workspace directory looks like this:
 │   │   ├── parsed_ministral-3_14b_...json
 │   │   └── ...
 │   ├── llm-j-analysis-logs/
-│   │   ├── llm-j-parsed_ministral-3_14b...json
 │   │   ├── ...
 │   │   └── (Analysis output files will be created here)
 ├── sbom/
@@ -60,6 +59,8 @@ Run the script without arguments to parse the root of the default `./logs/parsed
 python -m sbom.llm_j.analyze_logs
 ```
 
+Optionally, set the NVD_PATH environment variable to a directory containing NVD data feed files to include CVE descriptions in the analysis prompt, thereby improving the accuracy. In the near future we will add support for the NVD API as well.
+
 ### Directory Parsing (Recommended)
 You can target a specific directory representing an application (e.g., `./logs/parsed-logs/tomcat`). The script will recursively traverse the folder, find all `.json` files within its subfolders (like `iteration1`, `iteration2`, etc.), and mirror the directory structure when saving outputs to `./logs/llm-j-analysis-logs/`:
 
@@ -68,16 +69,6 @@ cd llm-j-scripts
 python -m sbom.llm_j.analyze_logs ./logs/parsed-logs/tomcat
 ```
 *Outputs will be saved dynamically to `logs/llm-j-analysis-logs/tomcat/iterationX/llm-j-...`*
-
-### Charting
-
-To produce a summary of the LLM-J logs per model, run the `aggregate_results` script, passing in the directory to process:
-
-```bash
-python sbom.llm_j.aggregate_results ../logs/llm-j-analysis-logs/
-```
-
-This will output charts and ANOVA results, along with mean and standard deviation of the LLM-J scores for each model.
 
 ## How It Works
 
@@ -115,6 +106,16 @@ To get a better idea of typical scores per model, running the `aggregate_results
 Ultimately, the mean score produced for all three models was very low, due to a large number of inaccurate vulnerabilities being output.
 This is likely because relying on intrinsic knowledge is not enough: the models need to have more comprehensive tools available to them to be able to properly analyze the codebase.
 The script also produces box plots. As we work on getting additional results, charts will become more useful.
+
+## Charting
+
+To produce a summary of the LLM-J logs per model, run the `aggregate_results` script, passing in the directory to process:
+
+```bash
+python -m sbom.llm_j.aggregate_results ./logs/llm-j-analysis-logs/
+```
+
+This will output charts and ANOVA results, along with mean and standard deviation of the LLM-J scores for each model.
 
 ## Confusion Matrix Script
 

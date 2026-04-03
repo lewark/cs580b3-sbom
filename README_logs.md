@@ -14,7 +14,7 @@ The structure of the `logs` directory looks generally like this:
 
 ### Usage
 
-You can run `parser.py` in two different modes. Run these inside the `logs/` directory.
+You can run `parser.py` in two different modes.
 
 #### 1. Directory Parsing (Recommended)
 You can target a parent directory representing an application (e.g. `tomcat/`). The script will recursively traverse the folder, find all `.json` files within its iteration subfolders, and write the output into the corresponding structure inside `parsed-logs/`.

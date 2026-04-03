@@ -46,6 +46,7 @@ You can optionally specify the container engine to use (either `--podman` or `--
 ```bash
 # Run with Podman (default)
 ./run-agent.sh qwen3.5:9b
+# Or:
 ./run-agent.sh --podman qwen3.5:9b
 
 # Run with Docker and analyze a specific source distribution
@@ -75,6 +76,8 @@ If you want to get up and running quickly, follow this execution order:
 ## Testbed
 
 To automate the execution of multiple agents across different software packages and models, you can use the `run-grid.sh` testbed script. Logs are automatically categorized in a `logs/<software_name>/iteration<N>/` directory structure.
+
+You will need to make sure you run `ollama pull` for each model listed within the testbed configuration, or the script will fail due to the missing model.
 
 ### Configuration
 

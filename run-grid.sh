@@ -8,6 +8,11 @@ if [ ! -f "$CONFIG_FILE" ]; then
     exit 1
 fi
 
+ENGINE="--docker"
+if [ $1 == "--podman" ]; then
+    ENGINE="--podman"
+fi
+
 # Source the configuration configurations (MODELS, SOFTWARE, ITERATIONS)
 source "$CONFIG_FILE"
 
@@ -23,7 +28,7 @@ for SOFTWARE_NAME in "${!SOFTWARE[@]}"; do
             LOG_FILE="$OUTPUT_DIR/${MODEL//:/_}_analysis.log"
             
             echo "Running model: $MODEL on $SOFTWARE_NAME (Iteration $ITERATION)"
-            ./run-agent.sh --docker "$MODEL" "$SOURCE_URL" 2>&1 | tee "$LOG_FILE"
+            ./run-agent.sh $ENGINE "$MODEL" "$SOURCE_URL" 2>&1 | tee "$LOG_FILE"
             sleep 1
         done
     done

@@ -63,7 +63,14 @@ To use the advanced agent:
    ```bash
    ollama pull nomic-embed-text
    ```
-3. To execute the tool agent, simply edit the `run-agent.sh` script to change `sbom.ollama_agent` to `sbom.ollama_tool_agent` at the end of the script before executing it.
+3. Run the agent script with the `--tooling` flag to use the advanced LangGraph agent instead of the standard one:
+   ```bash
+   ./run-agent.sh --tooling qwen3.5:9b
+   # Or with a specific engine:
+   ./run-agent.sh --docker --tooling qwen3.5:9b https://...
+   ```
+
+When running with the `--tooling` flag via the testbed (`run-grid.sh`), the script automatically sets the `SOFTWARE_NAME` environment variable. The advanced agent then uses this to dynamically ingest the corresponding pre-processed SBOM vulnerability JSON from `/scripts/sbom/vulnerabilities/` (e.g., `minimal_triage_tomcat.json`). The agent uses RAG to query the specific vulnerabilities and runs web searches to perform an accurate SSVC triage.
 
 ## TL;DR: Execution Order
 

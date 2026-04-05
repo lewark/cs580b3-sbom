@@ -163,7 +163,7 @@ def main():
     )
 
     # 2. Define tools
-    tools = [run_command] #, list_sbom_vulnerabilities] #, web_search]
+    tools = [run_command, web_search, query_sbom_rag]
 
     # 3. Define System Message
     system_message = """Analyze this project to identify vulnerabilities in any software dependencies. 
@@ -172,7 +172,8 @@ IMPORTANT EFFICIENCY CONSTRAINTS:
 1. Identify the EXACT version of the product/codebase you are looking at.
 2. Structure your analysis around that specific version only.
 3. DO NOT waste time evaluating, listing, or discussing vulnerabilities for other versions of the product. Only report vulnerabilities that are known to actively affect the specific version you found in the directory.
-4. Perform a CURSORY review only. Do not spend excessive time exhaustively reading every single dependency file. A quick glance at the main project files is sufficient.
+4. If a vulnerability list is provided as a file path, you MUST use the `query_sbom_rag` tool to retrieve the vulnerabilities from it.
+5. Perform your SSVC triage on those specific vulnerabilities by researching them using the `web_search` tool.
 
 Your final response MUST be a structured valid JSON object containing only the list of vulnerabilities found. 
 Each vulnerability must include 'dependency_name', 'vulnerability_id' (e.g. CVE-XXXX-XXXX), 'description', and an 'ssvc_decision' which must be exactly one of: "Track", "Track*", "Attend", or "Act".
@@ -181,9 +182,9 @@ Example output format:
 {
   "vulnerabilities": [
     {
-      "dependency_name": "log4j",
-      "vulnerability_id": "CVE-2021-44228",
-      "description": "Remote Code Execution vulnerability in Log4j",
+      "dependency_name": "tomcat-coyote",
+      "vulnerability_id": "CVE-2024-34750",
+      "description": "Apache Tomcat - Denial of Service",
       "ssvc_decision": "Act"
     }
   ]
@@ -194,7 +195,35 @@ Example output format:
 
     print("\nStarting Advanced Triage Analysis...")
     try:
-        user_prompt = "Please perform a cursory, high-level analysis of the codebase in the current directory to identify vulnerabilities in major software dependencies. Take a quick glance using the run_command tool. Do not be overly thorough. Once you have finished your fast analysis, provide your final response strictly in the JSON format requested, without any enclosing text or markdown formatting."
+        # Check standard current directory for vulnerability files
+        vuln_files = [f for f in os.listdir('.') if f.endswith('.json') and ('triage' in f or 'vuln' in f)]
+        
+        # Also check common path for vulnerabilities mapped into the container
+        software_name = os.getenv("SOFTWARE_NAME")
+        if software_name:
+            known_vuln_path = f'/scripts/sbom/vulnerabilities/minimal_triage_{software_name}.json'
+        else:
+            known_vuln_path = '/scripts/sbom/vulnerabilities/minimal_triage_tomcat.json'
+        
+        target_file = None
+        if vuln_files:
+            target_file = os.path.abspath(vuln_files[0])
+        elif os.path.exists(known_vuln_path):
+            target_file = known_vuln_path
+
+        if target_file:
+            user_prompt = f"""
+A JSON vulnerability file containing the dependencies and vulnerabilities has been located at:
+{target_file}
+
+Please perform your SSVC triage analysis on these vulnerabilities.
+You MUST use the `query_sbom_rag` tool to search through this file, retrieve the vulnerabilities, and extract the relevant dependency names, vulnerability IDs, and descriptions. 
+You can use `web_search` to look up details about these specific CVE/GHSA IDs if more information is needed to make an accurate SSVC decision.
+Once analyzed, provide your final response strictly in the JSON format requested, without any enclosing text or markdown formatting.
+"""
+        else:
+            user_prompt = "Please perform a cursory, high-level analysis of the codebase in the current directory to identify vulnerabilities in major software dependencies. Take a quick glance using the run_command tool. Do not be overly thorough. Once you have finished your fast analysis, provide your final response strictly in the JSON format requested, without any enclosing text or markdown formatting."
+
         response = agent_executor.invoke({"messages": [("user", user_prompt)]})
         print("\n\nFinal Decision Output:\n=====================\n")
         print(response["messages"][-1].content)

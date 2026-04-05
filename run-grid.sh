@@ -20,6 +20,7 @@ source "$CONFIG_FILE"
 LOG_BASE_DIR="logs"
 
 for SOFTWARE_NAME in "${!SOFTWARE[@]}"; do
+    export SOFTWARE_NAME
     SOURCE_URL="${SOFTWARE[$SOFTWARE_NAME]}"
     for MODEL in "${MODELS[@]}"; do
         for ITERATION in $(seq 1 $ITERATIONS); do

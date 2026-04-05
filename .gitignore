@@ -2,3 +2,5 @@ venv/
 target_code/
 *.json
 __pycache__/
+*.log
+*.tar.gz

@@ -1,10 +1,24 @@
 #!/bin/bash
 
 ENGINE_ARG="--podman"
-if [ "$1" = "--docker" ] || [ "$1" = "--podman" ]; then
-    ENGINE_ARG="$1"
-    shift
-fi
+TOOLING_ARG=""
+
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --docker|--podman)
+            ENGINE_ARG="$1"
+            shift
+            ;;
+        --tooling)
+            TOOLING_ARG="--tooling"
+            shift
+            ;;
+        *)
+            # First positional argument not starting with -- is the config file
+            break
+            ;;
+    esac
+done
 
 # Use the provided config file or default to grid_config.sh
 CONFIG_FILE="${1:-grid_config.sh}"
@@ -30,7 +44,11 @@ for SOFTWARE_NAME in "${!SOFTWARE[@]}"; do
             LOG_FILE="$OUTPUT_DIR/${MODEL//:/_}_analysis.log"
             
             echo "Running model: $MODEL on $SOFTWARE_NAME (Iteration $ITERATION)"
-            ./run-agent.sh $ENGINE_ARG "$MODEL" "$SOURCE_URL" 2>&1 | tee "$LOG_FILE"
+            if [ -n "$TOOLING_ARG" ]; then
+                ./run-agent.sh $ENGINE_ARG $TOOLING_ARG "$MODEL" "$SOURCE_URL" 2>&1 | tee "$LOG_FILE"
+            else
+                ./run-agent.sh $ENGINE_ARG "$MODEL" "$SOURCE_URL" 2>&1 | tee "$LOG_FILE"
+            fi
             sleep 1
         done
     done

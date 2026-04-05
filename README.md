@@ -119,10 +119,20 @@ You can run the grid testing script with the default configuration:
 ./run-grid.sh --docker
 ```
 
+To run the grid testing script utilizing the advanced tool agent, pass the `--tooling` flag. The testbed script will automatically route this argument to the agent execution layer:
+
+```bash
+./run-grid.sh --tooling
+# Or with a specific engine:
+./run-grid.sh --docker --tooling
+```
+
 Alternatively, you can provide a custom configuration file as an argument to maintain multiple testing profiles:
 
 ```bash
 ./run-grid.sh --podman custom_config.sh
+# Or with tooling:
+./run-grid.sh --tooling custom_config.sh
 ```
 
 ## Analyzing results

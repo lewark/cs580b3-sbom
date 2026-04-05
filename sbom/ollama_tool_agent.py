@@ -3,6 +3,7 @@ import os
 import sys
 import shlex
 import subprocess
+import time
 from langchain_core.tools import tool
 import ollama
 from langchain_ollama import ChatOllama, OllamaEmbeddings
@@ -178,6 +179,8 @@ IMPORTANT EFFICIENCY CONSTRAINTS:
 Your final response MUST be a structured valid JSON object containing only the list of vulnerabilities found. 
 Each vulnerability must include 'dependency_name', 'vulnerability_id' (e.g. CVE-XXXX-XXXX), 'description', and an 'ssvc_decision' which must be exactly one of: "Track", "Track*", "Attend", or "Act".
 
+CRITICAL INSTRUCTION: Output ONLY the raw JSON object. Do NOT wrap the JSON in markdown blocks (e.g., no ```json and no ```). Do NOT add ANY conversational text (e.g., "Here is the output") before or after the JSON.
+
 Example output format:
 {
   "vulnerabilities": [
@@ -191,7 +194,7 @@ Example output format:
 }"""
 
     # 4. Construct langgraph agent
-    agent_executor = create_react_agent(llm, tools, state_modifier=system_message)
+    agent_executor = create_react_agent(llm, tools, prompt=system_message)
 
     print("\nStarting Advanced Triage Analysis...")
     try:
@@ -219,14 +222,35 @@ A JSON vulnerability file containing the dependencies and vulnerabilities has be
 Please perform your SSVC triage analysis on these vulnerabilities.
 You MUST use the `query_sbom_rag` tool to search through this file, retrieve the vulnerabilities, and extract the relevant dependency names, vulnerability IDs, and descriptions. 
 You can use `web_search` to look up details about these specific CVE/GHSA IDs if more information is needed to make an accurate SSVC decision.
-Once analyzed, provide your final response strictly in the JSON format requested, without any enclosing text or markdown formatting.
+Once analyzed, provide your final response ONLY as a raw JSON object. Produce NO markdown blocks, NO backticks, and NO conversational filler text around the JSON.
 """
         else:
-            user_prompt = "Please perform a cursory, high-level analysis of the codebase in the current directory to identify vulnerabilities in major software dependencies. Take a quick glance using the run_command tool. Do not be overly thorough. Once you have finished your fast analysis, provide your final response strictly in the JSON format requested, without any enclosing text or markdown formatting."
+            user_prompt = "Please perform a cursory, high-level analysis of the codebase in the current directory to identify vulnerabilities in major software dependencies. Take a quick glance using the run_command tool. Do not be overly thorough. Once you have finished your fast analysis, provide your final response ONLY as a raw JSON object. Produce NO markdown blocks, NO backticks, and NO conversational filler text around the JSON."
 
         response = agent_executor.invoke({"messages": [("user", user_prompt)]})
         print("\n\nFinal Decision Output:\n=====================\n")
         print(response["messages"][-1].content)
+        
+        # Save results to a log file
+        out_dir = os.getenv("OUTPUT_DIRECTORY", "/data/logs")
+            
+        if not os.path.exists(out_dir):
+            os.makedirs(out_dir, exist_ok=True)
+            
+        timestamp = time.strftime("%Y-%m-%d_%H%M%S")
+        model_label = model.replace(":", "_")
+        filename = os.path.join(out_dir, f"{model_label}_{timestamp}.json")
+        
+        entries = []
+        for msg in response["messages"]:
+            if hasattr(msg, "dict"):
+                entries.append(msg.dict())
+            else:
+                entries.append(str(msg))
+                
+        with open(filename, "w") as out_file:
+            json.dump(entries, out_file, indent=2)
+            
     except Exception as e:
          print(f"Error during agent execution: {e}")
 

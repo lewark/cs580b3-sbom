@@ -7,7 +7,7 @@ from langchain_core.tools import tool
 import ollama
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
-from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langgraph.prebuilt import create_react_agent
 from langchain_community.document_loaders import JSONLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
@@ -165,32 +165,39 @@ def main():
     # 2. Define tools
     tools = [run_command] #, list_sbom_vulnerabilities] #, web_search]
 
-    # 3. Create prompt template
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", "You are an expert security analysis assistant determining SSVC priority. You have tools available: "
-                   "1. run_command: Run linux shell commands. Useful to list files, cat dependency files (e.g. package.json/pom.xml), or execute cli tools like syft. "
-                   #"2. query_sbom_rag: RAG on a given SBOM file. "
-                   #"2. list_sbom_vulnerabilities: List vulnerabilities contained in an SBOM file. "
-                   #"2. web_search: Search for latest CVE info on the internet. "
-                   "IMPORTANT EFFICIENCY CONSTRAINTS: Identify the exact version of the codebase you are in. Do not waste time evaluating or listing vulnerabilities for other versions. Focus strictly on vulnerabilities that affect the specific version you found. "
-                   "Perform a CURSORY scan only—do not try to be overly thorough or read every single file. A quick glance at the top-level dependencies is perfectly sufficient. "
-                   #"Gather your information quickly, identify main dependencies, look up vulnerabilities via web_search, and output a final decision."),
-                   "Gather your information quickly, identify main dependencies, and output a final decision."),
-        ("placeholder", "{chat_history}"),
-        ("human", "{input}"),
-        ("placeholder", "{agent_scratchpad}"),
-    ])
+    # 3. Define System Message
+    system_message = """Analyze this project to identify vulnerabilities in any software dependencies. 
 
-    # 4. Construct tool-calling agent
-    agent = create_tool_calling_agent(llm, tools, prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+IMPORTANT EFFICIENCY CONSTRAINTS:
+1. Identify the EXACT version of the product/codebase you are looking at.
+2. Structure your analysis around that specific version only.
+3. DO NOT waste time evaluating, listing, or discussing vulnerabilities for other versions of the product. Only report vulnerabilities that are known to actively affect the specific version you found in the directory.
+4. Perform a CURSORY review only. Do not spend excessive time exhaustively reading every single dependency file. A quick glance at the main project files is sufficient.
+
+Your final response MUST be a structured valid JSON object containing only the list of vulnerabilities found. 
+Each vulnerability must include 'dependency_name', 'vulnerability_id' (e.g. CVE-XXXX-XXXX), 'description', and an 'ssvc_decision' which must be exactly one of: "Track", "Track*", "Attend", or "Act".
+
+Example output format:
+{
+  "vulnerabilities": [
+    {
+      "dependency_name": "log4j",
+      "vulnerability_id": "CVE-2021-44228",
+      "description": "Remote Code Execution vulnerability in Log4j",
+      "ssvc_decision": "Act"
+    }
+  ]
+}"""
+
+    # 4. Construct langgraph agent
+    agent_executor = create_react_agent(llm, tools, state_modifier=system_message)
 
     print("\nStarting Advanced Triage Analysis...")
     try:
-        #response = agent_executor.invoke({"input": "Perform a cursory analysis of the codebase in the current directory. Take a quick glance to find main dependencies using the shell. For any key dependencies found, do a quick web search for known vulnerabilities and provide your final SSVC triage decision."})
-        response = agent_executor.invoke({"input": "Perform a cursory analysis of the codebase in the current directory. Take a quick glance to find main dependencies using the shell. For any key dependencies found, identify known vulnerabilities and provide your final SSVC triage decision."})
+        user_prompt = "Please perform a cursory, high-level analysis of the codebase in the current directory to identify vulnerabilities in major software dependencies. Take a quick glance using the run_command tool. Do not be overly thorough. Once you have finished your fast analysis, provide your final response strictly in the JSON format requested, without any enclosing text or markdown formatting."
+        response = agent_executor.invoke({"messages": [("user", user_prompt)]})
         print("\n\nFinal Decision Output:\n=====================\n")
-        print(response.get("output"))
+        print(response["messages"][-1].content)
     except Exception as e:
          print(f"Error during agent execution: {e}")
 

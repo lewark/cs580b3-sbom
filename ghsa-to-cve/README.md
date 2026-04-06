@@ -1,7 +1,7 @@
 * **Process a single file:** `python3 ghsa_cve.py my-sbom.json`
 * **Process and show ghsa -> cve mapping table:** `python3 ghsa_cve.py my-sbom.json -d`
 
-Used Open Source Vulnerability (OSV) API instead of GitHub's so there's no need for auth tokens. Creates a new file with the same name as the input file but with "_cve" appended to the filename, and just swaps GHSA IDs for CVE IDs in the vulnerabilities   section. Run with Debug mode to see a mapping table for manual verification.
+Used Open Source Vulnerability (OSV) API instead of GitHub's so there's no need for auth tokens. Creates a new file with the same name as the input file but with "_cve" appended to the filename, and just swaps GHSA IDs for CVE IDs in the vulnerabilities   section. Run with Debug mode to see a mapping table for manual verification. Some GHSAs dont have a corresponding CVE, this just leaves them as is.
 
 **example debug output:**
 `python3 ghsa_cve.py grype-tomcat-sbom.json -d`

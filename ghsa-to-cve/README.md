@@ -22,3 +22,45 @@ Reading: grype-tomcat-sbom.json...
   GHSA-4j3c-42xv-3f84       -> CVE-2025-52434
   -------------------------
 ```
+
+**Changes in vulnerabilities section of output file: (truncated)**
+**original:**
+```json
+"vulnerabilities": [
+    {
+      "bom-ref": "urn:uuid:8e2f2747-42ae-47e0-9aaa-c9fb4d89f870",
+      "id": "GHSA-qppj-fm5r-hxr3",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-qppj-fm5r-hxr3"
+      },
+      "references": [
+        {
+          "id": "GHSA-qppj-fm5r-hxr3",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-qppj-fm5r-hxr3"
+          }
+        }
+      ],
+```
+**CVE version:**
+```json
+"vulnerabilities": [
+    {
+      "bom-ref": "urn:uuid:8e2f2747-42ae-47e0-9aaa-c9fb4d89f870",
+      "id": "CVE-2023-44487",
+      "source": {
+        "name": "github-language-java",
+        "url": "https://github.com/advisories/GHSA-qppj-fm5r-hxr3"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-44487",
+          "source": {
+            "name": "github-language-java",
+            "url": "https://github.com/advisories/GHSA-qppj-fm5r-hxr3"
+          }
+        }
+      ],
+```

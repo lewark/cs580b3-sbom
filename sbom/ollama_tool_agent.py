@@ -8,7 +8,7 @@ from langchain_core.tools import tool
 import ollama
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent
 from langchain_community.document_loaders import JSONLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
@@ -193,8 +193,8 @@ Example output format:
   ]
 }"""
 
-    # 4. Construct langgraph agent
-    agent_executor = create_react_agent(llm, tools, prompt=system_message)
+    # 4. Construct langchain agent
+    agent_executor = create_agent(llm, tools, prompt=system_message)
 
     print("\nStarting Advanced Triage Analysis...")
     try:

@@ -73,7 +73,7 @@ def process_vuln(vuln) -> dict:
 
         if best_metric is not None:
             cvss_metrics = {
-                best_metric["cvssData"].get(label, None) for label in CVSS_PROPS
+                label: best_metric["cvssData"].get(label, None) for label in CVSS_PROPS
             }
             item.update(cvss_metrics)
 

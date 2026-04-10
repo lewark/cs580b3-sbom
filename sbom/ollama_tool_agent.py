@@ -4,6 +4,8 @@ import sys
 import shlex
 import subprocess
 import time
+import chromadb
+from chromadb.api.types import GetResult
 from langchain_core.tools import tool
 import ollama
 from langchain_ollama import ChatOllama, OllamaEmbeddings
@@ -14,6 +16,10 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter, RecursiveJs
 from langchain_chroma import Chroma
 
 MANUAL_APPROVE_COMMANDS = False
+
+
+chroma_client = None
+
 
 @tool
 def run_command(command: str) -> str:
@@ -154,6 +160,72 @@ def web_search(query: str) -> str:
     return json.dumps(ollama.web_search(query, max_results=3).model_dump())
 
 
+@tool
+def search_nvd(query: str) -> str:
+    """
+    Search the National Vulnerability Database for entries with descriptions
+    similar to the specified search query.
+
+    Args:
+      query: The query to search for
+    """
+
+    if chroma_client is None:
+        raise ValueError("chroma_client not initialized")
+
+    result = chroma_client.get_collection("nvd").query(query_texts=query, n_results=3)
+
+    if result["documents"] is None or result["metadatas"] is None:
+        return f"NO results for query '{query}'"
+
+    result_list = []
+    for doc_ids, documents, metadatas in zip(result["ids"], result["documents"], result["metadatas"]):
+        for doc_id, document, metadata in zip(doc_ids, documents, metadatas):
+            item = {}
+            item.update(metadata)
+            item["description"] = document
+            result_list.append(item)
+
+    return json.dumps(result_list)
+
+
+@tool
+def lookup_vulnerability(cve_id: str) -> str:
+    """
+    Look up a vulnerability from the National Vulnerability Database
+    using its CVE ID number.
+
+    Args:
+      cve_id: The vulnerability ID to retrieve (e.g. CVE-2021-44228)
+    """
+
+    if chroma_client is None:
+        raise ValueError("chroma_client not initialized")
+
+    result = chroma_client.get_collection("nvd").get(cve_id)
+
+    if result is None:
+        return f"CVE {cve_id} not found"
+
+    results = chroma_results_to_json(result)
+
+    return json.dumps(results)
+
+
+def chroma_results_to_json(results: GetResult) -> list[dict]:
+    items = []
+
+    if results["documents"] is None or results["metadatas"] is None:
+        return []
+
+    for doc_id, document, metadata in zip(results["ids"], results["documents"], results["metadatas"]):
+        item = {}
+        item.update(metadata)
+        item["description"] = document
+
+    return items
+
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python ollama-tool-agent.py MODEL")
@@ -263,4 +335,5 @@ Once analyzed, provide your final response ONLY as a raw JSON object. Produce NO
          print(f"Error during agent execution: {e}")
 
 if __name__ == "__main__":
+    chroma_client = chromadb.HttpClient(host="localhost", port=8000)
     main()

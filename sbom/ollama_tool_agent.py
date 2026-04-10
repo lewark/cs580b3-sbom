@@ -17,11 +17,11 @@ MANUAL_APPROVE_COMMANDS = False
 
 @tool
 def run_command(command: str) -> str:
-    """Execute a shell command in the current directory. 
+    """Execute a shell command in the current directory.
     Use this to explore the file system, find dependencies, or manually execute SBOM generation tools (e.g. syft or trivy).
     """
     print(f"\n[Tool Execution] Running command: {command}")
-    
+
     if MANUAL_APPROVE_COMMANDS:
         if input(f"Execute '{command}'? (Y/N): ").lower() != "y":
             return "Command disallowed by user"
@@ -29,7 +29,7 @@ def run_command(command: str) -> str:
     split = shlex.split(command)
     if not split:
         return "Empty command"
-        
+
     if split[0] == "cd":
         target_dir = split[1] if len(split) > 1 else os.environ.get("HOME", "/")
         if os.path.isdir(target_dir):
@@ -51,44 +51,50 @@ def query_sbom_rag(query: str, sbom_file_path: str) -> str:
     Give it a natural language query and the path to an SBOM (like a syft json file) to retrieve relevant components or vulnerabilities.
     """
     print(f"\n[Tool Execution] Querying SBOM '{sbom_file_path}' for: {query}")
-    
+
     if not os.path.exists(sbom_file_path):
         return f"Error: SBOM file {sbom_file_path} does not exist. You may need to generate it first using 'run_command'."
 
     try:
         # Load the content of the file
         if sbom_file_path.endswith(".json"):
-            loader = JSONLoader(file_path=sbom_file_path, jq_schema=".", text_content=False)
+            # loader = JSONLoader(file_path=sbom_file_path, jq_schema=".", text_content=False)
+            with open(sbom_file_path, "r") as in_file:
+                json_data = json.load(in_file)
             text_splitter = RecursiveJsonSplitter(max_chunk_size=1000)
 
+            # Chunk the SBOM data
+            splits = text_splitter.create_documents(json_data)
+
         else:
-            loader = TextLoader(sbom_file_path)
+            with open(sbom_file_path, "r") as in_file:
+                data = in_file.read()
+            # loader = TextLoader(sbom_file_path)
             text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+            # Chunk the SBOM data
+            splits = text_splitter.create_documents([data])
 
-        docs = loader.load()
+        # docs = loader.load()
 
-        # Chunk the SBOM data
-        splits = text_splitter.create_documents(docs)
-        
-        # Use an Ollama embedding model locally 
+        # Use an Ollama embedding model locally
         # Note: 'nomic-embed-text' must be pulled in Ollama (ollama pull nomic-embed-text)
         embeddings = OllamaEmbeddings(
-            model="nomic-embed-text", 
+            model="nomic-embed-text",
             base_url=os.getenv("OLLAMA_HOST", "http://localhost:11434")
         )
-        
+
         # Embed and index into an ephemeral Chroma DB
         vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
         retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
-        
+
         results = retriever.invoke(query)
         context = "\n\n".join(doc.page_content for doc in results)
-        
+
         # Cleanup vectorstore
         vectorstore.delete_collection()
-        
+
         return f"Relevant SBOM Excerpts:\n{context}"
-        
+
     except Exception as e:
         return f"Error reading or embedding SBOM: {str(e)}"
 
@@ -169,7 +175,7 @@ def main():
     tools = [run_command, web_search, query_sbom_rag]
 
     # 3. Define System Message
-    system_message = """Analyze this project to identify vulnerabilities in any software dependencies. 
+    system_message = """Analyze this project to identify vulnerabilities in any software dependencies.
 
 IMPORTANT EFFICIENCY CONSTRAINTS:
 1. Identify the EXACT version of the product/codebase you are looking at.
@@ -178,7 +184,7 @@ IMPORTANT EFFICIENCY CONSTRAINTS:
 4. If a vulnerability list is provided as a file path, you MUST use the `query_sbom_rag` tool to retrieve the vulnerabilities from it.
 5. Perform your SSVC triage on those specific vulnerabilities by researching them using the `web_search` tool.
 
-Your final response MUST be a structured valid JSON object containing only the list of vulnerabilities found. 
+Your final response MUST be a structured valid JSON object containing only the list of vulnerabilities found.
 Each vulnerability must include 'dependency_name', 'vulnerability_id' (e.g. CVE-XXXX-XXXX), 'description', and an 'ssvc_decision' which must be exactly one of: "Track", "Track*", "Attend", or "Act".
 
 CRITICAL INSTRUCTION: Output ONLY the raw JSON object. Do NOT wrap the JSON in markdown blocks (e.g., no ```json and no ```). Do NOT add ANY conversational text (e.g., "Here is the output") before or after the JSON.
@@ -196,20 +202,20 @@ Example output format:
 }"""
 
     # 4. Construct langchain agent
-    agent_executor = create_agent(llm, tools, prompt=system_message)
+    agent_executor = create_agent(llm, tools, system_prompt=system_message)
 
     print("\nStarting Advanced Triage Analysis...")
     try:
         # Check standard current directory for vulnerability files
         vuln_files = [f for f in os.listdir('.') if f.endswith('.json') and ('triage' in f or 'vuln' in f)]
-        
+
         # Also check common path for vulnerabilities mapped into the container
         software_name = os.getenv("SOFTWARE_NAME")
         if software_name:
             known_vuln_path = f'/scripts/sbom/vulnerabilities/minimal_triage_{software_name}.json'
         else:
             known_vuln_path = '/scripts/sbom/vulnerabilities/minimal_triage_tomcat.json'
-        
+
         target_file = None
         if vuln_files:
             target_file = os.path.abspath(vuln_files[0])
@@ -222,7 +228,7 @@ A JSON vulnerability file containing the dependencies and vulnerabilities has be
 {target_file}
 
 Please perform your SSVC triage analysis on these vulnerabilities.
-You MUST use the `query_sbom_rag` tool to search through this file, retrieve the vulnerabilities, and extract the relevant dependency names, vulnerability IDs, and descriptions. 
+You MUST use the `query_sbom_rag` tool to search through this file, retrieve the vulnerabilities, and extract the relevant dependency names, vulnerability IDs, and descriptions.
 You can use `web_search` to look up details about these specific CVE/GHSA IDs if more information is needed to make an accurate SSVC decision.
 Once analyzed, provide your final response ONLY as a raw JSON object. Produce NO markdown blocks, NO backticks, and NO conversational filler text around the JSON.
 """
@@ -232,27 +238,27 @@ Once analyzed, provide your final response ONLY as a raw JSON object. Produce NO
         response = agent_executor.invoke({"messages": [("user", user_prompt)]})
         print("\n\nFinal Decision Output:\n=====================\n")
         print(response["messages"][-1].content)
-        
+
         # Save results to a log file
         out_dir = os.getenv("OUTPUT_DIRECTORY", "/data/logs")
-            
+
         if not os.path.exists(out_dir):
             os.makedirs(out_dir, exist_ok=True)
-            
+
         timestamp = time.strftime("%Y-%m-%d_%H%M%S")
         model_label = model.replace(":", "_")
         filename = os.path.join(out_dir, f"{model_label}_{timestamp}.json")
-        
+
         entries = []
         for msg in response["messages"]:
             if hasattr(msg, "dict"):
                 entries.append(msg.dict())
             else:
                 entries.append(str(msg))
-                
+
         with open(filename, "w") as out_file:
             json.dump(entries, out_file, indent=2)
-            
+
     except Exception as e:
          print(f"Error during agent execution: {e}")
 

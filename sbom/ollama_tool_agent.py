@@ -10,7 +10,7 @@ from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.agents import create_agent
 from langchain_community.document_loaders import JSONLoader, TextLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter, RecursiveJsonSplitter
 from langchain_chroma import Chroma
 
 MANUAL_APPROVE_COMMANDS = False
@@ -58,15 +58,17 @@ def query_sbom_rag(query: str, sbom_file_path: str) -> str:
     try:
         # Load the content of the file
         if sbom_file_path.endswith(".json"):
-             loader = JSONLoader(file_path=sbom_file_path, jq_schema=".", text_content=False)
+            loader = JSONLoader(file_path=sbom_file_path, jq_schema=".", text_content=False)
+            text_splitter = RecursiveJsonSplitter(max_chunk_size=1000)
+
         else:
-             loader = TextLoader(sbom_file_path)
-             
+            loader = TextLoader(sbom_file_path)
+            text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+
         docs = loader.load()
-        
+
         # Chunk the SBOM data
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-        splits = text_splitter.split_documents(docs)
+        splits = text_splitter.create_documents(docs)
         
         # Use an Ollama embedding model locally 
         # Note: 'nomic-embed-text' must be pulled in Ollama (ollama pull nomic-embed-text)

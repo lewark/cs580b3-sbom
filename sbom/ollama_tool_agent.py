@@ -169,6 +169,7 @@ def search_nvd(query: str) -> str:
     Args:
       query: The query to search for
     """
+    print("Search NVD:", query, flush=True)
 
     if chroma_client is None:
         raise ValueError("chroma_client not initialized")
@@ -199,6 +200,8 @@ def lookup_vulnerability(cve_id: str) -> str:
       cve_id: The vulnerability ID to retrieve (e.g. CVE-2021-44228)
     """
 
+    print("Lookup vulnerability", cve_id, flush=True)
+
     if chroma_client is None:
         raise ValueError("chroma_client not initialized")
 
@@ -215,6 +218,8 @@ def lookup_vulnerability(cve_id: str) -> str:
 def chroma_results_to_json(results: GetResult) -> list[dict]:
     items = []
 
+    print(results, flush=True)
+
     if results["documents"] is None or results["metadatas"] is None:
         return []
 
@@ -222,19 +227,20 @@ def chroma_results_to_json(results: GetResult) -> list[dict]:
         item = {}
         item.update(metadata)
         item["description"] = document
+        items.append(item)
 
     return items
 
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python ollama-tool-agent.py MODEL")
+        print("Usage: python ollama-tool-agent.py MODEL", flush=True)
         sys.exit(1)
 
     model = sys.argv[1]
     host = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 
-    print(f"Initializing LangChain Agent with model: {model}")
+    print(f"Initializing LangChain Agent with model: {model}", flush=True)
 
     # 1. Initialize the LLM with Ollama
     llm = ChatOllama(
@@ -244,7 +250,8 @@ def main():
     )
 
     # 2. Define tools
-    tools = [run_command, web_search, query_sbom_rag]
+    #tools = [run_command, web_search, query_sbom_rag]
+    tools = [run_command, lookup_vulnerability, search_nvd]
 
     # 3. Define System Message
     system_message = """Analyze this project to identify vulnerabilities in any software dependencies.
@@ -273,10 +280,12 @@ Example output format:
   ]
 }"""
 
+    print(system_message, flush=True)
+
     # 4. Construct langchain agent
     agent_executor = create_agent(llm, tools, system_prompt=system_message)
 
-    print("\nStarting Advanced Triage Analysis...")
+    print("\nStarting Advanced Triage Analysis...", flush=True)
     try:
         # Check standard current directory for vulnerability files
         vuln_files = [f for f in os.listdir('.') if f.endswith('.json') and ('triage' in f or 'vuln' in f)]
@@ -295,20 +304,31 @@ Example output format:
             target_file = known_vuln_path
 
         if target_file:
+#             user_prompt = f"""
+# A JSON vulnerability file containing the dependencies and vulnerabilities has been located at:
+# {target_file}
+
+# Please perform your SSVC triage analysis on these vulnerabilities.
+# You MUST use the `query_sbom_rag` tool to search through this file, retrieve the vulnerabilities, and extract the relevant dependency names, vulnerability IDs, and descriptions.
+# You can use `web_search` to look up details about these specific CVE/GHSA IDs if more information is needed to make an accurate SSVC decision.
+# Once analyzed, provide your final response ONLY as a raw JSON object. Produce NO markdown blocks, NO backticks, and NO conversational filler text around the JSON.
+# """
             user_prompt = f"""
 A JSON vulnerability file containing the dependencies and vulnerabilities has been located at:
 {target_file}
 
 Please perform your SSVC triage analysis on these vulnerabilities.
-You MUST use the `query_sbom_rag` tool to search through this file, retrieve the vulnerabilities, and extract the relevant dependency names, vulnerability IDs, and descriptions.
-You can use `web_search` to look up details about these specific CVE/GHSA IDs if more information is needed to make an accurate SSVC decision.
+You must read the file using the `cat` command, through the `run_command` tool.
+You can use the `lookup_vulnerability` tool to retrieve additional information about these specific CVEs if more information is needed to make an accurate SSVC decision.
 Once analyzed, provide your final response ONLY as a raw JSON object. Produce NO markdown blocks, NO backticks, and NO conversational filler text around the JSON.
 """
         else:
             user_prompt = "Please perform a cursory, high-level analysis of the codebase in the current directory to identify vulnerabilities in major software dependencies. Take a quick glance using the run_command tool. Do not be overly thorough. Once you have finished your fast analysis, provide your final response ONLY as a raw JSON object. Produce NO markdown blocks, NO backticks, and NO conversational filler text around the JSON."
 
-        response = agent_executor.invoke({"messages": [("user", user_prompt)]})
-        print("\n\nFinal Decision Output:\n=====================\n")
+        print(user_prompt, flush=True)
+
+        response = agent_executor.invoke({"messages": [("user", user_prompt)]}) #, print_mode="messages")
+        print("\n\nFinal Decision Output:\n=====================\n", flush=True)
         print(response["messages"][-1].content)
 
         # Save results to a log file
@@ -324,7 +344,7 @@ Once analyzed, provide your final response ONLY as a raw JSON object. Produce NO
         entries = []
         for msg in response["messages"]:
             if hasattr(msg, "dict"):
-                entries.append(msg.dict())
+                entries.append(msg.model_dump())
             else:
                 entries.append(str(msg))
 
@@ -335,5 +355,7 @@ Once analyzed, provide your final response ONLY as a raw JSON object. Produce NO
          print(f"Error during agent execution: {e}")
 
 if __name__ == "__main__":
+    print("Connecting to Chroma", flush=True)
     chroma_client = chromadb.HttpClient(host="localhost", port=8000)
+    print("Connected", flush=True)
     main()

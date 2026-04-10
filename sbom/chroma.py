@@ -83,8 +83,6 @@ def create_nvd_collection(nvd_directory: str, kev_file: str):
                 metadatas=metadatas[i:i+CHUNK_SIZE]
             )
 
-        break
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

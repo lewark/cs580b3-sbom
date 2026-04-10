@@ -2,6 +2,7 @@ import gzip
 import json
 import os
 import sys
+from typing import Optional
 
 CVSS_PROPS = ["baseScore", "baseSeverity", "attackVector", "attackComplexity", "privilegesRequired", "userInteraction", "scope", "confidentialityImpact", "integrityImpact", "availabilityImpact"]
 
@@ -17,16 +18,29 @@ def process_file(path):
     with gzip.open(path, "r") as f:
         data = json.load(f)
 
-    for vuln in data["vulnerabilities"]:
-        process_vuln(vuln, rows)
+    cols = ["id", "published", "lastModified", "vulnStatus", "description", *CVSS_PROPS]
 
-    print("id,published,lastModified,vulnStatus,description," + ",".join(CVSS_PROPS))
+    for vuln in data["vulnerabilities"]:
+        result = process_vuln(vuln)
+
+        result["status"] = json.dumps(result["status"])
+        result["description"] = json.dumps(result["description"].replace('"', "'"))
+
+        for label in CVSS_PROPS:
+            result[label] = result[label]
+
+        rows.append(tuple([
+            result.get(col, "") for col in cols
+        ]))
+
+
+    print(",".join(cols))
     rows.sort(key=get_key)
     for row in rows:
         print(",".join(row))
 
 
-def process_vuln(vuln, rows):
+def process_vuln(vuln) -> dict:
     cve = vuln["cve"]
     cve_id = cve["id"]
     published = cve["published"]
@@ -37,6 +51,14 @@ def process_vuln(vuln, rows):
     for desc_item in cve["descriptions"]:
         if desc_item["lang"] == "en":
             description = desc_item["value"]
+
+    item = {
+        "id": cve_id,
+        "published": published,
+        "lastModified": last_modified,
+        "vulnStatus": status,
+        "description": description,
+    }
 
     if "cvssMetricV31" in cve["metrics"]:
         best_metric = None
@@ -49,9 +71,13 @@ def process_vuln(vuln, rows):
             if metric["type"] == "Primary":
                 break
 
-        cvss_metrics = [str(best_metric["cvssData"].get(label, "")) for label in CVSS_PROPS]
+        if best_metric is not None:
+            cvss_metrics = {
+                best_metric["cvssData"].get(label, None) for label in CVSS_PROPS
+            }
+            item.update(cvss_metrics)
 
-        rows.append((cve_id, published, last_modified, json.dumps(status), json.dumps(description.replace('"', "'")), *cvss_metrics))
+    return item
 
 
 if __name__ == "__main__":

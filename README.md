@@ -68,7 +68,7 @@ This process will take a while to complete: possibly over an hour.
 
 ### Stopping Chroma
 
-Due to a bug, Chroma does not respond to Ctrl+C. To stop the database server, run `./stop-chroma.sh`.
+Due to a bug, previous versions of Chroma do not respond to Ctrl+C. To stop the database server in these cases, run `./stop-chroma.sh`.
 
 ## Running the agent
 

@@ -22,4 +22,8 @@ if [ ! -d logs ]; then
     mkdir logs
 fi
 
+if [ ! -d .cache ]; then
+    mkdir .cache
+fi
+
 $ENGINE run -i --init --rm --volume $PWD/logs:/data/logs --volume $PWD/.cache:/root/.cache --network=host $EXTRA_OPTS "$@"

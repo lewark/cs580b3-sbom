@@ -251,7 +251,7 @@ def main():
 
     # 2. Define tools
     #tools = [run_command, web_search, query_sbom_rag]
-    tools = [run_command, lookup_vulnerability, search_nvd]
+    tools = [run_command, lookup_vulnerability, search_nvd, web_search]
 
     # 3. Define System Message
     system_message = """Analyze this project to identify vulnerabilities in any software dependencies.

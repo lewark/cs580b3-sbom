@@ -22,7 +22,11 @@ def create_nvd_collection(path: str):
 
     for collection in client.list_collections():
         if collection.name == "nvd":
-            client.delete_collection("nvd")
+            if input("Delete existing NVD collection?").lower().startswith("y"):
+                client.delete_collection("nvd")
+            else:
+                print("Exiting.")
+                sys.exit(1)
 
     collection = client.create_collection(name="nvd")
 

@@ -18,13 +18,14 @@ def process_file(path):
     with gzip.open(path, "r") as f:
         data = json.load(f)
 
-    cols = ["id", "published", "lastModified", "vulnStatus", "description", *CVSS_PROPS]
+    cols = ["id", "published", "lastModified", "vulnStatus", "description", "weaknesses", *CVSS_PROPS]
 
     for vuln in data["vulnerabilities"]:
         result = process_vuln(vuln)
 
         result["status"] = json.dumps(result["status"])
         result["description"] = json.dumps(result["description"].replace('"', "'"))
+        result["weaknesses"] = json.dumps(result["weaknesses"]).replace('"', "'")
 
         for label in CVSS_PROPS:
             result[label] = result[label]
@@ -76,6 +77,15 @@ def process_vuln(vuln) -> dict:
                 label: best_metric["cvssData"].get(label, None) for label in CVSS_PROPS
             }
             item.update(cvss_metrics)
+
+    if "weaknesses" in cve:
+        cwes = set()
+        for weakness in cve["weaknesses"]:
+            for desc in weakness["description"]:
+                if desc["lang"] == "en":
+                    cwes.add(desc["value"])
+
+        item["weaknesses"] = sorted(cwes)
 
     return item
 

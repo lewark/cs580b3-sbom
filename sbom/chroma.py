@@ -1,3 +1,4 @@
+import argparse
 import glob
 import gzip
 import json
@@ -17,7 +18,7 @@ def connect_db():
     return chromadb.HttpClient(host="localhost", port=8000)
 
 
-def create_nvd_collection(path: str):
+def create_nvd_collection(nvd_directory: str, kev_file: str):
     client = connect_db()
 
     for collection in client.list_collections():
@@ -32,7 +33,14 @@ def create_nvd_collection(path: str):
 
     CHUNK_SIZE = 1000
 
-    for filename in glob.glob(os.path.join(path, "*.json.gz")):
+    with open(kev_file, "r") as kev_reader:
+        kev_data = json.load(kev_reader)
+
+    kev_vulns: dict[str, dict] = {}
+    for item in kev_data["vulnerabilities"]:
+        kev_vulns[item["cveID"]] = item
+
+    for filename in sorted(glob.glob(os.path.join(nvd_directory, "*.json.gz"))):
         print("Ingesting", filename)
 
         with gzip.open(filename, "r") as f:
@@ -48,7 +56,23 @@ def create_nvd_collection(path: str):
             metadata = dict(entry)
             del metadata["description"]
 
-            ids.append(entry["id"])
+            cve_id = entry["id"]
+            kev_entry = kev_vulns.get(cve_id)
+
+            if kev_entry is None:
+                metadata["knownExploitedVulnerability"] = False
+
+            else:
+                metadata["knownExploitedVulnerability"] = True
+                mapping = {
+                    "vendorProject": "kevVendorProject", "product": "kevProduct", "vulnerabilityName": "kevVulnerabilityName", "dateAdded": "kevDateAdded",
+                    "shortDescription": "kevShortDescription", "requiredAction": "kevRequiredAction", "dueDate": "kevDueDate", "knownRansomwareCampaignUse": "kevKnownRansomwareCampaignUse"
+                }
+
+                for src_attr, dest_attr in mapping.items():
+                    metadata[dest_attr] = kev_entry[src_attr]
+
+            ids.append(cve_id)
             documents.append(entry["description"])
             metadatas.append(metadata)
 
@@ -59,6 +83,13 @@ def create_nvd_collection(path: str):
                 metadatas=metadatas[i:i+CHUNK_SIZE]
             )
 
+        break
+
 
 if __name__ == "__main__":
-    create_nvd_collection(sys.argv[1])
+    parser = argparse.ArgumentParser()
+    parser.add_argument("nvd_directory")
+    parser.add_argument("kev_file")
+    args = parser.parse_args()
+
+    create_nvd_collection(args.nvd_directory, args.kev_file)

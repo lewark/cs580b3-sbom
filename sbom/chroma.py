@@ -5,6 +5,7 @@ import os
 import sys
 
 import chromadb
+from tqdm import tqdm
 
 from .process_nvd import process_vuln
 
@@ -25,7 +26,11 @@ def create_nvd_collection(path: str):
 
     collection = client.create_collection(name="nvd")
 
+    CHUNK_SIZE = 1000
+
     for filename in glob.glob(os.path.join(path, "*.json.gz")):
+        print("Ingesting", filename)
+
         with gzip.open(filename, "r") as f:
             data = json.load(f)
 
@@ -43,7 +48,12 @@ def create_nvd_collection(path: str):
             documents.append(entry["description"])
             metadatas.append(metadata)
 
-        collection.add(ids=ids, documents=documents, metadatas=metadatas)
+        for i in tqdm(range(0, len(ids), CHUNK_SIZE)):
+            collection.add(
+                ids=ids[i:i+CHUNK_SIZE],
+                documents=documents[i:i+CHUNK_SIZE],
+                metadatas=metadatas[i:i+CHUNK_SIZE]
+            )
 
 
 if __name__ == "__main__":

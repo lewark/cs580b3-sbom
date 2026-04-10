@@ -36,6 +36,39 @@ Additionally, the `OLLAMA_API_KEY` variable is required to use web search, and c
 The scripts will automatically pass environment variables within the `.env` file into
 the container.
 
+## Setting up ChromaDB
+
+To provide information from the National Vulnerability Database (NVD) and Known Exploited Vulnerabilities (KEV) datasets, we use a ChromaDB database.
+The data can be initialized one of two ways.
+
+### Loading an existing database snapshot
+
+Extract the file containing the `chroma_data` directory to the root of this repository. The folder hierarchy should look as follows:
+
+```
++- cs580b3-sbom
+|   +- chroma_data
+|   |   +- chroma.sqlite3
+|   |   +- (...additional files)
+```
+
+Once the data is present, launch the database by running `./start-chroma.sh`.
+
+### Ingesting data from NVD/KEV feeds
+
+If you have JSON files downloaded from NVD and KEV, you can import these into a blank Chroma database as follows:
+
+First, start the database using `./start-chroma.sh`. Then, run the following command:
+
+```
+python3 -m sbom.choma path/to/nvd_directory path/to/known_exploited_vulnerabilities.json
+```
+
+This process will take a while to complete: possibly over an hour.
+
+### Stopping Chroma
+
+Due to a bug, Chroma does not respond to Ctrl+C. To stop the database server, run `./stop-chroma.sh`.
 
 ## Running the agent
 
@@ -63,7 +96,15 @@ To use the advanced agent:
    ```bash
    ollama pull nomic-embed-text
    ```
-3. To execute the tool agent, simply edit the `run-agent.sh` script to change `sbom.ollama_agent` to `sbom.ollama_tool_agent` at the end of the script before executing it.
+3. Ensure the Chroma database server is running (see the earlier section).
+4. Run the agent script with the `--tooling` flag to use the advanced LangGraph agent instead of the standard one:
+   ```bash
+   ./run-agent.sh --tooling qwen3.5:9b
+   # Or with a specific engine:
+   ./run-agent.sh --docker --tooling qwen3.5:9b https://...
+   ```
+
+When running with the `--tooling` flag via the testbed (`run-grid.sh`), the script automatically sets the `SOFTWARE_NAME` environment variable. The advanced agent then uses this to dynamically ingest the corresponding pre-processed SBOM vulnerability JSON from `/scripts/sbom/vulnerabilities/` (e.g., `minimal_triage_tomcat.json`). The agent uses RAG to query the specific vulnerabilities and runs web searches to perform an accurate SSVC triage.
 
 ## TL;DR: Execution Order
 
@@ -112,10 +153,20 @@ You can run the grid testing script with the default configuration:
 ./run-grid.sh --docker
 ```
 
+To run the grid testing script utilizing the advanced tool agent, pass the `--tooling` flag. The testbed script will automatically route this argument to the agent execution layer:
+
+```bash
+./run-grid.sh --tooling
+# Or with a specific engine:
+./run-grid.sh --docker --tooling
+```
+
 Alternatively, you can provide a custom configuration file as an argument to maintain multiple testing profiles:
 
 ```bash
 ./run-grid.sh --podman custom_config.sh
+# Or with tooling:
+./run-grid.sh --tooling custom_config.sh
 ```
 
 ## Analyzing results

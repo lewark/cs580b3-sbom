@@ -6,6 +6,12 @@ if [ "$1" = "--docker" ] || [ "$1" = "--podman" ]; then
     shift
 fi
 
+AGENT_SCRIPT="sbom.ollama_agent"
+if [ "$1" = "--tooling" ]; then
+    AGENT_SCRIPT="sbom.ollama_tool_agent"
+    shift
+fi
+
 MODEL=$1
 SOURCE_URL=$2
 
@@ -48,6 +54,9 @@ ENV_OPTS="-e PYTHONPATH=/scripts"
 if [ -n "$OUTPUT_DIR" ]; then
     ENV_OPTS="$ENV_OPTS -e OUTPUT_DIRECTORY=/data/$OUTPUT_DIR"
 fi
+if [ -n "$SOFTWARE_NAME" ]; then
+    ENV_OPTS="$ENV_OPTS -e SOFTWARE_NAME=$SOFTWARE_NAME"
+fi
 
 CONTAINER_NAME="sbom_agent_$$"
 export CONTAINER_NAME
@@ -68,4 +77,4 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 echo "Starting container execution for model: $MODEL (Container: $CONTAINER_NAME)"
-./run-container.sh $ENGINE_ARG $EXTRA_MOUNT $ENV_OPTS llm-agent-testbed bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -m sbom.ollama_agent $MODEL"
+./run-container.sh $ENGINE_ARG $EXTRA_MOUNT $ENV_OPTS llm-agent-testbed bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -m $AGENT_SCRIPT $MODEL"

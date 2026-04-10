@@ -16,10 +16,14 @@ fi
 if [ -f ".env" ]; then
     EXTRA_OPTS="$EXTRA_OPTS --env-file=.env"
 fi
-	
+
 
 if [ ! -d logs ]; then
     mkdir logs
 fi
 
-$ENGINE run -i --init --rm --volume $PWD/logs:/data/logs --network=host $EXTRA_OPTS "$@"
+if [ ! -d .cache ]; then
+    mkdir .cache
+fi
+
+$ENGINE run -i --init --rm --volume $PWD/logs:/data/logs --volume $PWD/.cache:/root/.cache --network=host $EXTRA_OPTS "$@"

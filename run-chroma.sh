@@ -1,2 +1,2 @@
 #!/bin/sh
-chroma run --path $PWD/chroma_db
+chroma run --path $PWD/chroma_data

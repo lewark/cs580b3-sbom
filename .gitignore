@@ -5,3 +5,4 @@ __pycache__/
 *.log
 *.tar.gz
 source_files/
+chroma_data/

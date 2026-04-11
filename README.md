@@ -186,3 +186,45 @@ After producing outputs from the model, you can analyze the results using the fo
 
 1. Parse the logs using the `sbom.logs.parser` tool, as shown in `README_logs.md`
 2. Run the LLM-J (`sbom.llm_j.analyze_logs`), confusion matrix (`sbom.llm_j.confusion_matrix`), and plotting (`sbom.llm_j.aggregate_results`) scripts, as described in `README_llm_j.md`
+
+## Running Experiment Testbed
+
+To properly run different experiment permutations and ensure your generated JSON responses and log files are not overwritten between runs, you should explicitly back up the output `logs/` directory after each complete execution.
+
+### 1. Non-Tooling vs. Tooling
+Compares the baseline LLM agent against the advanced LangGraph-based tooling agent.
+
+```bash
+# 1. Run the baseline (non-tooling) agent
+./run-grid.sh --docker
+
+# 2. Move the generated logs to a safe backup directory
+mv logs logs_baseline
+
+# 3. Run the advanced tooling agent
+./run-grid.sh --docker --tooling
+
+# 4. Move the tooling logs to their own directory
+mv logs logs_tooling
+```
+
+### 2. Non-Tooling vs. Tooling (with Chain-of-Thought)
+Compares the baseline LLM agent against the tooling agent executing with Chain-of-Thought (`--cot`) reasoning enabled.
+
+```bash
+# 1. Run the baseline (non-tooling) agent
+./run-grid.sh --docker
+
+# 2. Move the generated logs to a safe backup directory
+mv logs logs_baseline_for_cot
+
+# 3. Run the advanced tooling agent with Chain-of-Thought enabled
+./run-grid.sh --docker --tooling --cot
+
+# 4. Move the tooling + CoT logs
+mv logs logs_tooling_cot
+```
+
+
+
+

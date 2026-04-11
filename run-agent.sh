@@ -1,16 +1,28 @@
 #!/bin/sh
 
 ENGINE_ARG=""
-if [ "$1" = "--docker" ] || [ "$1" = "--podman" ]; then
-    ENGINE_ARG="$1"
-    shift
-fi
-
 AGENT_SCRIPT="sbom.ollama_agent"
-if [ "$1" = "--tooling" ]; then
-    AGENT_SCRIPT="sbom.ollama_tool_agent"
-    shift
-fi
+COT_ARG=""
+
+while [ "$#" -gt 0 ]; do
+    case $1 in
+        --docker|--podman)
+            ENGINE_ARG="$1"
+            shift
+            ;;
+        --tooling)
+            AGENT_SCRIPT="sbom.ollama_tool_agent"
+            shift
+            ;;
+        --cot)
+            COT_ARG="--cot "
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
 
 MODEL=$1
 SOURCE_URL=$2
@@ -77,4 +89,4 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 echo "Starting container execution for model: $MODEL (Container: $CONTAINER_NAME)"
-./run-container.sh $ENGINE_ARG $EXTRA_MOUNT $ENV_OPTS llm-agent-testbed bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -m $AGENT_SCRIPT $MODEL"
+./run-container.sh $ENGINE_ARG $EXTRA_MOUNT $ENV_OPTS llm-agent-testbed bash -c "${SETUP_CMD}echo \"[Agent] Starting Ollama Python agent...\" && cd $TARGET_DIR && python3 -m $AGENT_SCRIPT $COT_ARG$MODEL"

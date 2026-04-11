@@ -83,15 +83,17 @@ Due to a bug, previous versions of Chroma do not respond to Ctrl+C. To stop the 
 
 ## Running the agent
 
-Run `./run-agent.sh MODEL [SOURCE_URL]` to start the agent, replacing `MODEL` with the name of the model to run (e.g. `qwen3.5:9b`). You can optionally provide a `SOURCE_URL` to a `.tar.gz` codebase distribution which will be downloaded and analyzed.
+Run `./run-agent.sh [--cot] MODEL [SOURCE_URL]` to start the agent, replacing `MODEL` with the name of the model to run (e.g. `qwen3.5:9b`). You can optionally provide a `SOURCE_URL` to a `.tar.gz` codebase distribution which will be downloaded and analyzed.
+
+The `--cot` flag can be optionally provided to enable "chain-of-thought" generation (forces the model to think step-by-step prior to outputting the data JSON).
 
 You can optionally specify the container engine to use (either `--podman` or `--docker`) before the model name. By default, Podman is used.
 
 ```bash
 # Run with Podman (default)
 ./run-agent.sh qwen3.5:9b
-# Or:
-./run-agent.sh --podman qwen3.5:9b
+# Or with Chain-of-Thought enabled:
+./run-agent.sh --cot qwen3.5:9b
 
 # Run with Docker and analyze a specific source distribution
 ./run-agent.sh --docker qwen3.5:9b https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.57/src/apache-tomcat-8.5.57-src.tar.gz
@@ -108,11 +110,11 @@ To use the advanced agent:
    ollama pull nomic-embed-text
    ```
 3. Ensure the Chroma database server is running (see the earlier section).
-4. Run the agent script with the `--tooling` flag to use the advanced LangGraph agent instead of the standard one:
+4. Run the agent script with the `--tooling` flag to use the advanced LangGraph agent instead of the standard one. The `--cot` flag is also fully supported here:
    ```bash
    ./run-agent.sh --tooling qwen3.5:9b
-   # Or with a specific engine:
-   ./run-agent.sh --docker --tooling qwen3.5:9b https://...
+   # Or with a specific engine and chain-of-thought:
+   ./run-agent.sh --docker --tooling --cot qwen3.5:9b https://...
    ```
 
 When running with the `--tooling` flag via the testbed (`run-grid.sh`), the script automatically sets the `SOFTWARE_NAME` environment variable. The advanced agent then uses this to dynamically ingest the corresponding pre-processed SBOM vulnerability JSON from `/scripts/sbom/vulnerabilities/` (e.g., `minimal_triage_tomcat.json`). The agent uses RAG to query the specific vulnerabilities and runs web searches to perform an accurate SSVC triage.
@@ -123,7 +125,7 @@ If you want to get up and running quickly, follow this execution order:
 
 1. **Start Ollama**: Make sure your Ollama instance is running (locally or remotely via `.env` configured host).
 2. **Setup Environment**: Run `./setup-container.sh` once to build the necessary environment and install dependencies. To use a more robust environment, build the Dockerfile: `docker build -t llm-agent-testbed .`
-3. **Run Agent**: Run `./run-agent.sh <MODEL> [SOURCE_URL]` (e.g., `./run-agent.sh qwen3.5:9b https://example.com/source.tar.gz`) to start the analysis. Remember to include `--docker` before the model name if you aren't using Podman.
+3. **Run Agent**: Run `./run-agent.sh [--cot] <MODEL> [SOURCE_URL]` (e.g., `./run-agent.sh --cot qwen3.5:9b https://example.com/source.tar.gz`) to start the analysis. Remember to include `--docker` before the model name if you aren't using Podman.
 
 ## Testbed
 
@@ -164,20 +166,20 @@ You can run the grid testing script with the default configuration:
 ./run-grid.sh --docker
 ```
 
-To run the grid testing script utilizing the advanced tool agent, pass the `--tooling` flag. The testbed script will automatically route this argument to the agent execution layer:
+To run the grid testing script utilizing the advanced tool agent, pass the `--tooling` flag. The testbed script will automatically route this argument to the agent execution layer. You can also specify the `--cot` flag for chain-of-thought assessment testing:
 
 ```bash
 ./run-grid.sh --tooling
-# Or with a specific engine:
-./run-grid.sh --docker --tooling
+# Or with a specific engine and chain-of-thought processing:
+./run-grid.sh --docker --tooling --cot
 ```
 
 Alternatively, you can provide a custom configuration file as an argument to maintain multiple testing profiles:
 
 ```bash
 ./run-grid.sh --podman custom_config.sh
-# Or with tooling:
-./run-grid.sh --tooling custom_config.sh
+# Or with tooling and chain-of-thought enabled:
+./run-grid.sh --tooling --cot custom_config.sh
 ```
 
 ## Analyzing results

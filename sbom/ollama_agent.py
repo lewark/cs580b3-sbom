@@ -147,7 +147,16 @@ def write_log_file(model: str, messages: list, out_dir: str):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: ollama-agent MODEL")
+        print("Usage: ollama-agent [--cot] MODEL")
+        sys.exit(1)
+
+    use_cot = False
+    if "--cot" in sys.argv:
+        use_cot = True
+        sys.argv.remove("--cot")
+
+    if len(sys.argv) < 2:
+        print("Usage: ollama-agent [--cot] MODEL")
         sys.exit(1)
 
     model = sys.argv[1]
@@ -155,9 +164,14 @@ def main():
     out_dir = os.getenv("OUTPUT_DIRECTORY", "/data/logs")
 
     client = ollama.Client(host=host)
+    
+    user_content = "Please perform a cursory, high-level analysis of the codebase in the current directory to identify vulnerabilities in major software dependencies. Take a quick glance using the run_command tool. Do not be overly thorough. Once you have finished your fast analysis, provide your final response strictly in the JSON format requested, without any enclosing text or markdown formatting."
+    if use_cot:
+        user_content += " Think through this step-by-step."
+
     messages = [
         {"role": "system", "content": SYSTEM},
-        {"role": "user", "content": "Please perform a cursory, high-level analysis of the codebase in the current directory to identify vulnerabilities in major software dependencies. Take a quick glance using the run_command tool. Do not be overly thorough. Once you have finished your fast analysis, provide your final response strictly in the JSON format requested, without any enclosing text or markdown formatting."}
+        {"role": "user", "content": user_content}
     ]
     
     while True:

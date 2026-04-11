@@ -234,7 +234,16 @@ def chroma_results_to_json(results: GetResult) -> list[dict]:
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python ollama-tool-agent.py MODEL", flush=True)
+        print("Usage: python ollama-tool-agent.py [--cot] MODEL", flush=True)
+        sys.exit(1)
+
+    use_cot = False
+    if "--cot" in sys.argv:
+        use_cot = True
+        sys.argv.remove("--cot")
+
+    if len(sys.argv) < 2:
+        print("Usage: python ollama-tool-agent.py [--cot] MODEL", flush=True)
         sys.exit(1)
 
     model = sys.argv[1]
@@ -324,6 +333,9 @@ Once analyzed, provide your final response ONLY as a raw JSON object. Produce NO
 """
         else:
             user_prompt = "Please perform a cursory, high-level analysis of the codebase in the current directory to identify vulnerabilities in major software dependencies. Take a quick glance using the run_command tool. Do not be overly thorough. Once you have finished your fast analysis, provide your final response ONLY as a raw JSON object. Produce NO markdown blocks, NO backticks, and NO conversational filler text around the JSON."
+
+        if use_cot:
+            user_prompt += "\nThink through this step-by-step."
 
         print(user_prompt, flush=True)
 

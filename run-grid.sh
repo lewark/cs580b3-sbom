@@ -2,6 +2,7 @@
 
 ENGINE_ARG="--podman"
 TOOLING_ARG=""
+COT_ARG=""
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
@@ -11,6 +12,10 @@ while [[ "$#" -gt 0 ]]; do
             ;;
         --tooling)
             TOOLING_ARG="--tooling"
+            shift
+            ;;
+        --cot)
+            COT_ARG="--cot"
             shift
             ;;
         *)
@@ -44,8 +49,8 @@ for SOFTWARE_NAME in "${!SOFTWARE[@]}"; do
             LOG_FILE="$OUTPUT_DIR/${MODEL//:/_}_analysis.log"
             
             echo "Running model: $MODEL on $SOFTWARE_NAME (Iteration $ITERATION)"
-            if [ -n "$TOOLING_ARG" ]; then
-                ./run-agent.sh $ENGINE_ARG $TOOLING_ARG "$MODEL" "$SOURCE_URL" 2>&1 | tee "$LOG_FILE"
+            if [ -n "$TOOLING_ARG" ] || [ -n "$COT_ARG" ]; then
+                ./run-agent.sh $ENGINE_ARG $TOOLING_ARG $COT_ARG "$MODEL" "$SOURCE_URL" 2>&1 | tee "$LOG_FILE"
             else
                 ./run-agent.sh $ENGINE_ARG "$MODEL" "$SOURCE_URL" 2>&1 | tee "$LOG_FILE"
             fi

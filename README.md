@@ -52,7 +52,7 @@ Extract the file containing the `chroma_data` directory to the root of this repo
 |   |   +- (...additional files)
 ```
 
-Once the data is present, launch the database by running `./start-chroma.sh`.
+Once the data is present, launch the database by running `./run-chroma.sh`.
 
 ### Ingesting data from NVD/KEV feeds
 

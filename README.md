@@ -39,6 +39,17 @@ the container.
 ## Setting up ChromaDB
 
 To provide information from the National Vulnerability Database (NVD) and Known Exploited Vulnerabilities (KEV) datasets, we use a ChromaDB database.
+
+Before continuing, ensure you have installed `chromadb` along with the other necessary dependencies. You can do this by running the provided setup script or installing them manually from `requirements_agent.txt`:
+
+```bash
+# Using the setup script (recommended)
+./setup.sh
+
+# Or install manually using pip
+pip install -r requirements_agent.txt
+```
+
 The data can be initialized one of two ways.
 
 ### Loading an existing database snapshot

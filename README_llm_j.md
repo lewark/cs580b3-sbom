@@ -59,7 +59,7 @@ Run the script without arguments to parse the root of the default `./logs/parsed
 python -m sbom.llm_j.analyze_logs
 ```
 
-Optionally, set the NVD_PATH environment variable to a directory containing NVD data feed files to include CVE descriptions in the analysis prompt, thereby improving the accuracy. In the near future we will add support for the NVD API as well.
+You must either set the NVD_PATH environment variable to a directory containing NVD data feed files, or the NVD_API_KEY variable to a valid API key.
 
 ### Directory Parsing (Recommended)
 You can target a specific directory representing an application (e.g., `./logs/parsed-logs/tomcat`). The script will recursively traverse the folder, find all `.json` files within its subfolders (like `iteration1`, `iteration2`, etc.), and mirror the directory structure when saving outputs to `./logs/llm-j-analysis-logs/`:

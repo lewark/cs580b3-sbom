@@ -215,7 +215,7 @@ Compares the baseline LLM agent against the tooling agent executing with Chain-o
 
 ```bash
 # 1. Run the baseline (non-tooling) agent
-./run-grid.sh --docker
+./run-grid.sh --docker --cot
 
 # 2. Move the generated logs to a safe backup directory
 mv logs logs_baseline_for_cot

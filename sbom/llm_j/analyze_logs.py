@@ -18,15 +18,15 @@ OLLAMA_MODEL = 'gpt-oss:120b-cloud'
 def extract_cves(data):
     """Extract CVE IDs from the parsed JSON data, falling back to regex if needed."""
     cves = set()
-    
+
     if isinstance(data, dict) and "vulnerabilities" in data:
         for vuln in data["vulnerabilities"]:
             if isinstance(vuln, dict) and "vulnerability_id" in vuln:
                 cves.add(vuln["vulnerability_id"])
-                
+
     if cves:
         return list(cves)
-        
+
     text = data if isinstance(data, str) else json.dumps(data)
     pattern = r'CVE-\d{4}-\d{4,7}'
     return list(set(re.findall(pattern, text)))
@@ -87,11 +87,11 @@ def analyze_with_llmj(cve_id, log_context, vuln_data, nvd_data):
         "format": "json",
         "stream": True
     }
-    
+
     try:
         response = requests.post(OLLAMA_API_URL, json=payload, timeout=120, stream=True)
         response.raise_for_status()
-        
+
         result_text = ""
         import sys
         sys.stdout.write("Model generated output: ")
@@ -104,21 +104,21 @@ def analyze_with_llmj(cve_id, log_context, vuln_data, nvd_data):
                 sys.stdout.write(content)
                 sys.stdout.flush()
         sys.stdout.write("\n")
-        
+
         # Try to parse the JSON returned by the model
         try:
             return json.loads(result_text)
         except json.JSONDecodeError:
             # Fallback if the model didn't return perfect JSON
             return {"raw_output": result_text}
-            
+
     except RequestException as e:
         print("Error communicating with Ollama for {}: {}".format(cve_id, e))
         return {"error": str(e)}
 
 def main():
     import sys
-    
+
     # Default to LOG_DIR if no argument provided
     base_input_dir = LOG_DIR
     if len(sys.argv) > 1:
@@ -127,7 +127,7 @@ def main():
     if not os.path.exists(base_input_dir):
         print("Directory {} not found.".format(base_input_dir))
         return
-        
+
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
 
@@ -137,7 +137,7 @@ def main():
         for f in files:
             if f.endswith('.json'):
                 log_files.append(os.path.join(root, f))
-                
+
     print("Found {} log files in {}. Beginning processing...".format(len(log_files), base_input_dir))
 
     for file_path in log_files:
@@ -153,28 +153,23 @@ def main():
         if not cves:
             print("No CVEs found in {}.".format(file_path))
             continue
-            
+
         print("Found CVEs: {}".format(', '.join(cves)))
-        
+
         results = []
         for cve in cves:
             print("Fetching Vulnrichment data for {}...".format(cve))
             vuln_data = get_vulnrichment_data(cve)
-            nvd_data = None
+            nvd_data = get_nvd_data(cve)
 
-            if os.getenv("NVD_DIR") is None:
-                raise ValueError("NVD_DIR environment variable must be set to a directory containing NVD data feed files")
-            else:
-                nvd_data = get_nvd_data(cve)
-            
             # Narrow down log_context if it's structured
             cve_context = log_data
             if isinstance(log_data, dict) and "vulnerabilities" in log_data:
                 cve_context = [v for v in log_data["vulnerabilities"] if v.get("vulnerability_id") == cve]
-            
+
             print("Performing LLM-J analysis for {} with {}...".format(cve, OLLAMA_MODEL))
             analysis = analyze_with_llmj(cve, cve_context, vuln_data, nvd_data)
-            
+
             result_entry = {
                 "source_log": os.path.basename(file_path),
                 "cve_id": cve,
@@ -186,23 +181,23 @@ def main():
         # Save outputs per file
         rel_dir = os.path.relpath(os.path.dirname(file_path), base_input_dir)
         input_dir_name = os.path.basename(os.path.abspath(base_input_dir))
-        
+
         # Determine current output directory while preserving the folder hierarchy
         if rel_dir == '.':
             current_output_dir = os.path.join(OUTPUT_DIR, input_dir_name)
         else:
             current_output_dir = os.path.join(OUTPUT_DIR, input_dir_name, rel_dir)
-            
+
         if not os.path.exists(current_output_dir):
             os.makedirs(current_output_dir)
 
         output_filename = "llm-j-{}".format(os.path.basename(file_path))
         output_filepath = os.path.join(current_output_dir, output_filename)
-        
+
         print("\nSaving results to {}...".format(output_filepath))
         with open(output_filepath, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=4)
-        
+
     print("\nAnalysis complete!")
 
 if __name__ == '__main__':

@@ -80,6 +80,10 @@ def request_cve(key: str, cve_id: str) -> dict:
 
             if isinstance(vuln, dict):
                 vulns[cve_id] = vuln
+        else:
+            error_msg = f"Response code {response.status_code} received from NVD API"
+            print("Error:", error_msg)
+            return {"error": error_msg}
 
         if vuln is None:
             return {"error": "Not found in Vulnrichment database"}

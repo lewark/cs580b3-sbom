@@ -16,10 +16,10 @@ def parse_agent_log(input_file, output_dir):
         with open(input_file, 'r') as f:
             log_data = json.load(f)
             
-        # The agent's final JSON string is usually in the content of the very last message where role == assistant
+        # The agent's final JSON string is usually in the content of the very last message where role == assistant or type == ai
         final_content = None
         for message in reversed(log_data):
-            if message.get("role") == "assistant" and "content" in message:
+            if (message.get("role") == "assistant" or message.get("type") == "ai") and "content" in message:
                 content = message["content"].strip()
 
                 for match in result_regex.findall(message["content"]):

@@ -162,7 +162,9 @@ def main():
             vuln_data = get_vulnrichment_data(cve)
             nvd_data = None
 
-            if os.getenv("NVD_DIR") is not None:
+            if os.getenv("NVD_DIR") is None:
+                raise ValueError("NVD_DIR environment variable must be set to a directory containing NVD data feed files")
+            else:
                 nvd_data = get_nvd_data(cve)
             
             # Narrow down log_context if it's structured

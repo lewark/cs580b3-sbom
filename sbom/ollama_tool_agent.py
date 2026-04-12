@@ -312,6 +312,9 @@ Example output format:
         elif os.path.exists(known_vuln_path):
             target_file = known_vuln_path
 
+        if not target_file:
+            raise FileNotFoundError(f"No SBOM data found under sbom/vulnerabilities directory for {software_name}")
+
         if target_file:
 #             user_prompt = f"""
 # A JSON vulnerability file containing the dependencies and vulnerabilities has been located at:

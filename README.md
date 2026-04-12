@@ -226,7 +226,13 @@ mv logs logs_baseline_for_cot
 # 4. Move the tooling + CoT logs
 mv logs logs_tooling_cot
 ```
+### 3. Run Parser script to extract classification output in JSON format
+Instructions included in the `README_logs.md` file.
 
+### 4. Run LLM-J analysis script to perform final analysis on parsed logs
+Instructions included in the `README_llm_j.md` file.
+
+### Upload parsed logs and LLM-J results to OneDrive link
 
 
 

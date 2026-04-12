@@ -232,7 +232,7 @@ Instructions included in the `README_logs.md` file.
 ### 4. Run LLM-J analysis script to perform final analysis on parsed logs
 Instructions included in the `README_llm_j.md` file.
 
-### Upload parsed logs and LLM-J results to OneDrive link
+### 5. Upload parsed logs and LLM-J results to OneDrive link
 
 
 

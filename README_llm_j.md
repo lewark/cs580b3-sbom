@@ -24,7 +24,7 @@ As a later extension to this tool, we may add additional LLM-J metrics that capt
     ```bash
     python -m venv venv
     source venv/bin/activate
-    pip install -r requirements.txt 
+    pip install -r requirements.txt
     ```
 
 ## Project Structure
@@ -59,7 +59,7 @@ Run the script without arguments to parse the root of the default `./logs/parsed
 python -m sbom.llm_j.analyze_logs
 ```
 
-You must either set the NVD_PATH environment variable to a directory containing NVD data feed files, or the NVD_API_KEY variable to a valid API key. To obtain an API key for the National Vulnerability Database, use [this form](https://nvd.nist.gov/developers/request-an-api-key).
+To use local NVD data feed files, set the NVD_PATH environment variable to the directory containing them. Otherwise, the script will use the NVD API. In these cases it is recommended to set the NVD_API_KEY variable to a valid API key, since it makes the allowed request interval much faster. To obtain an API key for the National Vulnerability Database, use [this form](https://nvd.nist.gov/developers/request-an-api-key).
 
 ### Directory Parsing (Recommended)
 You can target a specific directory representing an application (e.g., `./logs/parsed-logs/tomcat`). The script will recursively traverse the folder, find all `.json` files within its subfolders (like `iteration1`, `iteration2`, etc.), and mirror the directory structure when saving outputs to `./logs/llm-j-analysis-logs/`:

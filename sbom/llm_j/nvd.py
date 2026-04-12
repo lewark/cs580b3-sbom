@@ -7,7 +7,9 @@ from typing import Optional
 import requests
 
 
+# See https://nvd.nist.gov/developers/start-here for information on rate limits
 NVD_REQUEST_DELAY = 1
+NVD_PUBLIC_REQUEST_DELAY = 10
 
 
 loaded_years: set[str] = set()
@@ -26,10 +28,8 @@ def get_nvd_data(cve_id: str) -> dict:
 
         if cve_id in vulns:
             return vulns[cve_id]
-    elif key is not None:
-        return request_cve(key, cve_id)
 
-    raise ValueError("Either the NVD_DIR or NVD_API_KEY environment variable must be specified to load NVD data")
+    return request_cve(key, cve_id)
 
 
 def get_year(cve_id: str) -> Optional[str]:
@@ -61,16 +61,22 @@ def load_cve_year(year: Optional[str]) -> None:
         vulns[vuln["cve"]["id"]] = vuln
 
 
-def request_cve(key: str, cve_id: str) -> dict:
+def request_cve(key: Optional[str], cve_id: str) -> dict:
     url = "https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=" + cve_id
 
     # Based on https://github.com/vehemont/nvdlib/blob/main/nvdlib/cve.py
     # and https://nvd.nist.gov/developers/start-here
-    headers = {"content-type": "application/json", "apiKey": key}
+    if key is None:
+        headers = {"content-type": "application/json"}
+        delay = NVD_PUBLIC_REQUEST_DELAY
+        print("Warning: NVD_API_KEY environment variable not set. Waiting", delay, "seconds between requests.")
+    else:
+        headers = {"content-type": "application/json", "apiKey": key}
+        delay = NVD_REQUEST_DELAY
 
     try:
         response = requests.get(url, headers=headers, timeout=10)
-        time.sleep(NVD_REQUEST_DELAY)
+        time.sleep(delay)
 
         vuln = None
         if response.status_code == 200:

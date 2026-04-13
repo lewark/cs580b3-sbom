@@ -6,6 +6,8 @@ import glob
 
 from requests.exceptions import RequestException
 
+from sbom.paths import find_json_files
+
 from .vulnrichment import get_vulnrichment_data
 from .nvd import get_nvd_data
 
@@ -131,13 +133,7 @@ def main():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
 
-    # Use os.walk to find all json files recursively
-    log_files = []
-    for root, dirs, files in os.walk(base_input_dir):
-        for f in files:
-            path = os.path.join(root, f)
-            if path.endswith('.json') and ("parsed-logs" in path) and ("llm-j-analysis-logs" not in path) and ("iteration5" not in path) and ("iteration4" not in path):
-                log_files.append(path)
+    log_files = find_json_files(base_input_dir, required_strs=["parsed-logs"], excluded_strs=["llm-j-analysis-logs", "iteration4", "iteration5"])
 
     print("Found {} log files in {}. Beginning processing...".format(len(log_files), base_input_dir))
 

@@ -7,69 +7,76 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import seaborn as sns
 import scipy.stats
+
+from sbom.paths import find_json_files, get_file_categories
 
 pattern = re.compile(r"llm-j-parsed_([a-z0-9\._\-]+)_(\d{4}-\d{2}-\d{2}_\d{6})\.json")
 
 
-def get_model_scores(directory: str):
-    scores: dict[str, list[float]] = {}
+def get_model_scores(directory: str) -> pd.DataFrame:
+    rows = []
 
-    for dirpath, dirnames, filenames in os.walk(directory):
-        for filename in filenames:
-            if not filename.endswith(".json"):
-                continue
+    for file_path in find_json_files(directory, required_dirs=["llm-j-analysis-logs"]):
+        if not file_path.endswith(".json"):
+            continue
 
-            match = pattern.match(filename)
+        filename = os.path.basename(file_path)
 
-            if match is None:
-                continue
-            model_name = match.group(1)
+        match = pattern.match(filename)
 
-            if model_name not in scores:
-                scores[model_name] = []
-            model_scores = scores[model_name]
+        if match is None:
+            continue
+        model_name = match.group(1)
 
-            file_path = os.path.join(dirpath, filename)
-            with open(file_path, 'r') as f:
-                data = json.load(f)
+        with open(file_path, 'r') as f:
+            data = json.load(f)
 
-            for item in data:
-                score = item["llmj_analysis"]["score"]
-                model_scores.append(score)
+        prompt_mode, tool_mode = get_file_categories(file_path)
 
-    return scores
+        for item in data:
+            score = item["llmj_analysis"]["score"]
+            variant = prompt_mode + "/" + tool_mode
+            row = [model_name, prompt_mode, tool_mode, variant, score]
+            rows.append(row)
+
+    return pd.DataFrame(rows, columns=["Model", "Prompt mode", "Tool mode", "Variant", "Score"])
 
 
-def get_statistics(model_scores: dict[str, list[float]]) -> pd.DataFrame:
+def get_statistics(model_scores: pd.DataFrame):
     model_names = sorted(model_scores.keys())
     rows = []
 
-    items = [model_scores[name] for name in model_names if len(model_scores[name]) > 1]
+    items = model_scores.drop(columns="Variant").groupby(["Model", "Prompt mode", "Tool mode"]).agg(["mean", "std", "count"])
+    print(items)
     # run Welch's one-way ANOVA test
-    F = scipy.stats.f_oneway(*items, equal_var=False)
+    # F = scipy.stats.f_oneway(*items, equal_var=False)
 
-    print(F)
+    # make_figure()
+    # sns.barplot(items, y="Model", x="count")
 
-    for i, name in enumerate(model_names):
-        scores = model_scores[name]
-        rows.append([
-            name,
-            np.mean(scores),
-            np.std(scores),
-            len(scores),
-    ])
+    # print(F)
 
-    return pd.DataFrame(rows, columns=["model", "mean", "sd", "count"])
+    # for i, name in enumerate(model_names):
+    #     scores = model_scores[name]
+    #     rows.append([
+    #         name,
+    #         np.mean(scores),
+    #         np.std(scores),
+    #         len(scores),
+    # ])
+
+    return items
 
 
 
-def plot_model_scores(model_scores: dict[str, list[float]]) -> None:
+def plot_model_scores(model_scores: pd.DataFrame) -> None:
     names = sorted(model_scores.keys())
     scores = [model_scores[name] for name in names]
+
     make_figure()
-    plt.boxplot(scores, orientation="horizontal", tick_labels=names)
-    plt.xlabel("LLM-J score")
+    sns.boxplot(model_scores, y="Model", x="Score", hue="Variant")
     plt.savefig("model_scores.pdf")
     plt.savefig("model_scores.png")
 
@@ -78,11 +85,6 @@ def plot_model_bar(model_stats: pd.DataFrame) -> None:
     make_figure()
 
     y = np.arange(len(model_stats))
-
-    plt.barh(y, model_stats["mean"], tick_label=model_stats["model"])
-    plt.xlabel("Mean LLM-J score")
-    plt.savefig("model_scores_bar.pdf")
-    plt.savefig("model_scores_bar.png")
 
     make_figure()
 
@@ -93,7 +95,7 @@ def plot_model_bar(model_stats: pd.DataFrame) -> None:
 
 
 def make_figure():
-    plt.figure(figsize=(5, 3), layout="constrained")
+    plt.figure(figsize=(5 * 2, 3 * 2), layout="constrained")
 
 
 def main():
@@ -102,10 +104,10 @@ def main():
     dir_name = sys.argv[1]
 
     model_scores = get_model_scores(dir_name)
-    model_df = get_statistics(model_scores)
-    print(model_df)
+    get_statistics(model_scores)
+    # print(model_df)
 
-    plot_model_bar(model_df)
+    # plot_model_bar(model_df)
 
     plot_model_scores(model_scores)
 

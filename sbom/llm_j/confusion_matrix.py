@@ -1,4 +1,6 @@
+from collections.abc import Iterable
 import json
+from typing import Optional
 import numpy
 import os
 import re
@@ -20,12 +22,15 @@ INDEXES = { text: i for i, text in enumerate(LABELS) }
 MISSION_WELL_BEING = "medium"
 
 
-def get_confusion_matrices(directory: str) -> dict[str, npt.NDArray]:
+def get_confusion_matrices(directory: str) -> tuple[dict[str, npt.NDArray], dict[str, npt.NDArray]]:
     confusion_matrices = {}
+    confusion_matrices_2 = {}
 
     decision_tree = load_decision_tree()
 
-    for file_path in find_json_files(directory, required_strs=["parsed-logs"], excluded_strs=["llm-j-analysis-logs", "iteration4", "iteration5"]):
+    sboms = load_sboms()
+
+    for file_path in find_json_files(directory, required_strs=["parsed-logs", "tooling", "standard-prompt"], excluded_strs=["llm-j-analysis-logs", "iteration4", "iteration5", "non-tooling"]):
         filename = os.path.basename(file_path)
         if not filename.endswith(".json"):
             continue
@@ -43,22 +48,69 @@ def get_confusion_matrices(directory: str) -> dict[str, npt.NDArray]:
             continue
 
         if model_name not in confusion_matrices:
-            confusion_matrices[model_name] = np.zeros((5, 4))
+            confusion_matrices[model_name] = np.zeros((5, 5))
+            confusion_matrices_2[model_name] = np.zeros((2, 2))
         confusion_matrix = confusion_matrices[model_name]
+
+        project_name = get_relevant_project(sboms.keys(), file_path)
+        assert project_name is not None
+
+        actual_vulns = sboms[project_name]
+        predicted_vulns = set([item["vulnerability_id"] for item in data["vulnerabilities"]])
+
+        tp = len(actual_vulns.intersection(predicted_vulns))
+        fp = len(predicted_vulns.difference(actual_vulns))
+        tn = 0
+        fn = len(actual_vulns.difference(predicted_vulns))
+        mat2 = confusion_matrices_2[model_name]
+        mat2 += np.array([
+            [tp, fn],
+            [fp, tn]
+        ])
 
         for item in data["vulnerabilities"]:
             vuln_id = item["vulnerability_id"]
             predicted_decision = item["ssvc_decision"]
 
             result = get_vulnrichment_ssvc(vuln_id)
+
             if result is None:
                 confusion_matrix[4, INDEXES[predicted_decision]] += 1
-                continue
-            actual_decision = get_decision(decision_tree, result, MISSION_WELL_BEING)
+            else:
+                actual_decision = get_decision(decision_tree, result, MISSION_WELL_BEING)
+                confusion_matrix[INDEXES[actual_decision], INDEXES.get(predicted_decision, 4)] += 1
 
-            confusion_matrix[INDEXES[actual_decision], INDEXES[predicted_decision]] += 1
+    return confusion_matrices, confusion_matrices_2
 
-    return confusion_matrices
+
+def load_sboms() -> dict[str, set[str]]:
+    entries = {}
+
+    sbom_dir = "sbom/vulnerabilities"
+
+    pattern = re.compile(r"^minimal_triage_(\w+)\.json$")
+    for file in os.listdir(sbom_dir):
+        match = pattern.match(file)
+
+        if not match:
+            continue
+
+        project_name = match.group(1)
+
+        with open(os.path.join(sbom_dir, file)) as in_file:
+            vulns = json.load(in_file)
+
+        entries[project_name] = set([vuln["related_cves"] for vuln in vulns])
+
+    return entries
+
+
+def get_relevant_project(projects: Iterable[str], path: str) -> Optional[str]:
+    components = path.split(os.sep)
+    for project in projects:
+        if project in components:
+            return project
+    return None
 
 
 def load_decision_tree() -> dict:
@@ -115,9 +167,20 @@ def make_figure():
 def plot_confusion_matrix(confusion_matrix: npt.NDArray, label: str):
     make_figure()
 
-    midrange = (np.min(confusion_matrix) + np.max(confusion_matrix)) / 2
-
     print(confusion_matrix)
+    draw_grid(confusion_matrix)
+
+    plt.xlabel("Predicted decision")
+    plt.ylabel("Correct decision")
+    plt.xticks(np.arange(5), LABELS + ["Other"])
+    plt.yticks(np.arange(5), LABELS + ["Not listed"])
+
+    plt.savefig(f"confusion_matrix_{label}.pdf")
+    plt.savefig(f"confusion_matrix_{label}.png")
+
+
+def draw_grid(confusion_matrix: npt.NDArray):
+    midrange = (np.min(confusion_matrix) + np.max(confusion_matrix)) / 2
     plt.imshow(confusion_matrix)
     for row in range(confusion_matrix.shape[0]):
         for col in range(confusion_matrix.shape[1]):
@@ -126,13 +189,22 @@ def plot_confusion_matrix(confusion_matrix: npt.NDArray, label: str):
             plt.text(col, row, str(item), ha="center", va="center", color=color)
 
     plt.colorbar()
+
+
+def plot_2x2_confusion_matrix(confusion_matrix: npt.NDArray, label: str):
+    make_figure()
+
+    print(confusion_matrix)
+    draw_grid(confusion_matrix)
+
     plt.xlabel("Predicted decision")
     plt.ylabel("Correct decision")
-    plt.xticks(np.arange(4), LABELS)
-    plt.yticks(np.arange(5), LABELS + ["Not listed"])
+    labels = ["Present", "Not present"]
+    plt.xticks(np.arange(2), labels)
+    plt.yticks(np.arange(2), labels)
 
-    plt.savefig(f"confusion_matrix_{label}.pdf")
-    plt.savefig(f"confusion_matrix_{label}.png")
+    plt.savefig(f"confusion_matrix_{label}_binary.pdf")
+    plt.savefig(f"confusion_matrix_{label}_binary.png")
 
 
 def main():
@@ -140,10 +212,13 @@ def main():
         print("Please enter a directory name")
     dir_name = sys.argv[1]
 
-    confusion_matrices = get_confusion_matrices(dir_name)
+    confusion_matrices, confusion_matrices_2 = get_confusion_matrices(dir_name)
 
     for model_name, confusion_matrix in confusion_matrices.items():
         plot_confusion_matrix(confusion_matrix, model_name)
+
+    for model_name, confusion_matrix in confusion_matrices_2.items():
+        plot_2x2_confusion_matrix(confusion_matrix, model_name)
 
 
 if __name__ == "__main__":

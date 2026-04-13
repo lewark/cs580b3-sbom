@@ -15,7 +15,8 @@ from .nvd import get_nvd_data
 LOG_DIR = 'logs/parsed-logs'
 OUTPUT_DIR = 'logs/llm-j-analysis-logs'
 OLLAMA_API_URL = 'http://localhost:11434/api/chat'
-OLLAMA_MODEL = 'gpt-oss:120b-cloud'
+#OLLAMA_MODEL = 'gpt-oss:120b-cloud'
+OLLAMA_MODEL = 'gpt-oss:20b'
 
 def extract_cves(data):
     """Extract CVE IDs from the parsed JSON data, falling back to regex if needed."""
@@ -40,7 +41,9 @@ def analyze_with_llmj(cve_id, log_context, vuln_data, nvd_data):
     """
 
     log_text = json.dumps(log_context, indent=2)
-    vuln_text = json.dumps(vuln_data, indent=2)
+    vuln_text = json.dumps(vuln_data, indent=2)[:16384]
+
+    print("Vulnrichment", len(vuln_text))
 
     prompt_params = """CVE ID: {0}
 
@@ -51,7 +54,8 @@ def analyze_with_llmj(cve_id, log_context, vuln_data, nvd_data):
     {2}""".format(cve_id, log_text, vuln_text)
 
     if nvd_data is not None:
-        nvd_text = json.dumps(nvd_data, indent=2)
+        nvd_text = json.dumps(nvd_data, indent=2)[:16384]
+        print("NVD", len(nvd_text))
         prompt_params += (f"""
 
     Ground Truth (NVD):
@@ -87,6 +91,9 @@ def analyze_with_llmj(cve_id, log_context, vuln_data, nvd_data):
             }
         ],
         "format": "json",
+        "options": {
+            "num_ctx": 32768
+        },
         "stream": True
     }
 

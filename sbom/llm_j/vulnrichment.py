@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Optional
 
 import requests
 from requests.exceptions import RequestException
@@ -19,7 +20,12 @@ def fetch_online_vulnrichment_data(cve_id: str) -> dict:
     Fetch CVE data from CISA's Vulnrichment repository.
     The repo uses CVE JSON 5.0 directory structure.
     """
-    url = "https://raw.githubusercontent.com/cisagov/vulnrichment/develop/" + get_vulnrichment_path(cve_id)
+    vulnrichment_path = get_vulnrichment_path(cve_id)
+
+    if vulnrichment_path is None:
+        return {"error": "Invalid CVE identifier"}
+
+    url = "https://raw.githubusercontent.com/cisagov/vulnrichment/develop/" + vulnrichment_path
 
     try:
         response = requests.get(url, timeout=10)
@@ -35,6 +41,10 @@ def fetch_online_vulnrichment_data(cve_id: str) -> dict:
 
 def load_vulnrichment_data_from_dir(cve_id: str, directory: str) -> dict:
     item_path = get_vulnrichment_path(cve_id)
+
+    if item_path is None:
+        return {"error": "Invalid CVE identifier"}
+
     full_path = os.path.join(directory, item_path)
 
     if os.path.isfile(full_path):
@@ -44,7 +54,7 @@ def load_vulnrichment_data_from_dir(cve_id: str, directory: str) -> dict:
     return {"error": "Not found in Vulnrichment database"}
 
 
-def get_vulnrichment_path(cve_id: str) -> str:
+def get_vulnrichment_path(cve_id: str) -> Optional[str]:
     parts = cve_id.split('-')
     if len(parts) != 3:
         return None

@@ -22,7 +22,12 @@ INDEXES = { text: i for i, text in enumerate(LABELS) }
 MISSION_WELL_BEING = "medium"
 
 
-def get_confusion_matrices(directory: str) -> tuple[dict[str, npt.NDArray], dict[str, npt.NDArray]]:
+def get_confusion_matrices(
+    directory: str,
+    required_dirs: list[str],
+    required_strs: list[str],
+    mission_well_being: str
+) -> tuple[dict[str, npt.NDArray], dict[str, npt.NDArray]]:
     confusion_matrices = {}
     confusion_matrices_2 = {}
 
@@ -30,7 +35,10 @@ def get_confusion_matrices(directory: str) -> tuple[dict[str, npt.NDArray], dict
 
     sboms = load_sboms()
 
-    for file_path in find_json_files(directory, required_strs=["parsed-logs", "tooling", "standard-prompt"], excluded_strs=["llm-j-analysis-logs", "iteration4", "iteration5", "non-tooling"]):
+    for file_path in find_json_files(
+        directory, required_dirs=["parsed-logs"] + required_dirs,
+        excluded_dirs=["llm-j-analysis-logs", "iteration4", "iteration5"]
+    ):
         filename = os.path.basename(file_path)
         if not filename.endswith(".json"):
             continue
@@ -77,10 +85,30 @@ def get_confusion_matrices(directory: str) -> tuple[dict[str, npt.NDArray], dict
             if result is None:
                 confusion_matrix[4, INDEXES[predicted_decision]] += 1
             else:
-                actual_decision = get_decision(decision_tree, result, MISSION_WELL_BEING)
+                actual_decision = get_decision(decision_tree, result, mission_well_being)
                 confusion_matrix[INDEXES[actual_decision], INDEXES.get(predicted_decision, 4)] += 1
 
     return confusion_matrices, confusion_matrices_2
+
+
+def get_metrics_df(confusion_matrices_2: dict[str, npt.NDArray]) -> pd.DataFrame:
+    metrics_rows = []
+
+    for model_name, mat in confusion_matrices_2.items():
+        tp = mat[0,0]
+        fn = mat[0,1]
+        fp = mat[1,0]
+
+        # actual_count = tp + fn
+        # predicted_count = tp + fp
+
+        precision = tp / (tp + fp)
+        recall = tp / (tp + fn)
+        f1 = 2 * tp / ((2 * tp) + fp + fn)
+
+        metrics_rows.append((model_name, precision, recall, f1))
+
+    return pd.DataFrame(metrics_rows, columns=["Model", "Precision", "Recall", "F1"])
 
 
 def load_sboms() -> dict[str, set[str]]:
@@ -118,7 +146,7 @@ def load_decision_tree() -> dict:
     items = {}
 
     for row in table.iloc:
-        print(row)
+        # print(row)
         key = tuple([row[x] for x in ["Exploitation", "Automatable", "Technical Impact", "Mission and Well-being"]])
         value = row["Decision"]
 
@@ -161,13 +189,13 @@ def get_vulnrichment_ssvc(vuln_id: str):
 
 
 def make_figure():
-    plt.figure(figsize=(4, 3), layout="constrained")
+    plt.figure(figsize=(4.25, 3), layout="constrained")
 
 
 def plot_confusion_matrix(confusion_matrix: npt.NDArray, label: str):
     make_figure()
 
-    print(confusion_matrix)
+    # print(confusion_matrix)
     draw_grid(confusion_matrix)
 
     plt.xlabel("Predicted decision")
@@ -194,7 +222,7 @@ def draw_grid(confusion_matrix: npt.NDArray):
 def plot_2x2_confusion_matrix(confusion_matrix: npt.NDArray, label: str):
     make_figure()
 
-    print(confusion_matrix)
+    # print(confusion_matrix)
     draw_grid(confusion_matrix)
 
     plt.xlabel("Predicted decision")
@@ -212,13 +240,33 @@ def main():
         print("Please enter a directory name")
     dir_name = sys.argv[1]
 
-    confusion_matrices, confusion_matrices_2 = get_confusion_matrices(dir_name)
+    labels = [
+        ("rq1", ["standard-prompt", "non-tooling"]),
+        ("rq2", ["standard-prompt", "tooling"]),
+        ("rq3-non-tooling", ["chain-of-thought-prompt", "non-tooling"]),
+        ("rq3-tooling", ["chain-of-thought-prompt", "tooling"])
+    ]
 
-    for model_name, confusion_matrix in confusion_matrices.items():
-        plot_confusion_matrix(confusion_matrix, model_name)
+    for label, required_dirs in labels:
+        print(label)
 
-    for model_name, confusion_matrix in confusion_matrices_2.items():
-        plot_2x2_confusion_matrix(confusion_matrix, model_name)
+        confusion_matrices, confusion_matrices_2 = get_confusion_matrices(dir_name, required_dirs, [], MISSION_WELL_BEING)
+
+        metrics_df = get_metrics_df(confusion_matrices_2)
+        print(metrics_df)
+
+        if label in ["rq1", "rq2"]:
+            target_model = "glm-5.1_cloud"
+            for mission_well_being in ["low", "medium", "high"]:
+                confusion_matrices, confusion_matrices_2 = get_confusion_matrices(dir_name, required_dirs, [target_model], mission_well_being)
+                plot_confusion_matrix(confusion_matrices[target_model], f"{label}-{mission_well_being}-{target_model}")
+                # plot_2x2_confusion_matrix(confusion_matrices_2[target_model], label + "-" + target_model)
+
+        # for model_name, confusion_matrix in confusion_matrices.items():
+        #     plot_confusion_matrix(confusion_matrix, model_name)
+
+        # for model_name, confusion_matrix in confusion_matrices_2.items():
+        #     plot_2x2_confusion_matrix(confusion_matrix, model_name)
 
 
 if __name__ == "__main__":

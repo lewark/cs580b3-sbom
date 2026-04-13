@@ -18,7 +18,7 @@ pattern = re.compile(r"llm-j-parsed_([a-z0-9\._\-]+)_(\d{4}-\d{2}-\d{2}_\d{6})\.
 def get_model_scores(directory: str) -> pd.DataFrame:
     rows = []
 
-    for file_path in find_json_files(directory, required_dirs=["llm-j-analysis-logs"]):
+    for file_path in find_json_files(directory, required_dirs=["llm-j-analysis-logs"], excluded_dirs=["iteration4", "iteration5"]):
         if not file_path.endswith(".json"):
             continue
 

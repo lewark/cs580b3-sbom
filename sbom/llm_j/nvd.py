@@ -26,6 +26,8 @@ def get_nvd_data(cve_id: str) -> dict:
 
         if cve_id in vulns:
             return vulns[cve_id]
+
+        return {"error": "Not found in NVD database"}
     elif key is not None:
         return request_cve(key, cve_id)
 
@@ -86,7 +88,7 @@ def request_cve(key: str, cve_id: str) -> dict:
             return {"error": error_msg}
 
         if vuln is None:
-            return {"error": "Not found in Vulnrichment database"}
+            return {"error": "Not found in NVD database"}
         else:
             return vuln
     except requests.RequestException as e:

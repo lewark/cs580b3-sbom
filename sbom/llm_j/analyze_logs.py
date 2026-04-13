@@ -135,12 +135,33 @@ def main():
     log_files = []
     for root, dirs, files in os.walk(base_input_dir):
         for f in files:
-            if f.endswith('.json'):
-                log_files.append(os.path.join(root, f))
+            path = os.path.join(root, f)
+            if path.endswith('.json') and ("parsed-logs" in path) and ("llm-j-analysis-logs" not in path) and ("iteration5" not in path) and ("iteration4" not in path):
+                log_files.append(path)
 
     print("Found {} log files in {}. Beginning processing...".format(len(log_files), base_input_dir))
 
     for file_path in log_files:
+        # Save outputs per file
+        rel_dir = os.path.relpath(os.path.dirname(file_path), base_input_dir)
+        input_dir_name = os.path.basename(os.path.abspath(base_input_dir))
+
+        # Determine current output directory while preserving the folder hierarchy
+        if rel_dir == '.':
+            current_output_dir = os.path.join(OUTPUT_DIR, input_dir_name)
+        else:
+            current_output_dir = os.path.join(OUTPUT_DIR, input_dir_name, rel_dir)
+
+        if not os.path.exists(current_output_dir):
+            os.makedirs(current_output_dir)
+
+        output_filename = "llm-j-{}".format(os.path.basename(file_path))
+        output_filepath = os.path.join(current_output_dir, output_filename)
+
+        if os.path.isfile(output_filepath):
+            print(f"File {file_path} already processed at {output_filepath}, skipping")
+            continue
+
         print("\nProcessing {}...".format(file_path))
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
@@ -177,22 +198,6 @@ def main():
                 "llmj_analysis": analysis
             }
             results.append(result_entry)
-
-        # Save outputs per file
-        rel_dir = os.path.relpath(os.path.dirname(file_path), base_input_dir)
-        input_dir_name = os.path.basename(os.path.abspath(base_input_dir))
-
-        # Determine current output directory while preserving the folder hierarchy
-        if rel_dir == '.':
-            current_output_dir = os.path.join(OUTPUT_DIR, input_dir_name)
-        else:
-            current_output_dir = os.path.join(OUTPUT_DIR, input_dir_name, rel_dir)
-
-        if not os.path.exists(current_output_dir):
-            os.makedirs(current_output_dir)
-
-        output_filename = "llm-j-{}".format(os.path.basename(file_path))
-        output_filepath = os.path.join(current_output_dir, output_filename)
 
         print("\nSaving results to {}...".format(output_filepath))
         with open(output_filepath, 'w', encoding='utf-8') as f:

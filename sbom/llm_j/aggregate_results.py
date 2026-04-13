@@ -41,7 +41,7 @@ def get_model_scores(directory: str) -> pd.DataFrame:
             row = [model_name, prompt_mode, tool_mode, variant, score]
             rows.append(row)
 
-    return pd.DataFrame(rows, columns=["Model", "Prompt mode", "Tool mode", "Variant", "Score"])
+    return pd.DataFrame(rows, columns=["Model", "Prompt mode", "Tool mode", "Variant", "LLM-J Score"])
 
 
 def get_statistics(model_scores: pd.DataFrame):
@@ -72,13 +72,29 @@ def get_statistics(model_scores: pd.DataFrame):
 
 
 def plot_model_scores(model_scores: pd.DataFrame) -> None:
-    names = sorted(model_scores.keys())
-    scores = [model_scores[name] for name in names]
+    make_figure()
+    sns.boxplot(model_scores, y="Model", x="LLM-J Score", hue="Variant")
+    plt.savefig("llmj_scores_all.pdf")
+    plt.savefig("llmj_scores_all.png")
+
 
     make_figure()
-    sns.boxplot(model_scores, y="Model", x="Score", hue="Variant")
-    plt.savefig("model_scores.pdf")
-    plt.savefig("model_scores.png")
+    model_scores_rq1 = model_scores[model_scores["Variant"] == "standard-prompt/non-tooling"]
+    sns.boxplot(model_scores_rq1, y="Model", x="LLM-J Score")
+    plt.savefig("llmj_scores_rq1.pdf")
+    plt.savefig("llmj_scores_rq1.png")
+
+    make_figure()
+    model_scores_rq2 = model_scores[model_scores["Variant"] == "standard-prompt/tooling"]
+    sns.boxplot(model_scores_rq2, y="Model", x="LLM-J Score")
+    plt.savefig("llmj_scores_rq2.pdf")
+    plt.savefig("llmj_scores_rq2.png")
+
+    make_figure()
+    model_scores_rq3 = model_scores[model_scores["Prompt mode"] == "chain-of-thought-prompt"]
+    sns.boxplot(model_scores_rq3, y="Model", x="LLM-J Score", hue="Tool mode")
+    plt.savefig("llmj_scores_rq3.pdf")
+    plt.savefig("llmj_scores_rq3.png")
 
 
 def plot_model_bar(model_stats: pd.DataFrame) -> None:
@@ -95,7 +111,7 @@ def plot_model_bar(model_stats: pd.DataFrame) -> None:
 
 
 def make_figure():
-    plt.figure(figsize=(5 * 2, 3 * 2), layout="constrained")
+    plt.figure(figsize=(5 * 1, 3 * 1), layout="constrained")
 
 
 def main():

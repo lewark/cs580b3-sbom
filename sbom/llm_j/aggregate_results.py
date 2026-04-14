@@ -45,13 +45,37 @@ def get_model_scores(directory: str) -> pd.DataFrame:
 
 
 def get_statistics(model_scores: pd.DataFrame):
-    model_names = sorted(model_scores.keys())
-    rows = []
+    model_names = sorted(set(model_scores["Model"]))
+
+    labels = [
+        ("rq1", ["standard-prompt", "non-tooling"]),
+        ("rq2", ["standard-prompt", "tooling"]),
+        ("rq3-non-tooling", ["chain-of-thought-prompt", "non-tooling"]),
+        ("rq3-tooling", ["chain-of-thought-prompt", "tooling"])
+    ]
 
     items = model_scores.drop(columns="Variant").groupby(["Model", "Prompt mode", "Tool mode"]).agg(["mean", "std", "count"])
     print(items)
-    # run Welch's one-way ANOVA test
-    # F = scipy.stats.f_oneway(*items, equal_var=False)
+
+    for rq, tags in labels:
+        prompt_mode, tooling_mode = tags
+
+        variant = prompt_mode + "/" + tooling_mode
+
+        scores_filtered = model_scores[model_scores["Variant"] == variant]
+
+        scores_by_model: list[list[float]] = []
+        filtered_names = []
+        for model_name in model_names:
+            model_series = scores_filtered[scores_filtered["Model"] == model_name]["LLM-J Score"]
+            if len(model_series) > 0:
+                scores_by_model.append(list(model_series))
+                filtered_names.append(model_name)
+
+        # print(scores_by_model)
+        # run Welch's one-way ANOVA test
+        F = scipy.stats.f_oneway(*scores_by_model, equal_var=False)
+        print(rq, F)
 
     # make_figure()
     # sns.barplot(items, y="Model", x="count")

@@ -189,7 +189,7 @@ def get_vulnrichment_ssvc(vuln_id: str):
 
 
 def make_figure():
-    plt.figure(figsize=(4.25, 3), layout="constrained")
+    plt.figure(figsize=(4.3, 3), layout="constrained")
 
 
 def plot_confusion_matrix(confusion_matrix: npt.NDArray, label: str):
@@ -203,8 +203,8 @@ def plot_confusion_matrix(confusion_matrix: npt.NDArray, label: str):
     plt.xticks(np.arange(5), LABELS + ["Other"])
     plt.yticks(np.arange(5), LABELS + ["Not listed"])
 
-    plt.savefig(f"confusion_matrix_{label}.pdf")
-    plt.savefig(f"confusion_matrix_{label}.png")
+    plt.savefig(f"figures/confusion_matrix_{label}.pdf")
+    plt.savefig(f"figures/confusion_matrix_{label}.png")
 
 
 def draw_grid(confusion_matrix: npt.NDArray):
@@ -231,8 +231,8 @@ def plot_2x2_confusion_matrix(confusion_matrix: npt.NDArray, label: str):
     plt.xticks(np.arange(2), labels)
     plt.yticks(np.arange(2), labels)
 
-    plt.savefig(f"confusion_matrix_{label}_binary.pdf")
-    plt.savefig(f"confusion_matrix_{label}_binary.png")
+    plt.savefig(f"figures/confusion_matrix_{label}_binary.pdf")
+    plt.savefig(f"figures/confusion_matrix_{label}_binary.png")
 
 
 def main():
@@ -254,13 +254,14 @@ def main():
 
         metrics_df = get_metrics_df(confusion_matrices_2)
         print(metrics_df)
+        
+        target_model = "glm-5.1_cloud"
+        plot_2x2_confusion_matrix(confusion_matrices_2[target_model], label + "-" + target_model)
 
-        if label in ["rq1", "rq2"]:
-            target_model = "glm-5.1_cloud"
-            for mission_well_being in ["low", "medium", "high"]:
-                confusion_matrices, confusion_matrices_2 = get_confusion_matrices(dir_name, required_dirs, [target_model], mission_well_being)
-                plot_confusion_matrix(confusion_matrices[target_model], f"{label}-{mission_well_being}-{target_model}")
-                # plot_2x2_confusion_matrix(confusion_matrices_2[target_model], label + "-" + target_model)
+        for mission_well_being in ["low", "medium", "high"]:
+            confusion_matrices, confusion_matrices_2 = get_confusion_matrices(dir_name, required_dirs, [target_model], mission_well_being)
+            label2 = f"{label}-{mission_well_being}-{target_model}"
+            plot_confusion_matrix(confusion_matrices[target_model], label2)
 
         # for model_name, confusion_matrix in confusion_matrices.items():
         #     plot_confusion_matrix(confusion_matrix, model_name)

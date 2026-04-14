@@ -74,27 +74,47 @@ def get_statistics(model_scores: pd.DataFrame):
 def plot_model_scores(model_scores: pd.DataFrame) -> None:
     make_figure()
     sns.boxplot(model_scores, y="Model", x="LLM-J Score", hue="Variant")
-    plt.savefig("llmj_scores_all.pdf")
-    plt.savefig("llmj_scores_all.png")
-
+    plt.savefig("figures/llmj_scores_all.pdf")
+    plt.savefig("figures/llmj_scores_all.png")
 
     make_figure()
     model_scores_rq1 = model_scores[model_scores["Variant"] == "standard-prompt/non-tooling"]
     sns.boxplot(model_scores_rq1, y="Model", x="LLM-J Score")
-    plt.savefig("llmj_scores_rq1.pdf")
-    plt.savefig("llmj_scores_rq1.png")
+    plt.savefig("figures/llmj_scores_rq1.pdf")
+    plt.savefig("figures/llmj_scores_rq1.png")
+
+    make_figure()
+    model_counts_rq1 = model_scores_rq1.assign(Count=1).groupby("Model").agg("count")
+    print(model_counts_rq1)
+    sns.barplot(model_counts_rq1, y="Model", x="Count")
+    plt.savefig("figures/vuln_counts_rq1.pdf")
+    plt.savefig("figures/vuln_counts_rq1.png")
 
     make_figure()
     model_scores_rq2 = model_scores[model_scores["Variant"] == "standard-prompt/tooling"]
     sns.boxplot(model_scores_rq2, y="Model", x="LLM-J Score")
-    plt.savefig("llmj_scores_rq2.pdf")
-    plt.savefig("llmj_scores_rq2.png")
+    plt.savefig("figures/llmj_scores_rq2.pdf")
+    plt.savefig("figures/llmj_scores_rq2.png")
+
+    make_figure()
+    model_counts_rq2 = model_scores_rq2.assign(Count=1).groupby("Model").agg("count")
+    print(model_counts_rq2)
+    sns.barplot(model_counts_rq2, y="Model", x="Count")
+    plt.savefig("figures/vuln_counts_rq2.pdf")
+    plt.savefig("figures/vuln_counts_rq2.png")
 
     make_figure()
     model_scores_rq3 = model_scores[model_scores["Prompt mode"] == "chain-of-thought-prompt"]
     sns.boxplot(model_scores_rq3, y="Model", x="LLM-J Score", hue="Tool mode")
-    plt.savefig("llmj_scores_rq3.pdf")
-    plt.savefig("llmj_scores_rq3.png")
+    plt.savefig("figures/llmj_scores_rq3.pdf")
+    plt.savefig("figures/llmj_scores_rq3.png")
+
+    make_figure()
+    model_counts_rq3 = model_scores_rq3.assign(Count=1).groupby(["Model", "Tool mode"]).agg("count")
+    print(model_counts_rq3)
+    sns.barplot(model_counts_rq3, y="Model", x="Count", hue="Tool mode")
+    plt.savefig("figures/vuln_counts_rq3.pdf")
+    plt.savefig("figures/vuln_counts_rq3.png")
 
 
 def plot_model_bar(model_stats: pd.DataFrame) -> None:
@@ -106,8 +126,8 @@ def plot_model_bar(model_stats: pd.DataFrame) -> None:
 
     plt.barh(y, model_stats["count"], tick_label=model_stats["model"])
     plt.xlabel("Total reported vulnerabilities")
-    plt.savefig("model_scores_count.pdf")
-    plt.savefig("model_scores_count.png")
+    plt.savefig("figures/model_scores_count.pdf")
+    plt.savefig("figures/model_scores_count.png")
 
 
 def make_figure():

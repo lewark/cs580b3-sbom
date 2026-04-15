@@ -57,6 +57,8 @@ def get_statistics(model_scores: pd.DataFrame):
     items = model_scores.drop(columns="Variant").groupby(["Model", "Prompt mode", "Tool mode"]).agg(["mean", "std", "count"])
     print(items)
 
+    rq1_values, rq2_values = {}, {}
+
     for rq, tags in labels:
         prompt_mode, tooling_mode = tags
 
@@ -64,18 +66,46 @@ def get_statistics(model_scores: pd.DataFrame):
 
         scores_filtered = model_scores[model_scores["Variant"] == variant]
 
-        scores_by_model: list[list[float]] = []
-        filtered_names = []
+        scores_by_model: dict[str, list[float]] = {}
         for model_name in model_names:
             model_series = scores_filtered[scores_filtered["Model"] == model_name]["LLM-J Score"]
             if len(model_series) > 0:
-                scores_by_model.append(list(model_series))
-                filtered_names.append(model_name)
+                scores_by_model[model_name] = list(model_series)
 
         # print(scores_by_model)
         # run Kruskal-Wallis test
-        F = scipy.stats.kruskal(*scores_by_model)
+        values = scores_by_model.values()
+        F = scipy.stats.kruskal(*values)
         print(rq, F)
+
+
+        if rq == "rq1":
+            rq1_values = scores_by_model
+        elif rq == "rq2":
+            rq2_values = scores_by_model
+
+        # for i, model_name1 in enumerate(filtered_names):
+        #     for j, model_name2 in enumerate(filtered_names):
+        #         if j <= i:
+        #             continue
+        #         x = scores_by_model[i]
+        #         y = scores_by_model[j]
+        #         res = scipy.stats.mannwhitneyu(x, y)
+        #         if res.pvalue <= 0.05:
+        #             print(model_name1, model_name2, res)
+
+    print("Comparison of non-tooling (RQ1) and tooling (RQ2) models:")
+    joined_names = sorted(
+        set(rq1_values.keys())
+        .intersection(
+            set(rq2_values.keys())
+        )
+    )
+    for model_name in joined_names:
+        x = rq1_values[model_name]
+        y = rq2_values[model_name]
+        result = scipy.stats.mannwhitneyu(x, y)
+        print(model_name, np.median(x), np.median(y), result)
 
     # make_figure()
     # sns.barplot(items, y="Model", x="count")
@@ -109,7 +139,7 @@ def plot_model_scores(model_scores: pd.DataFrame) -> None:
 
     make_figure()
     model_counts_rq1 = model_scores_rq1.assign(Count=1).groupby("Model").agg("count")
-    print(model_counts_rq1)
+    # print(model_counts_rq1)
     sns.barplot(model_counts_rq1, y="Model", x="Count")
     plt.savefig("figures/vuln_counts_rq1.pdf")
     plt.savefig("figures/vuln_counts_rq1.png")
@@ -122,7 +152,7 @@ def plot_model_scores(model_scores: pd.DataFrame) -> None:
 
     make_figure()
     model_counts_rq2 = model_scores_rq2.assign(Count=1).groupby("Model").agg("count")
-    print(model_counts_rq2)
+    # print(model_counts_rq2)
     sns.barplot(model_counts_rq2, y="Model", x="Count")
     plt.savefig("figures/vuln_counts_rq2.pdf")
     plt.savefig("figures/vuln_counts_rq2.png")
@@ -135,7 +165,7 @@ def plot_model_scores(model_scores: pd.DataFrame) -> None:
 
     make_figure()
     model_counts_rq3 = model_scores_rq3.assign(Count=1).groupby(["Model", "Tool mode"]).agg("count")
-    print(model_counts_rq3)
+    # print(model_counts_rq3)
     sns.barplot(model_counts_rq3, y="Model", x="Count", hue="Tool mode")
     plt.savefig("figures/vuln_counts_rq3.pdf")
     plt.savefig("figures/vuln_counts_rq3.png")

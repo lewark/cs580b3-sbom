@@ -73,8 +73,8 @@ def get_statistics(model_scores: pd.DataFrame):
                 filtered_names.append(model_name)
 
         # print(scores_by_model)
-        # run Welch's one-way ANOVA test
-        F = scipy.stats.f_oneway(*scores_by_model, equal_var=False)
+        # run Kruskal-Wallis test
+        F = scipy.stats.kruskal(*scores_by_model)
         print(rq, F)
 
     # make_figure()

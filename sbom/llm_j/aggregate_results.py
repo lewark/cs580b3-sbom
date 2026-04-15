@@ -57,7 +57,7 @@ def get_statistics(model_scores: pd.DataFrame):
     items = model_scores.drop(columns="Variant").groupby(["Model", "Prompt mode", "Tool mode"]).agg(["mean", "std", "count"])
     print(items)
 
-    rq1_values, rq2_values = {}, {}
+    rq1_values, rq2_values, rq3_non_tooling_values, rq3_tooling_values = {}, {}, {}, {}
 
     for rq, tags in labels:
         prompt_mode, tooling_mode = tags
@@ -83,6 +83,10 @@ def get_statistics(model_scores: pd.DataFrame):
             rq1_values = scores_by_model
         elif rq == "rq2":
             rq2_values = scores_by_model
+        elif rq == "rq3-non-tooling":
+            rq3_non_tooling_values = scores_by_model
+        elif rq == "rq3-tooling":
+            rq3_tooling_values = scores_by_model
 
         # for i, model_name1 in enumerate(filtered_names):
         #     for j, model_name2 in enumerate(filtered_names):
@@ -94,18 +98,12 @@ def get_statistics(model_scores: pd.DataFrame):
         #         if res.pvalue <= 0.05:
         #             print(model_name1, model_name2, res)
 
+    
     print("Comparison of non-tooling (RQ1) and tooling (RQ2) models:")
-    joined_names = sorted(
-        set(rq1_values.keys())
-        .intersection(
-            set(rq2_values.keys())
-        )
-    )
-    for model_name in joined_names:
-        x = rq1_values[model_name]
-        y = rq2_values[model_name]
-        result = scipy.stats.mannwhitneyu(x, y)
-        print(model_name, np.median(x), np.median(y), result)
+    compare_model_llmj_values(rq1_values, rq2_values)
+
+    print("Comparison of tooling (RQ2) and tooling CoT (RQ3) models:")
+    compare_model_llmj_values(rq2_values, rq3_tooling_values)
 
     # make_figure()
     # sns.barplot(items, y="Model", x="count")
@@ -122,6 +120,20 @@ def get_statistics(model_scores: pd.DataFrame):
     # ])
 
     return items
+
+
+def compare_model_llmj_values(values_a, values_b):
+    joined_names = sorted(
+        set(values_a.keys())
+        .intersection(
+            set(values_b.keys())
+        )
+    )
+    for model_name in joined_names:
+        x = values_a[model_name]
+        y = values_b[model_name]
+        result = scipy.stats.mannwhitneyu(x, y)
+        print(model_name, np.median(x), np.median(y), result)
 
 
 

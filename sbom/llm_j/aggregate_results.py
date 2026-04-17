@@ -45,40 +45,30 @@ def get_model_scores(directory: str) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=["Model", "Prompt mode", "Tool mode", "Variant", "LLM-J Score"])
 
 
+LABELS = [
+    ("rq1", ["standard-prompt", "non-tooling"]),
+    ("rq2", ["standard-prompt", "tooling"]),
+    ("rq3-non-tooling", ["chain-of-thought-prompt", "non-tooling"]),
+    ("rq3-tooling", ["chain-of-thought-prompt", "tooling"])
+]
+
+
 def get_statistics(model_scores: pd.DataFrame):
     model_names = sorted(set(model_scores["Model"]))
-
-    labels = [
-        ("rq1", ["standard-prompt", "non-tooling"]),
-        ("rq2", ["standard-prompt", "tooling"]),
-        ("rq3-non-tooling", ["chain-of-thought-prompt", "non-tooling"]),
-        ("rq3-tooling", ["chain-of-thought-prompt", "tooling"])
-    ]
 
     items = model_scores.drop(columns="Variant").groupby(["Model", "Prompt mode", "Tool mode"]).agg(["mean", "std", "count"])
     # print(items)
 
     rq1_values, rq2_values, rq3_non_tooling_values, rq3_tooling_values = {}, {}, {}, {}
 
-    for rq, tags in labels:
+    for rq, tags in LABELS:
         prompt_mode, tooling_mode = tags
+        scores_by_model = get_scores_by_model(model_scores, model_names, prompt_mode, tooling_mode)
 
-        variant = prompt_mode + "/" + tooling_mode
-
-        scores_filtered = model_scores[model_scores["Variant"] == variant]
-
-        scores_by_model: dict[str, list[float]] = {}
-        for model_name in model_names:
-            model_series = scores_filtered[scores_filtered["Model"] == model_name]["LLM-J Score"]
-            if len(model_series) > 0:
-                scores_by_model[model_name] = list(model_series)
-
-        # print(scores_by_model)
         # run Kruskal-Wallis test
         values = scores_by_model.values()
         F = scipy.stats.kruskal(*values)
         print(f"{rq}: H={F.statistic} p={F.pvalue}")
-
 
         if rq == "rq1":
             rq1_values = scores_by_model
@@ -88,17 +78,6 @@ def get_statistics(model_scores: pd.DataFrame):
             rq3_non_tooling_values = scores_by_model
         elif rq == "rq3-tooling":
             rq3_tooling_values = scores_by_model
-
-        # for i, model_name1 in enumerate(filtered_names):
-        #     for j, model_name2 in enumerate(filtered_names):
-        #         if j <= i:
-        #             continue
-        #         x = scores_by_model[i]
-        #         y = scores_by_model[j]
-        #         res = scipy.stats.mannwhitneyu(x, y)
-        #         if res.pvalue <= 0.05:
-        #             print(model_name1, model_name2, res)
-
     
     print("\nComparison of non-tooling (RQ1) and tooling (RQ2) models:")
     compare_model_llmj_values(rq1_values, rq2_values)
@@ -106,21 +85,39 @@ def get_statistics(model_scores: pd.DataFrame):
     print("\nComparison of tooling (RQ2) and tooling CoT (RQ3) models:")
     compare_model_llmj_values(rq2_values, rq3_tooling_values)
 
-    # make_figure()
-    # sns.barplot(items, y="Model", x="count")
-
-    # print(F)
-
-    # for i, name in enumerate(model_names):
-    #     scores = model_scores[name]
-    #     rows.append([
-    #         name,
-    #         np.mean(scores),
-    #         np.std(scores),
-    #         len(scores),
-    # ])
-
     return items
+
+
+def check_pairwise_u(filtered_names: list[str], scores_by_model: dict[str, list[float]]):
+    # Currently unused
+    for i, model_name1 in enumerate(filtered_names):
+        for j, model_name2 in enumerate(filtered_names):
+            if j <= i:
+                continue
+            x = scores_by_model[model_name1]
+            y = scores_by_model[model_name2]
+            res = scipy.stats.mannwhitneyu(x, y)
+            if res.pvalue <= 0.05:
+                print(model_name1, model_name2, res)
+
+
+def get_scores_by_model(
+    model_scores: pd.DataFrame,
+    model_names: list[str],
+    prompt_mode: str,
+    tooling_mode: str
+) -> dict[str, list[float]]:
+
+    variant = prompt_mode + "/" + tooling_mode
+    scores_filtered = model_scores[model_scores["Variant"] == variant]
+
+    scores_by_model: dict[str, list[float]] = {}
+    for model_name in model_names:
+        model_series = scores_filtered[scores_filtered["Model"] == model_name]["LLM-J Score"]
+        if len(model_series) > 0:
+            scores_by_model[model_name] = list(model_series)
+
+    return scores_by_model
 
 
 def compare_model_llmj_values(values_a, values_b):

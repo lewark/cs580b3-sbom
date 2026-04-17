@@ -213,6 +213,7 @@ def main():
         os.mkdir("figures")
 
     plot_model_scores(model_scores)
+    print("\nWrote figures to 'figures' directory")
 
 
 if __name__ == "__main__":

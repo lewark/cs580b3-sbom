@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import scipy.stats
+from cliffs_delta import cliffs_delta
 
 from sbom.paths import find_json_files, get_file_categories
 
@@ -55,7 +56,7 @@ def get_statistics(model_scores: pd.DataFrame):
     ]
 
     items = model_scores.drop(columns="Variant").groupby(["Model", "Prompt mode", "Tool mode"]).agg(["mean", "std", "count"])
-    print(items)
+    # print(items)
 
     rq1_values, rq2_values, rq3_non_tooling_values, rq3_tooling_values = {}, {}, {}, {}
 
@@ -76,7 +77,7 @@ def get_statistics(model_scores: pd.DataFrame):
         # run Kruskal-Wallis test
         values = scores_by_model.values()
         F = scipy.stats.kruskal(*values)
-        print(rq, F)
+        print(f"{rq}: H={F.statistic} p={F.pvalue}")
 
 
         if rq == "rq1":
@@ -99,10 +100,10 @@ def get_statistics(model_scores: pd.DataFrame):
         #             print(model_name1, model_name2, res)
 
     
-    print("Comparison of non-tooling (RQ1) and tooling (RQ2) models:")
+    print("\nComparison of non-tooling (RQ1) and tooling (RQ2) models:")
     compare_model_llmj_values(rq1_values, rq2_values)
 
-    print("Comparison of tooling (RQ2) and tooling CoT (RQ3) models:")
+    print("\nComparison of tooling (RQ2) and tooling CoT (RQ3) models:")
     compare_model_llmj_values(rq2_values, rq3_tooling_values)
 
     # make_figure()
@@ -133,8 +134,8 @@ def compare_model_llmj_values(values_a, values_b):
         x = values_a[model_name]
         y = values_b[model_name]
         result = scipy.stats.mannwhitneyu(x, y)
-        print(model_name, np.median(x), np.median(y), result)
-
+        d, res = cliffs_delta(x, y)
+        print(f"{model_name}: median(x)={np.median(x)} median(y)={np.median(y)} U={result.statistic} p={result.pvalue} cliffs_delta={d} {res}")
 
 
 def plot_model_scores(model_scores: pd.DataFrame) -> None:

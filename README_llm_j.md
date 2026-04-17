@@ -115,7 +115,7 @@ To produce a summary of the LLM-J logs per model, run the `aggregate_results` sc
 python -m sbom.llm_j.aggregate_results ./logs/llm-j-analysis-logs/
 ```
 
-This will output charts and ANOVA results, along with mean and standard deviation of the LLM-J scores for each model.
+This will output charts and Kruskal-Wallis results, as well as Mann-Whitney U comparisons between successive modifications to the model pipeline. See `README_statistics.md` for more information.
 
 ## Confusion Matrix Script
 

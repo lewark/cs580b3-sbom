@@ -234,5 +234,8 @@ Instructions included in the `README_llm_j.md` file.
 
 ### 5. Upload parsed logs and LLM-J results to OneDrive link
 
+## AI Disclosure
+
+Some code for the LLM-J and the tooling agent was written with assistance from Google Gemini. Gemma 3 was also used for clarification on Python standard library functions.
 
 

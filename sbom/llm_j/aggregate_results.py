@@ -209,6 +209,9 @@ def main():
 
     # plot_model_bar(model_df)
 
+    if not os.path.isdir("figures"):
+        os.mkdir("figures")
+
     plot_model_scores(model_scores)
 
 

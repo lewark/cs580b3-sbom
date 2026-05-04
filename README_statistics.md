@@ -7,7 +7,7 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-tar -xf logs.tar.gz
+unzip logs.zip
 python3 -m sbom.llm_j.aggregate_results logs/llm-j-analysis-logs/
 ```
 

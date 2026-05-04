@@ -1,0 +1,29 @@
+Commands to run for the demo:
+
+0. Setup
+./setup.sh
+
+1. Run Chroma
+source venv/bin/activate
+./run-chroma.sh
+
+2. Run agent
+source venv/bin/activate
+export NVD_DIR=../nvd VULNRICHMENT_DIR=../vulnrichment
+./run-agent.sh --tooling --podman
+
+3. Parse log
+python3 -m sbom.logs.parser logs/tomcat/iteration1/
+
+4. Run LLM-J
+Set OLLAMA_MODEL = 'gpt-oss:20b-cloud' in analyze_logs.py
+
+python3 -m sbom.llm_j.analyze_logs logs/parsed-logs/
+
+5. Aggregate results
+
+python3 -m sbom.llm_j.aggregate_results logs_full/llm-j-analysis-logs
+
+6. Confusion matrix
+
+python3 -m sbom.llm_j.confusion_matrix logs_full

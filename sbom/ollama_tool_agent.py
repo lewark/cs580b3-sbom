@@ -292,7 +292,7 @@ Example output format:
     print(system_message, flush=True)
 
     # 4. Construct langchain agent
-    agent_executor = create_agent(llm, tools, system_prompt=system_message)
+    agent_executor = create_agent(llm, tools, system_prompt=system_message, debug=True)
 
     print("\nStarting Advanced Triage Analysis...", flush=True)
     try:

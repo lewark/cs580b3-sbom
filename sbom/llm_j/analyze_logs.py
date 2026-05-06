@@ -16,7 +16,7 @@ LOG_DIR = 'logs/parsed-logs'
 OUTPUT_DIR = 'logs/llm-j-analysis-logs'
 OLLAMA_API_URL = 'http://localhost:11434/api/chat'
 #OLLAMA_MODEL = 'gpt-oss:120b-cloud'
-OLLAMA_MODEL = 'gpt-oss:20b'
+OLLAMA_MODEL = 'gpt-oss:20b-cloud'
 
 def extract_cves(data):
     """Extract CVE IDs from the parsed JSON data, falling back to regex if needed."""

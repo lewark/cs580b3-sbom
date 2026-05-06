@@ -20,6 +20,14 @@ done
 
 wget https://nvd.nist.gov/feeds/json/cve/2.0/nvdcve-2.0-modified.json.gz
 wget https://nvd.nist.gov/feeds/json/cve/2.0/nvdcve-2.0-recent.json.gz
+
+cd ..
+```
+
+Finally, obtain the Known Exploited Vulnerabilities catalog from CISA as follows:
+
+```bash
+wget https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
 ```
 
 ## Software Dependencies
@@ -62,9 +70,16 @@ source venv/bin/activate
 ./run-chroma.sh
 ```
 
-## Agent
+Then, in another terminal, run the script to ingest the vulnerability data into ChromaDB. Note this process may take multiple hours to complete.
 
-Use the following steps to run the agents for each part. Replace the `--podman` argument with `--docker` if using Docker rather than Podman.
+```bash
+source venv/bin/activate
+python3 -m sbom.chroma ./nvd/ known_exploited_vulnerabilities.json
+```
+
+## Running the Agent
+
+After initial setup, use the following steps to run the agents for each part. Replace the `--podman` argument with `--docker` if using Docker rather than Podman.
 For more information, see the main `README.md` file.
 
 Note that `nemotron-3-super:cloud` was skipped for RQ2 and 3 due to it running into issues on the task for RQ1, so it can be excluded by commenting its line out in `grid_config.sh` for the later parts.
@@ -105,7 +120,7 @@ source venv/bin/activate
 python3 -m sbom.logs.parser logs/
 ```
 
-## LLM-J
+## Running LLM-J
 
 Next, run LLM-J on the parsed agent output. See `README_llm_j.md` for more information.
 
@@ -123,9 +138,9 @@ source venv/bin/activate
 python3 -m sbom.llm_j.aggregate_results logs/llm-j-analysis-logs
 ```
 
-## Confusion matrices + F1
+## Producing confusion matrices + F1
 
-To produce the F1 score for vulnerability presence/absence and the confusion matrices, run these commands:
+To produce the F1 score for vulnerability presence/absence and the confusion matrices for SSVC predictions, run these commands:
 
 ```bash
 export NVD_DIR=./nvd VULNRICHMENT_DIR=./vulnrichment

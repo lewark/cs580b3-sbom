@@ -34,7 +34,16 @@ Windows: https://docs.ollama.com/windows
 Linux: https://docs.ollama.com/linux
 macOS: https://docs.ollama.com/macos
 
-With the Ollama CLI, make sure the server is listening by running `ollama serve`, and log in to your cloud account by running `ollama login`.
+With the Ollama CLI, make sure the server is listening by running `ollama serve`, and log in to your cloud account by running `ollama login`. Pull the required models as follows:
+
+```bash
+ollama pull ministral-3:14b-cloud
+ollama pull qwen3.5:397b-cloud
+ollama pull nemotron-3-super:cloud
+ollama pull glm-5.1:cloud
+ollama pull qwen3-next:80b-cloud
+ollama pull gemma4:31b-cloud
+```
 
 ### Python libraries
 
@@ -57,6 +66,8 @@ source venv/bin/activate
 
 Use the following steps to run the agents for each part. Replace the `--podman` argument with `--docker` if using Docker rather than Podman.
 For more information, see the main `README.md` file.
+
+Note that `nemotron-3-super:cloud` was skipped for RQ2 and 3 due to it running into issues on the task for RQ1, so it can be excluded by commenting its line out in `grid_config.sh` for the later parts.
 
 ```bash
 source venv/bin/activate
